@@ -28,6 +28,7 @@
     <typeSystemDescription>
       <imports>
         <import name="TypeSystemDescriptor"/>
+      <import name="org.apache.uima.examples.SourceDocumentInformation"/>
       </imports>
     </typeSystemDescription>
     <typePriorities/>

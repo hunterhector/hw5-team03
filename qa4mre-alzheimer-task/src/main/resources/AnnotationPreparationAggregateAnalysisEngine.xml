@@ -37,29 +37,6 @@
     <delegateAnalysisEngine key="StanfordSentenceAnnotator">
       <import location="annotators/StanfordSentenceAnnotator.xml"/>
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="SolrIndexer">
-      <import location="annotators/SolrIndexer.xml"/>
-    </delegateAnalysisEngine>
-    
-    <!--<delegateAnalysisEngine key="QuestionCandSentDependencyMatcher">
-      <import location="annotators/QuestionCandSentDependencyMatcher.xml"/>
-    </delegateAnalysisEngine>-->
-    
-    <delegateAnalysisEngine key="QuestionCandSentSimilarityMatcher">
-      <import location="annotators/QuestionCandSentSimilarityMatcher.xml"/>
-    </delegateAnalysisEngine>
-    
-    <!--<delegateAnalysisEngine key="QuestionCandSentSynonymMatcher">
-      <import location="annotators/QuestionCandSentSynonymMatcher.xml"/>
-    </delegateAnalysisEngine>-->
-    
-    <delegateAnalysisEngine key="AnswerChoiceCandAnsSimilarityScorer">
-      <import location="annotators/AnswerChoiceCandAnsSimilarityScorer.xml"/>
-    </delegateAnalysisEngine>
-    
-    <delegateAnalysisEngine key="AnswerSelectionByKCandVoting">
-      <import location="annotators/AnswerSelectionByKCandVoting.xml"/>
-    </delegateAnalysisEngine>
     <!--<delegateAnalysisEngine key="AnswerSelectionByKCandAggregation">
       <import location="annotators/AnswerSelectionByKCandAggregation.xml"/>
     </delegateAnalysisEngine>-->
@@ -83,16 +60,6 @@
         <node>QuestionPhraseAnnotator</node>
         <node>NEAnnotator</node>
         <node>QuestionNEAnnotator</node>
-        <!-- <node>SynonymAnnotator</node>-->
-        <!-- <node>QASynonymAnnotator</node>-->
-        <node>SolrIndexer</node>
-        <node>QuestionCandSentSimilarityMatcher</node>
-        <!-- <node>QuestionCandSentSynonymMatcher</node> -->        
-        <!-- <node>QuestionCandSentDependencyMatcher</node>-->
-        <node>AnswerChoiceCandAnsSimilarityScorer</node>
-        <!--<node>AnswerChoiceCandAnsSynonymScorer</node>-->
-        <!--<node>AnswerChoiceCandAnsPMIScorer</node>-->
-        <node>AnswerSelectionByKCandVoting</node>       
         <!--<node>AnswerSelectionByKCandVoting</node>-->
       </fixedFlow>
     </flowConstraints>
