@@ -8,6 +8,7 @@
   <imports>
     <import name="AbstractTypeSystem"/>
     <import name="ExternalTypeSystem"/>
+  <import name="org.apache.uima.examples.SourceDocumentInformation"/>
   </imports>
   <types>
     <typeDescription>
