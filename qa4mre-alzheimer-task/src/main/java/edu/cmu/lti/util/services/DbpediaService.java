@@ -16,8 +16,7 @@ import com.hp.hpl.jena.query.ResultSet;
 import edu.cmu.lti.qa4mre.type.DbpediaAnnotation;
 
 public class DbpediaService {
-	// TODO: String concanetion probably is a bad idea
-	// The following method might be better
+	// there are programmatic methods, but are quite terrible
 	// http://tmarkus.wordpress.com/2010/04/01/creating-sparql-queries-programmatically-in-java/
 
 	public static ArrayListMultimap<String, String> queryDbpediaEnglishAbstract(String resourceUri) {
@@ -25,9 +24,9 @@ public class DbpediaService {
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
 				+ "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" + "PREFIX dc: <http://purl.org/dc/elements/1.1/> \n"
 				+ "PREFIX : <http://dbpedia.org/resource/>\n" + "PREFIX dbprop: <http://dbpedia.org/property/>\n"
-				+ "PREFIX dbpedia: <http://dbpedia.org/>\n" + "PREFIX dbo: <http://dbpedia.org/ontology/>"
+				+ "PREFIX dbpedia: <http://dbpedia.org/>\n" + "PREFIX dbo: <http://dbpedia.org/ontology/>\n"
 				+ "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" + "PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n"
-				+ " SELECT DISTINCT ?abstract FROM <http://dbpedia.org> WHERE { \n" + "{ :" + resourceUri + " dbo:abstract ?abstract\n"
+				+ " SELECT DISTINCT ?abstract FROM <http://dbpedia.org> WHERE { \n" + "{<" + resourceUri + "> dbo:abstract ?abstract\n"
 				+ "FILTER (langMatches(lang(?abstract),'en'))\n" + "}\n" + "} LIMIT 1000";
 
 		return queryDBpediaSparsql(resourceUri, englishAbstractQuery);
@@ -87,7 +86,6 @@ public class DbpediaService {
 	}
 
 	public static ArrayListMultimap<String, String> queryDBpediaSparsql(String resourceUri, String query) {
-
 		QueryExecution exec = QueryExecutionFactory.sparqlService("http://dbpedia.org/sparql", QueryFactory.create(query));
 
 		ResultSet results = exec.execSelect();
@@ -118,7 +116,7 @@ public class DbpediaService {
 	}
 
 	public static void main(String[] argv) {
-		ArrayListMultimap<String, String> results = queryDbpediaEnglishAbstract("Abraham_Lincoln");
+		ArrayListMultimap<String, String> results = queryDbpediaEnglishAbstract("http://dbpedia.org/resource/Alzheimer%27s_disease");
 		System.out.println(results.size());
 		for (Entry<String, String> entry : results.entries()) {
 			System.out.println(entry.getKey());

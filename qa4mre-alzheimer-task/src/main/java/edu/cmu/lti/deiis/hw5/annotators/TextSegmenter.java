@@ -12,20 +12,17 @@ import edu.cmu.lti.qalab.types.TestDocument;
 import edu.cmu.lti.qalab.utils.Brackets;
 import edu.cmu.lti.qalab.utils.Utils;
 
-
-
 public class TextSegmenter extends JCasAnnotator_ImplBase {
 
-	
 	@Override
 	public void process(JCas jCas) throws AnalysisEngineProcessException {
-		// TODO Auto-generated method stub
+		System.out.println(String.format("Processing with %s", this.getClass().getSimpleName()));
 		try {
 			TestDocument testDoc = Utils.getTestDocumentFromCAS(jCas);
 			// String id = srcDoc.getId();
 			String docId = testDoc.getId();
-			System.out.println("################### DocId: " + docId+ "###########################");
-			
+			System.out.println("################### DocId: " + docId + "###########################");
+
 			String docText = testDoc.getText();
 
 			Pattern pattern = Pattern.compile("[0-9a-z][A-Z][a-z]+{3}");
@@ -35,23 +32,21 @@ public class TextSegmenter extends JCasAnnotator_ImplBase {
 
 			ArrayList<Integer> posList = new ArrayList<Integer>();
 			while (matcher.find()) {
-				//String matched = matcher.group();
+				// String matched = matcher.group();
 				int start = matcher.start();
 				int end = matcher.end();
-				//System.out.println("matched: "+matched+"\t"+start+"\t"+end);
+				// System.out.println("matched: "+matched+"\t"+start+"\t"+end);
 				boolean isSegment = true;
 				if (Character.isDigit(docText.charAt(start))) {
-					if((start-1)>=0 && Character.isDigit(docText.charAt(start-1))){
-						isSegment=true;
-					}else{
+					if ((start - 1) >= 0 && Character.isDigit(docText.charAt(start - 1))) {
+						isSegment = true;
+					} else {
 						isSegment = false;
 					}
 				} else {
 					// if (!Character.isDigit(docText.charAt(start))) {
-					if ((start - 1) >= 0
-							&& (docText.charAt(start - 1) == ' ')
-							|| docText.charAt(start - 1) == Character
-									.toUpperCase(docText.charAt(start - 1))) {
+					if ((start - 1) >= 0 && (docText.charAt(start - 1) == ' ')
+							|| docText.charAt(start - 1) == Character.toUpperCase(docText.charAt(start - 1))) {
 						isSegment = false;
 					}
 					if (start - 2 >= 0 && (docText.charAt(start - 2) == ' ')) {
@@ -61,11 +56,11 @@ public class TextSegmenter extends JCasAnnotator_ImplBase {
 						isSegment = false;
 					}
 				}
-				
-				boolean isInsideBkrt=Utils.isInsideBracket(brackatedExpression,start+1);
-				//System.out.println("isInsideBracket: "+isInsideBkrt+"\t"+"isSegment: "+isSegment);
-				if(isInsideBkrt){
-					isSegment=false;
+
+				boolean isInsideBkrt = Utils.isInsideBracket(brackatedExpression, start + 1);
+				// System.out.println("isInsideBracket: "+isInsideBkrt+"\t"+"isSegment: "+isSegment);
+				if (isInsideBkrt) {
+					isSegment = false;
 				}
 				if (start + 1 < end && isSegment) {
 					posList.add(start + 1);
@@ -82,15 +77,14 @@ public class TextSegmenter extends JCasAnnotator_ImplBase {
 				docText = segment1 + "\n" + segment2;
 				shift++;
 			}
-			//System.out.println(docText);
+			// System.out.println(docText);
 
 			testDoc.setText(docText);
 			testDoc.addToIndexes();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	
 }

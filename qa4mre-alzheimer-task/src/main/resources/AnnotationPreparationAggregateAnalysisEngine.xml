@@ -7,35 +7,17 @@
     <!-- <delegateAnalysisEngine key="SynonymAnnotator">
       <import location="annotators/SynonymAnnotator.xml"/>
     </delegateAnalysisEngine>-->
-    <delegateAnalysisEngine key="StanfordNLPAnnotator">
-      <import location="annotators/StanfordNLPAnnotator.xml"/>
-    </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="QuestionNEAnnotator">
-      <import location="annotators/QuestionNEAnnotator.xml"/>
-    </delegateAnalysisEngine>
     <delegateAnalysisEngine key="NoiseFilter">
       <import location="annotators/NoiseFilter.xml"/>
-    </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="QuestionPhraseAnnotator">
-      <import location="annotators/QuestionPhraseAnnotator.xml"/>
-    </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="PhraseAnnotator">
-      <import location="annotators/PhraseAnnotator.xml"/>
-    </delegateAnalysisEngine>
-    <!-- <delegateAnalysisEngine key="QASynonymAnnotator">
-      <import location="annotators/QASynonymAnnotator.xml"/>
-    </delegateAnalysisEngine>-->
-    <delegateAnalysisEngine key="StanfordQuestionNLPAnnotator">
-      <import location="annotators/StanfordQuestionNLPAnnotator.xml"/>
     </delegateAnalysisEngine>
     <delegateAnalysisEngine key="TextSegmenter">
       <import location="annotators/TextSegmenter.xml"/>
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="NEAnnotator">
-      <import location="annotators/NEAnnotator.xml"/>
-    </delegateAnalysisEngine>
     <delegateAnalysisEngine key="StanfordSentenceAnnotator">
       <import location="annotators/StanfordSentenceAnnotator.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="DbpediaAnnotator">
+      <import name="annotators.DbpediaAnnotator"/>
     </delegateAnalysisEngine>
     <!--<delegateAnalysisEngine key="AnswerSelectionByKCandAggregation">
       <import location="annotators/AnswerSelectionByKCandAggregation.xml"/>
@@ -54,12 +36,7 @@
         <node>TextSegmenter</node>
         <node>StanfordSentenceAnnotator</node>
         <node>NoiseFilter</node>
-        <node>StanfordNLPAnnotator</node>
-        <node>StanfordQuestionNLPAnnotator</node>
-        <node>PhraseAnnotator</node>
-        <node>QuestionPhraseAnnotator</node>
-        <node>NEAnnotator</node>
-        <node>QuestionNEAnnotator</node>
+        <node>DbpediaAnnotator</node>
         <!--<node>AnswerSelectionByKCandVoting</node>-->
       </fixedFlow>
     </flowConstraints>

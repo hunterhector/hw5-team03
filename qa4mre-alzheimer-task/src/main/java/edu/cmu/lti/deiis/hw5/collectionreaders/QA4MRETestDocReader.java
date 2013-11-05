@@ -14,6 +14,7 @@ import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
 import org.apache.uima.collection.CollectionException;
 import org.apache.uima.collection.CollectionReader_ImplBase;
+import org.apache.uima.examples.SourceDocumentInformation;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.EmptyFSList;
 import org.apache.uima.jcas.cas.FSList;
@@ -38,17 +39,16 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 	int nCurrFile = 0;
 	NodeList documents = null;
 
-	String questionMarker= "Q: ";
+	String questionMarker = "Q: ";
 	String answerMarker = "A: ";
-	
+
 	int nCurrDoc = 0;
 
 	@Override
 	public void initialize() throws ResourceInitializationException {
 		try {
 
-			File inputDir = new File(
-					(String) getConfigParameterValue("inputDir"));
+			File inputDir = new File((String) getConfigParameterValue("inputDir"));
 			testFiles = inputDir.listFiles(new OnlyNXML("xml"));
 			System.out.println("Total files: " + testFiles.length);
 			String xmlText = this.readTestFile();
@@ -57,7 +57,7 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		
+
 		System.out.println("Starting collection reader");
 	}
 
@@ -65,6 +65,8 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 	public void getNext(CAS aCAS) throws IOException, CollectionException {
 		StringBuffer documentTextWithQuestions = new StringBuffer();
 		int annoOffset = 0;
+
+		File currentFile = testFiles[nCurrFile];
 
 		if (nCurrFile < testFiles.length && !(nCurrDoc < documents.getLength())) {
 			nCurrDoc = 0;
@@ -87,57 +89,52 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 		}
 
 		Element readingTestElement = (Element) documents.item(nCurrDoc);
-		NodeList testDocNodeList = readingTestElement
-				.getElementsByTagName("doc");
+		NodeList testDocNodeList = readingTestElement.getElementsByTagName("doc");
 
 		String docText = testDocNodeList.item(0).getTextContent().trim();
-
-		documentTextWithQuestions.append(docText);
-		documentTextWithQuestions.append("\n");
-		
-		annoOffset += docText.length() + 1;
-		
-		String testDocId = ((Element) testDocNodeList.item(0))
-				.getAttribute("d_id");
-		String fileName = testFiles[nCurrFile].getName();
+		String testDocId = ((Element) testDocNodeList.item(0)).getAttribute("d_id");
+		String fileName = currentFile.getName();
 
 		String docId = fileName.replace(".xmi", "") + "_" + testDocId;
 
-		NodeList questionNodeList = readingTestElement
-				.getElementsByTagName("q");
+		TestDocument testDoc = new TestDocument(jcas, 0, docText.length());
+		testDoc.setId(docId);
+		testDoc.setText(docText);
+		testDoc.addToIndexes();
+
+		documentTextWithQuestions.append(docText);
+		documentTextWithQuestions.append("\n");
+
+		annoOffset += docText.length() + 1;
 
 		ArrayList<QuestionAnswerSet> questionAnswersList = new ArrayList<QuestionAnswerSet>();
+		NodeList questionNodeList = readingTestElement.getElementsByTagName("q");
 
 		for (int i = 0; i < questionNodeList.getLength(); i++) {
-
 			Element questionEle = (Element) questionNodeList.item(i);
 			NodeList questionNode = questionEle.getElementsByTagName("q_str");
 			String questionStr = questionNode.item(0).getTextContent();
-			NodeList answerNodeList = questionEle
-					.getElementsByTagName("answer");
+			NodeList answerNodeList = questionEle.getElementsByTagName("answer");
 
 			Question question = new Question(jcas);
 			question.setText(questionStr);
-			documentTextWithQuestions.append(questionMarker+questionStr);
+			documentTextWithQuestions.append(questionMarker + questionStr);
 			annoOffset += questionMarker.length();
 			question.setBegin(annoOffset);
-			question.setEnd(annoOffset+questionStr.length());
+			question.setEnd(annoOffset + questionStr.length());
 
-			documentTextWithQuestions.append("\n");
-			annoOffset += 1;
-			
+			// one more blank make it prettier
+			documentTextWithQuestions.append("\n\n");
+			annoOffset += questionStr.length() + 2;
+
 			ArrayList<Answer> answerCollection = new ArrayList<Answer>();
 			for (int j = 0; j < answerNodeList.getLength(); j++) {
 				Element ansEle = (Element) answerNodeList.item(j);
-				String isCorrect = ansEle.getAttribute("correct");// <answer
-																	// a_id="2"
-																	// correct="Yes">aromatase</answer>
-
-				String answer = answerNodeList.item(j).getTextContent();
+				String isCorrect = ansEle.getAttribute("correct");
+				String answerStr = answerNodeList.item(j).getTextContent();
 				Answer ans = new Answer(jcas);
 
 				if (isCorrect != null) {
@@ -150,36 +147,37 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 					ans.setIsCorrect(false);
 				}
 				ans.setId(String.valueOf(j));
-				ans.setText(answer);
-				
-				documentTextWithQuestions.append(answerMarker+answer);
+				ans.setText(answerStr);
+
+				documentTextWithQuestions.append(answerMarker + answerStr);
 				annoOffset += answerMarker.length();
 				ans.setBegin(annoOffset);
-				ans.setEnd(annoOffset+answer.length());
+				ans.setEnd(annoOffset + answerStr.length());
+
+				documentTextWithQuestions.append("\n");
+				annoOffset += answerStr.length() + 1;
 				answerCollection.add(ans);
 			}
-			FSList answerFSList = this.createAnswerFSList(jcas,
-					answerCollection);
+			FSList answerFSList = this.createAnswerFSList(jcas, answerCollection);
 			QuestionAnswerSet questionAnswers = new QuestionAnswerSet(jcas);
 			questionAnswers.setQuestion(question);
 			questionAnswers.setAnswerList(answerFSList);
-
 			questionAnswersList.add(questionAnswers);
+
+			// one blank line make it prettier
+			documentTextWithQuestions.append("\n");
+			annoOffset += 1;
 		}
-		FSList quetionAnswersFSList = this.createQuestionAnswersFSList(jcas,
-				questionAnswersList);
+		FSList quetionAnswersFSList = this.createQuestionAnswersFSList(jcas, questionAnswersList);
 
 		// put document in CAS
 		jcas.setDocumentText(documentTextWithQuestions.toString());
-		TestDocument testDoc = new TestDocument(jcas);
-		testDoc.setId(docId);
-		testDoc.setText(docText);
+		jcas.setDocumentLanguage("en");
 		testDoc.setQaList(quetionAnswersFSList);
 
-		testDoc.addToIndexes();
+		setSourceDocumentInformation(jcas, currentFile.toURI().toString(), (int) currentFile.length(), hasNext(), nCurrDoc);
 		// nCurrFile++;
 		nCurrDoc++;
-
 	}
 
 	public String readTestFile() throws Exception {
@@ -196,8 +194,7 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 			}
 			xmlText = xmlText.trim();
 			// System.out.println(xmlText);
-			System.out.println("Read: "
-					+ testFiles[nCurrFile].getAbsolutePath());
+			System.out.println("Read: " + testFiles[nCurrFile].getAbsolutePath());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -231,8 +228,7 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 		return list;
 	}
 
-	public FSList createQuestionAnswersFSList(JCas aJCas,
-			Collection<QuestionAnswerSet> aCollection) {
+	public FSList createQuestionAnswersFSList(JCas aJCas, Collection<QuestionAnswerSet> aCollection) {
 		if (aCollection.size() == 0) {
 			return new EmptyFSList(aJCas);
 		}
@@ -265,8 +261,7 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 
 			Element topicElement = (Element) topicNodeList.item(i);
 			String topicId = topicElement.getAttribute("t_id");
-			NodeList readingTestNodeList = topicElement
-					.getElementsByTagName("reading-test");
+			NodeList readingTestNodeList = topicElement.getElementsByTagName("reading-test");
 
 			documents = readingTestNodeList;
 			// Element eleReading=(Element)readingTestNodeList;
@@ -287,8 +282,7 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 
 	@Override
 	public Progress[] getProgress() {
-		return new Progress[] { new ProgressImpl(nCurrFile, testFiles.length,
-				Progress.ENTITIES) };
+		return new Progress[] { new ProgressImpl(nCurrFile, testFiles.length, Progress.ENTITIES) };
 	}
 
 	@Override
@@ -315,4 +309,12 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 		}
 	}
 
+	private void setSourceDocumentInformation(JCas aJCas, String uri, int size, boolean isLastSegment, int offset) {
+		SourceDocumentInformation srcDocInfo = new SourceDocumentInformation(aJCas);
+		srcDocInfo.setUri(uri);
+		srcDocInfo.setOffsetInSource(offset);
+		srcDocInfo.setDocumentSize(size);
+		srcDocInfo.setLastSegment(isLastSegment);
+		srcDocInfo.addToIndexes();
+	}
 }

@@ -20,8 +20,7 @@ public class QuestionNEAnnotator extends JCasAnnotator_ImplBase {
 	Tagger abnerTagger = null;
 
 	@Override
-	public void initialize(UimaContext context)
-			throws ResourceInitializationException {
+	public void initialize(UimaContext context) throws ResourceInitializationException {
 		super.initialize(context);
 		abnerTagger = new Tagger(Tagger.BIOCREATIVE);
 
@@ -31,11 +30,10 @@ public class QuestionNEAnnotator extends JCasAnnotator_ImplBase {
 	public void process(JCas jCas) throws AnalysisEngineProcessException {
 		// TODO Auto-generated method stub
 		// TestDocument testDoc=Utils.getTestDocumentFromCAS(jCas);
+		System.out.println(String.format("Processing with %s", this.getClass().getSimpleName()));
 
-		ArrayList<Question> questionList = Utils
-				.getQuestionListFromTestDocCAS(jCas);
-		ArrayList<ArrayList<Answer>> answerList = Utils
-				.getAnswerListFromTestDocCAS(jCas);
+		ArrayList<Question> questionList = Utils.getQuestionListFromTestDocCAS(jCas);
+		ArrayList<ArrayList<Answer>> answerList = Utils.getAnswerListFromTestDocCAS(jCas);
 
 		for (int i = 0; i < questionList.size(); i++) {
 			Question question = questionList.get(i);
@@ -65,7 +63,7 @@ public class QuestionNEAnnotator extends JCasAnnotator_ImplBase {
 				// System.out.println(nerTagged);
 				ArrayList<NER> abnerList = new ArrayList<NER>();
 				try {
-					abnerList = this.extractNER(nerTagged, jCas);
+					abnerList = extractNER(nerTagged, jCas);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

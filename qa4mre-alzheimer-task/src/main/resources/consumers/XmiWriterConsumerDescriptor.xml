@@ -21,14 +21,13 @@
       <nameValuePair>
         <name>OutputDirectory</name>
         <value>
-          <string>XMIs/12-test-alzheimer/</string>
+          <string>data/12-test-alzheimer/output</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>
     <typeSystemDescription>
       <imports>
         <import name="TypeSystemDescriptor"/>
-      <import name="org.apache.uima.examples.SourceDocumentInformation"/>
       </imports>
     </typeSystemDescription>
     <typePriorities/>

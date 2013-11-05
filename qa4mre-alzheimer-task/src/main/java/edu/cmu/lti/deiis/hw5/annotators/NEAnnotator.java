@@ -14,45 +14,43 @@ import edu.cmu.lti.qalab.types.NER;
 import edu.cmu.lti.qalab.types.Sentence;
 import edu.cmu.lti.qalab.utils.Utils;
 
-public class NEAnnotator extends JCasAnnotator_ImplBase{
+public class NEAnnotator extends JCasAnnotator_ImplBase {
 
 	Tagger abnerTagger = null;
+
 	@Override
-	public void initialize(UimaContext context)
-			throws ResourceInitializationException {
+	public void initialize(UimaContext context) throws ResourceInitializationException {
 		super.initialize(context);
 		abnerTagger = new Tagger(Tagger.BIOCREATIVE);
-		
+
 	}
+
 	@Override
 	public void process(JCas jCas) throws AnalysisEngineProcessException {
-		// TODO Auto-generated method stub
-		//TestDocument testDoc=Utils.getTestDocumentFromCAS(jCas);
-		
-		ArrayList<Sentence> sentList=Utils.getSentenceListFromTestDocCAS(jCas);
-		for(int i=0;i<sentList.size();i++){
-			Sentence sentence=sentList.get(i);
+		System.out.println(String.format("Processing with %s", this.getClass().getSimpleName()));
+
+		ArrayList<Sentence> sentList = Utils.getSentenceListFromTestDocCAS(jCas);
+		for (int i = 0; i < sentList.size(); i++) {
+			Sentence sentence = sentList.get(i);
 			String nerTagged = abnerTagger.tagABNER(sentence.getText());
 
 			// System.out.println(nerTagged);
-			ArrayList<NER> abnerList=new ArrayList<NER>();
+			ArrayList<NER> abnerList = new ArrayList<NER>();
 			try {
-				 abnerList= this.extractNER(nerTagged,jCas);
+				abnerList = this.extractNER(nerTagged, jCas);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			FSList fsNERList=Utils.createNERList(jCas, abnerList);
+			FSList fsNERList = Utils.createNERList(jCas, abnerList);
 			sentence.setNerList(fsNERList);
 			sentence.addToIndexes();
-			
+
 		}
-		
-		
-		
+
 	}
-	
-	public ArrayList<NER> extractNER(String tagged,JCas jCas) throws Exception {
+
+	public ArrayList<NER> extractNER(String tagged, JCas jCas) throws Exception {
 
 		ArrayList<NER> nerList = new ArrayList<NER>();
 		String words[] = tagged.split("[ ]");
@@ -66,13 +64,13 @@ public class NEAnnotator extends JCasAnnotator_ImplBase{
 			String rec[] = words[i].split("[|]");
 			if (!rec[1].endsWith("O")) {
 				if (rec[1].startsWith("B-")) {
-					ner=ner.trim();
+					ner = ner.trim();
 					if (!ner.equals("")) {
-						NER ne=new NER(jCas);
+						NER ne = new NER(jCas);
 						ne.setText(ner);
 						ne.setTag(type);
 						nerList.add(ne);
-						//System.out.println(ner + "\t" + type);
+						// System.out.println(ner + "\t" + type);
 					}
 
 					ner = "";
@@ -83,13 +81,13 @@ public class NEAnnotator extends JCasAnnotator_ImplBase{
 				}
 			}
 		}
-		ner=ner.trim();
+		ner = ner.trim();
 		if (!ner.equals("")) {
-			NER ne=new NER(jCas);
+			NER ne = new NER(jCas);
 			ne.setText(ner);
 			ne.setTag(type);
 			nerList.add(ne);
-			//System.out.println(ner + "\t" + type);
+			// System.out.println(ner + "\t" + type);
 		}
 		return nerList;
 	}

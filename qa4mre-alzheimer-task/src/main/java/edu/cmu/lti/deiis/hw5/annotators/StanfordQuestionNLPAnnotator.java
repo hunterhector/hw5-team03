@@ -40,8 +40,7 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 	private StanfordCoreNLP stanfordAnnotator;
 
 	@Override
-	public void initialize(UimaContext context)
-			throws ResourceInitializationException {
+	public void initialize(UimaContext context) throws ResourceInitializationException {
 		super.initialize(context);
 		Properties props = new Properties();
 		props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse");// ,
@@ -51,15 +50,13 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 
 	@Override
 	public void process(JCas jCas) throws AnalysisEngineProcessException {
+		System.out.println(String.format("Processing with %s", this.getClass().getSimpleName()));
 
-		TestDocument testDoc = (TestDocument) Utils
-				.getTestDocumentFromCAS(jCas);
+		TestDocument testDoc = (TestDocument) Utils.getTestDocumentFromCAS(jCas);
 
 		String id = testDoc.getId();
-		ArrayList<Question> questionList = Utils
-				.getQuestionListFromTestDocCAS(jCas);
-		ArrayList<ArrayList<Answer>> answerList = Utils
-				.getAnswerListFromTestDocCAS(jCas);
+		ArrayList<Question> questionList = Utils.getQuestionListFromTestDocCAS(jCas);
+		ArrayList<ArrayList<Answer>> answerList = Utils.getAnswerListFromTestDocCAS(jCas);
 
 		for (int i = 0; i < answerList.size(); i++) {
 
@@ -81,15 +78,11 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 				for (CoreMap ans : answers) {
 
 					String ansText = ans.toString();
-					//Answer annAnswer = new Answer(jCas);
+					// Answer annAnswer = new Answer(jCas);
 					ArrayList<Token> tokenList = new ArrayList<Token>();
 
 					// Dependency should have Token rather than String
-					for (CoreLabel token : ans.get(TokensAnnotation.class)) { // order
-																				// needs
-																				// to
-																				// be
-																				// considered
+					for (CoreLabel token : ans.get(TokensAnnotation.class)) {
 						int begin = token.beginPosition();
 
 						int end = token.endPosition();
@@ -114,14 +107,8 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 					fsTokenList.addToIndexes();
 
 					answer.setId(String.valueOf(j));
-					answer.setBegin(tokenList.get(0).getBegin());// begin of
-																	// first
-																	// token
-					answer.setEnd(tokenList.get(tokenList.size() - 1)
-							.getEnd());// end
-										// of
-										// last
-										// token
+					answer.setBegin(tokenList.get(0).getBegin());
+					answer.setEnd(tokenList.get(tokenList.size() - 1).getEnd());
 					answer.setText(ansText);
 					answer.setTokenList(fsTokenList);
 
@@ -130,10 +117,10 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 
 					System.out.println("Answer no. " + j + " processed");
 				}
-				
+
 			}
 			answerList.set(i, choiceList);
-			
+
 		}
 
 		System.out.println("Total Questions: " + questionList.size());
@@ -192,24 +179,16 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 				fsTokenList.addToIndexes();
 
 				// this is the Stanford dependency graph of the current sentence
-				SemanticGraph dependencies = question
-						.get(CollapsedCCProcessedDependenciesAnnotation.class);
+				SemanticGraph dependencies = question.get(CollapsedCCProcessedDependenciesAnnotation.class);
 				List<SemanticGraphEdge> depList = dependencies.edgeListSorted();
-				FSList fsDependencyList = this.createDependencyList(jCas,
-						depList);
+				FSList fsDependencyList = this.createDependencyList(jCas, depList);
 				fsDependencyList.addToIndexes();
 				// Dependency dependency = new Dependency(jCas);
 				// System.out.println("Dependencies: "+dependencies);
 
 				annQuestion.setId(String.valueOf(sentNo));
-				annQuestion.setBegin(tokenList.get(0).getBegin());// begin of
-																	// first
-																	// token
-				annQuestion
-						.setEnd(tokenList.get(tokenList.size() - 1).getEnd());// end
-																				// of
-																				// last
-																				// token
+				annQuestion.setBegin(tokenList.get(0).getBegin());
+				annQuestion.setEnd(tokenList.get(tokenList.size() - 1).getEnd());
 				annQuestion.setText(questionText);
 				annQuestion.setTokenList(fsTokenList);
 				annQuestion.setDependencies(fsDependencyList);
@@ -221,14 +200,13 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 		}
 		// FSList fsQuestionList = Utils.createQuestionList(jCas, questionList);
 		// fsQuestionList.addToIndexes();
-		ArrayList<QuestionAnswerSet> qaSet = Utils
-				.getQuestionAnswerSetFromTestDocCAS(jCas);
+		ArrayList<QuestionAnswerSet> qaSet = Utils.getQuestionAnswerSetFromTestDocCAS(jCas);
 		for (int i = 0; i < qaSet.size(); i++) {
 			questionList.get(i).addToIndexes();
 			qaSet.get(i).setQuestion(questionList.get(i));
-			FSList fsAnswerList=Utils.fromCollectionToFSList(jCas, answerList.get(i));
+			FSList fsAnswerList = Utils.fromCollectionToFSList(jCas, answerList.get(i));
 			qaSet.get(i).setAnswerList(fsAnswerList);
-			
+
 		}
 
 		FSList fsQASet = Utils.createQuestionAnswerSet(jCas, qaSet);
@@ -249,8 +227,7 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 	 * @return FSList
 	 */
 
-	public FSList createSentenceList(JCas aJCas,
-			Collection<Sentence> aCollection) {
+	public FSList createSentenceList(JCas aJCas, Collection<Sentence> aCollection) {
 		if (aCollection.size() == 0) {
 			return new EmptyFSList(aJCas);
 		}
@@ -297,8 +274,7 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 		return list;
 	}
 
-	public FSList createDependencyList(JCas aJCas,
-			Collection<SemanticGraphEdge> aCollection) {
+	public FSList createDependencyList(JCas aJCas, Collection<SemanticGraphEdge> aCollection) {
 		if (aCollection.size() == 0) {
 			return new EmptyFSList(aJCas);
 		}

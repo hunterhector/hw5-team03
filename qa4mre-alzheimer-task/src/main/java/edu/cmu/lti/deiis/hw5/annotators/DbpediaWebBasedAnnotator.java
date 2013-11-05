@@ -2,6 +2,7 @@ package edu.cmu.lti.deiis.hw5.annotators;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,12 +23,14 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.apache.uima.UimaContext;
+import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
+//import org.uimafit.component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
-import org.uimafit.component.JCasAnnotator_ImplBase;
 import org.uimafit.descriptor.ConfigurationParameter;
 import org.uimafit.util.FSCollectionFactory;
+import org.uimafit.util.JCasUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -37,6 +40,9 @@ import org.xml.sax.SAXException;
 import com.google.common.collect.ArrayListMultimap;
 
 import edu.cmu.lti.qa4mre.type.DbpediaAnnotation;
+import edu.cmu.lti.qalab.types.Answer;
+import edu.cmu.lti.qalab.types.Question;
+import edu.cmu.lti.qalab.types.TestDocument;
 import edu.cmu.lti.util.services.DbpediaService;
 
 public class DbpediaWebBasedAnnotator extends JCasAnnotator_ImplBase {
@@ -75,16 +81,29 @@ public class DbpediaWebBasedAnnotator extends JCasAnnotator_ImplBase {
 
 	@Override
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
-		String documentText = aJCas.getDocumentText();
+		// String documentText = aJCas.getDocumentText();
+
+		for (TestDocument doc : JCasUtil.select(aJCas, TestDocument.class)) {
+			annotateText(doc.getCoveredText(), aJCas, doc.getBegin());
+		}
+
+		for (Question question : JCasUtil.select(aJCas, Question.class)) {
+			annotateText(question.getCoveredText(), aJCas, question.getBegin());
+		}
+
+		for (Answer answer : JCasUtil.select(aJCas, Answer.class)) {
+			annotateText(answer.getCoveredText(), aJCas, answer.getBegin());
+		}
+
 		try {
+			// this calls Dbpedia remotely so I let it sleep for every document
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		annotateText(documentText, aJCas);
 	}
 
-	private void annotateText(String text, JCas aJCas) {
+	private void annotateText(String text, JCas aJCas, int textOffset) {
 		HttpPost httpPost = new HttpPost("http://spotlight.dbpedia.org/rest/annotate/");
 		List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 		nvps.add(new BasicNameValuePair("disambiguator", "Default"));
@@ -110,7 +129,7 @@ public class DbpediaWebBasedAnnotator extends JCasAnnotator_ImplBase {
 				Node resource = resources.item(i);
 				NamedNodeMap attributes = resource.getAttributes();
 				String uri = attributes.getNamedItem("URI").getNodeValue();
-				int offset = Integer.parseInt(attributes.getNamedItem("offset").getNodeValue());
+				int offset = Integer.parseInt(attributes.getNamedItem("offset").getNodeValue()) + textOffset;
 				double similarity = Double.parseDouble(attributes.getNamedItem("similarityScore").getNodeValue());
 				String surface = attributes.getNamedItem("surfaceForm").getNodeValue();
 				String types = attributes.getNamedItem("types").getNodeValue();
@@ -134,19 +153,24 @@ public class DbpediaWebBasedAnnotator extends JCasAnnotator_ImplBase {
 		}
 	}
 
-	private void createDbpediaResource(JCas aJCas, String uri, int begin, String surface, Double sim, String types) {
+	private void createDbpediaResource(JCas aJCas, String uri, int begin, String surface, Double sim, String types)
+			throws UnsupportedEncodingException {
 		DbpediaAnnotation anno = new DbpediaAnnotation(aJCas);
 		String abstractText = null;
 
-		String resourceUri = uri.replaceAll("^" + dbpediaPrefix, "");
+		// actually raw encoded url is the best!
+		// String resourceUri = uri.replaceAll("^" + dbpediaPrefix, "");
+		// String decodedUri = URLDecoder.decode(resourceUri, "UTF-8");
+		// System.out.println(resourceUri + " " + decodedUri);
+
 		try {
-			ArrayListMultimap<String, String> results = DbpediaService.queryDbpediaEnglishAbstract(resourceUri);
+			ArrayListMultimap<String, String> results = DbpediaService.queryDbpediaEnglishAbstract(uri);
 			for (Entry<String, String> entry : results.entries()) {
 				abstractText = entry.getValue();
 			}
 		} catch (Exception e) {
-			// e.printStackTrace();
-			System.err.println("Cannot query this uri " + resourceUri);
+			e.printStackTrace();
+			System.err.println("Cannot query this uri " + uri);
 		}
 
 		int end = begin + surface.length();
