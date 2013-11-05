@@ -125,6 +125,7 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 			annoOffset += questionMarker.length();
 			question.setBegin(annoOffset);
 			question.setEnd(annoOffset + questionStr.length());
+			question.addToIndexes();
 
 			// one more blank make it prettier
 			documentTextWithQuestions.append("\n\n");
@@ -153,6 +154,7 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 				annoOffset += answerMarker.length();
 				ans.setBegin(annoOffset);
 				ans.setEnd(annoOffset + answerStr.length());
+				ans.addToIndexes();
 
 				documentTextWithQuestions.append("\n");
 				annoOffset += answerStr.length() + 1;
@@ -163,6 +165,7 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 			questionAnswers.setQuestion(question);
 			questionAnswers.setAnswerList(answerFSList);
 			questionAnswersList.add(questionAnswers);
+			questionAnswers.addToIndexes();
 
 			// one blank line make it prettier
 			documentTextWithQuestions.append("\n");

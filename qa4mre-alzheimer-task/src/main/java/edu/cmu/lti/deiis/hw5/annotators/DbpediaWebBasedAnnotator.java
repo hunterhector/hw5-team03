@@ -63,11 +63,14 @@ public class DbpediaWebBasedAnnotator extends JCasAnnotator_ImplBase {
 
 	private DocumentBuilder dBuilder;
 
-	private String dbpediaPrefix = "http://dbpedia.org/resource/";
-
 	@Override
 	public void initialize(UimaContext aContext) throws ResourceInitializationException {
 		super.initialize(aContext);
+
+		confidence = (Float) aContext.getConfigParameterValue(PARAM_CONFIDENCE);
+
+		support = (Integer) aContext.getConfigParameterValue(PARAM_SUPPORT);
+
 		httpClient = new DefaultHttpClient();
 
 		dbFactory = DocumentBuilderFactory.newInstance();
@@ -157,11 +160,6 @@ public class DbpediaWebBasedAnnotator extends JCasAnnotator_ImplBase {
 			throws UnsupportedEncodingException {
 		DbpediaAnnotation anno = new DbpediaAnnotation(aJCas);
 		String abstractText = null;
-
-		// actually raw encoded url is the best!
-		// String resourceUri = uri.replaceAll("^" + dbpediaPrefix, "");
-		// String decodedUri = URLDecoder.decode(resourceUri, "UTF-8");
-		// System.out.println(resourceUri + " " + decodedUri);
 
 		try {
 			ArrayListMultimap<String, String> results = DbpediaService.queryDbpediaEnglishAbstract(uri);

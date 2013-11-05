@@ -111,8 +111,6 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 					answer.setEnd(tokenList.get(tokenList.size() - 1).getEnd());
 					answer.setText(ansText);
 					answer.setTokenList(fsTokenList);
-
-					answer.addToIndexes();
 					choiceList.set(j, answer);
 
 					System.out.println("Answer no. " + j + " processed");
@@ -192,7 +190,6 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 				annQuestion.setText(questionText);
 				annQuestion.setTokenList(fsTokenList);
 				annQuestion.setDependencies(fsDependencyList);
-				annQuestion.addToIndexes();
 				questionList.set(i, annQuestion);
 				sentNo++;
 				System.out.println("Question no. " + sentNo + " processed");
@@ -213,8 +210,6 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 
 		testDoc.setId(id);
 		testDoc.setQaList(fsQASet);
-		testDoc.addToIndexes();
-
 	}
 
 	/**

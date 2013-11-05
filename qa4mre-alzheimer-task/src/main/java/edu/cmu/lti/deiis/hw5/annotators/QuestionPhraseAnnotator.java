@@ -44,7 +44,6 @@ public class QuestionPhraseAnnotator extends JCasAnnotator_ImplBase {
 			FSList fsPhraseList = Utils.createNounPhraseList(aJCas, phraseList);
 			fsPhraseList.addToIndexes(aJCas);
 			question.setNounList(fsPhraseList);
-			question.addToIndexes();
 			questionList.set(i, question);
 		}
 
@@ -58,7 +57,6 @@ public class QuestionPhraseAnnotator extends JCasAnnotator_ImplBase {
 				FSList fsPhraseList = Utils.createNounPhraseList(aJCas, phraseList);
 				fsPhraseList.addToIndexes(aJCas);
 				ans.setNounPhraseList(fsPhraseList);
-				ans.addToIndexes();
 				choiceList.set(j, ans);
 			}
 
@@ -77,8 +75,6 @@ public class QuestionPhraseAnnotator extends JCasAnnotator_ImplBase {
 		FSList fsQASet = Utils.createQuestionAnswerSet(aJCas, qaSet);
 
 		testDoc.setQaList(fsQASet);
-		testDoc.addToIndexes();
-
 	}
 
 	public ArrayList<NounPhrase> extractNounPhrases(Collection<Token> tokenList, JCas jCas) {

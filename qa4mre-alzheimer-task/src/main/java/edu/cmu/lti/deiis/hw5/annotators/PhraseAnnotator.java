@@ -38,7 +38,6 @@ public class PhraseAnnotator extends JCasAnnotator_ImplBase {
 			FSList fsPhraseList = Utils.createNounPhraseList(aJCas, phraseList);
 			fsPhraseList.addToIndexes(aJCas);
 			sent.setPhraseList(fsPhraseList);
-			sent.addToIndexes();
 			sentenceList.set(i, sent);
 		}
 

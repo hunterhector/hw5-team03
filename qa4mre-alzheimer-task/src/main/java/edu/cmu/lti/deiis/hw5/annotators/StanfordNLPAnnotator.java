@@ -144,8 +144,6 @@ public class StanfordNLPAnnotator extends JCasAnnotator_ImplBase {
 
 		testDoc.setId(id);
 		testDoc.setSentenceList(fsSentList);
-		testDoc.addToIndexes();
-
 	}
 
 	/**

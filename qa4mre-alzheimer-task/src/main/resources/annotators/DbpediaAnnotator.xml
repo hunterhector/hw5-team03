@@ -8,8 +8,36 @@
     <description/>
     <version>1.0</version>
     <vendor/>
-    <configurationParameters/>
-    <configurationParameterSettings/>
+    <configurationParameters>
+      <configurationParameter>
+        <name>support</name>
+        <description>The support paraemter of DBpedia</description>
+        <type>Integer</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>confidence</name>
+        <description>The confidence to retain a resource</description>
+        <type>Float</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>support</name>
+        <value>
+          <integer>500</integer>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>confidence</name>
+        <value>
+          <float>0.2</float>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
     <typeSystemDescription/>
     <typePriorities/>
     <fsIndexCollection/>

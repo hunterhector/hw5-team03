@@ -44,8 +44,6 @@ public class NEAnnotator extends JCasAnnotator_ImplBase {
 			}
 			FSList fsNERList = Utils.createNERList(jCas, abnerList);
 			sentence.setNerList(fsNERList);
-			sentence.addToIndexes();
-
 		}
 
 	}

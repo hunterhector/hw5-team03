@@ -1,6 +1,8 @@
 package edu.cmu.lti.util.services;
 
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.uima.jcas.cas.StringList;
@@ -19,17 +21,29 @@ public class DbpediaService {
 	// there are programmatic methods, but are quite terrible
 	// http://tmarkus.wordpress.com/2010/04/01/creating-sparql-queries-programmatically-in-java/
 
-	public static ArrayListMultimap<String, String> queryDbpediaEnglishAbstract(String resourceUri) {
-		String englishAbstractQuery = "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n"
-				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
-				+ "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" + "PREFIX dc: <http://purl.org/dc/elements/1.1/> \n"
-				+ "PREFIX : <http://dbpedia.org/resource/>\n" + "PREFIX dbprop: <http://dbpedia.org/property/>\n"
-				+ "PREFIX dbpedia: <http://dbpedia.org/>\n" + "PREFIX dbo: <http://dbpedia.org/ontology/>\n"
-				+ "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" + "PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n"
-				+ " SELECT DISTINCT ?abstract FROM <http://dbpedia.org> WHERE { \n" + "{<" + resourceUri + "> dbo:abstract ?abstract\n"
-				+ "FILTER (langMatches(lang(?abstract),'en'))\n" + "}\n" + "} LIMIT 1000";
+	static Map<String, ArrayListMultimap<String, String>> abstractCache = new HashMap<String, ArrayListMultimap<String, String>>();
+	static Map<String, ArrayListMultimap<String, String>> locationCache = new HashMap<String, ArrayListMultimap<String, String>>();
 
-		return queryDBpediaSparsql(resourceUri, englishAbstractQuery);
+	public static ArrayListMultimap<String, String> queryDbpediaEnglishAbstract(String resourceUri) {
+
+		ArrayListMultimap<String, String> results;
+		if (abstractCache.containsKey(resourceUri)) {
+			results = abstractCache.get(resourceUri);
+		} else {
+			String englishAbstractQuery = "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n"
+					+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
+					+ "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" + "PREFIX dc: <http://purl.org/dc/elements/1.1/> \n"
+					+ "PREFIX : <http://dbpedia.org/resource/>\n" + "PREFIX dbprop: <http://dbpedia.org/property/>\n"
+					+ "PREFIX dbpedia: <http://dbpedia.org/>\n" + "PREFIX dbo: <http://dbpedia.org/ontology/>\n"
+					+ "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" + "PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n"
+					+ " SELECT DISTINCT ?abstract FROM <http://dbpedia.org> WHERE { \n" + "{<" + resourceUri + "> dbo:abstract ?abstract\n"
+					+ "FILTER (langMatches(lang(?abstract),'en'))\n" + "}\n" + "} LIMIT 1000";
+
+			results = queryDBpediaSparsql(resourceUri, englishAbstractQuery);
+			abstractCache.put(resourceUri, results);
+		}
+
+		return results;
 	}
 
 	public static ArrayListMultimap<String, String> queryDbpediaLocation(String resourceUri) {
@@ -82,7 +96,15 @@ public class DbpediaService {
 				+ "}\n"
 				+ "} LIMIT 1000";
 
-		return queryDBpediaSparsql(resourceUri, generalQuery);
+		ArrayListMultimap<String, String> results;
+		if (locationCache.containsKey(resourceUri)) {
+			results = locationCache.get(resourceUri);
+		} else {
+			results = queryDBpediaSparsql(resourceUri, generalQuery);
+			locationCache.put(resourceUri, results);
+		}
+
+		return results;
 	}
 
 	public static ArrayListMultimap<String, String> queryDBpediaSparsql(String resourceUri, String query) {

@@ -80,7 +80,6 @@ public class TextSegmenter extends JCasAnnotator_ImplBase {
 			// System.out.println(docText);
 
 			testDoc.setText(docText);
-			testDoc.addToIndexes();
 
 		} catch (Exception e) {
 			e.printStackTrace();

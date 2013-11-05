@@ -114,9 +114,6 @@ public class StanfordSentenceAnnotator extends JCasAnnotator_ImplBase {
 		}
 		FSList fsSentList = Utils.createSentenceList(jCas, sentList);
 		fsSentList.addToIndexes();
-		testDoc.setId(id);
 		testDoc.setSentenceList(fsSentList);
-		testDoc.addToIndexes();
-
 	}
 }

@@ -10,9 +10,6 @@
     <delegateAnalysisEngine key="NoiseFilter">
       <import location="annotators/NoiseFilter.xml"/>
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="TextSegmenter">
-      <import location="annotators/TextSegmenter.xml"/>
-    </delegateAnalysisEngine>
     <delegateAnalysisEngine key="StanfordSentenceAnnotator">
       <import location="annotators/StanfordSentenceAnnotator.xml"/>
     </delegateAnalysisEngine>
@@ -39,7 +36,6 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
-        <node>TextSegmenter</node>
         <node>StanfordSentenceAnnotator</node>
         <node>NoiseFilter</node>
         <node>DbpediaAnnotator</node>

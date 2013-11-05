@@ -86,8 +86,7 @@ public class NoiseFilter extends JCasAnnotator_ImplBase {
 			// annotation.setId(id);
 			testDoc.setSentenceList(modifiedSentList);
 			testDoc.setFilteredText(filteredText);
-			testDoc.addToIndexes();
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -49,8 +49,6 @@ public class QuestionNEAnnotator extends JCasAnnotator_ImplBase {
 			}
 			FSList fsNERList = Utils.createNERList(jCas, abnerList);
 			question.setNerList(fsNERList);
-			question.addToIndexes();
-
 		}
 
 		for (int i = 0; i < answerList.size(); i++) {
@@ -70,7 +68,6 @@ public class QuestionNEAnnotator extends JCasAnnotator_ImplBase {
 				}
 				FSList fsNERList = Utils.createNERList(jCas, abnerList);
 				ans.setNerList(fsNERList);
-				ans.addToIndexes();
 				choiceList.set(j, ans);
 			}
 
