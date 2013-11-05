@@ -12,7 +12,7 @@
     <typeDescription>
 			<name>edu.cmu.lti.qa4mre.type.DbpediaAnnotation</name>
 			<description/>
-			<supertypeName>edu.cmu.lti.util.type.ComponentAnnotation</supertypeName>
+			<supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
 			<features>
 				<featureDescription>
 					<name>Uri</name>
@@ -39,7 +39,7 @@
 		 <typeDescription>
       <name>edu.cmu.lti.qa4mre.type.StanfordEntityCoreferenceCluster</name>
       <description/>
-      <supertypeName>edu.cmu.lti.util.type.ComponentTOP</supertypeName>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentTOP</supertypeName>
       <features>
         <featureDescription>
           <name>entityCoreferenceClusterId</name>
@@ -57,7 +57,7 @@
     <typeDescription>
       <name>edu.cmu.lti.qa4mre.type.StanfordCoreNlpTimex</name>
       <description>See http://www-nlp.stanford.edu/nlp/javadoc/javanlp/edu/stanford/nlp/time/Timex.html</description>
-      <supertypeName>edu.cmu.lti.util.type.ComponentAnnotation</supertypeName>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
       <features>
         <featureDescription>
           <name>tid</name>
@@ -84,7 +84,7 @@
     <typeDescription>
       <name>edu.cmu.lti.qa4mre.type.StanfordEntityMention</name>
       <description/>
-      <supertypeName>edu.cmu.lti.util.type.ComponentAnnotation</supertypeName>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
       <features>
         <featureDescription>
           <name>entityMentionId</name>
@@ -106,7 +106,7 @@
     <typeDescription>
       <name>edu.cmu.lti.qa4mre.type.StanfordCorenlpToken</name>
       <description/>
-      <supertypeName>edu.cmu.lti.util.type.ComponentAnnotation</supertypeName>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
       <features>
         <featureDescription>
           <name>tokenId</name>
@@ -128,7 +128,7 @@
     <typeDescription>
       <name>edu.cmu.lti.qa4mre.type.StanfordCorenlpSentence</name>
       <description/>
-      <supertypeName>edu.cmu.lti.util.type.ComponentAnnotation</supertypeName>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
       <features>
         <featureDescription>
           <name>sentenceId</name>
@@ -140,7 +140,7 @@
     <typeDescription>
       <name>edu.cmu.lti.qa4mre.type.StanfordDependencyNode</name>
       <description/>
-      <supertypeName>edu.cmu.lti.util.type.ComponentAnnotation</supertypeName>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
       <features>
         <featureDescription>
           <name>headRelations</name>
@@ -169,7 +169,7 @@
     <typeDescription>
       <name>edu.cmu.lti.qa4mre.type.StanfordDependencyRelation</name>
       <description/>
-      <supertypeName>edu.cmu.lti.util.type.ComponentTOP</supertypeName>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentTOP</supertypeName>
       <features>
         <featureDescription>
           <name>head</name>
@@ -196,7 +196,7 @@
     <typeDescription>
       <name>edu.cmu.lti.qa4mre.type.FanseToken</name>
       <description/>
-      <supertypeName>edu.cmu.lti.util.type.ComponentAnnotation</supertypeName>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
       <features>
         <featureDescription>
           <name>tokenId</name>
@@ -247,7 +247,7 @@
     <typeDescription>
       <name>edu.cmu.lti.qa4mre.type.FanseDependencyRelation</name>
       <description/>
-      <supertypeName>edu.cmu.lti.util.type.ComponentTOP</supertypeName>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentTOP</supertypeName>
       <features>
         <featureDescription>
           <name>head</name>
@@ -269,7 +269,7 @@
     <typeDescription>
       <name>edu.cmu.lti.qa4mre.type.FanseSemanticRelation</name>
       <description/>
-      <supertypeName>edu.cmu.lti.util.type.ComponentTOP</supertypeName>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentTOP</supertypeName>
       <features>
         <featureDescription>
           <name>semanticAnnotation</name>
@@ -291,7 +291,7 @@
     <typeDescription>
       <name>edu.cmu.lti.qa4mre.type.SemaforLabel</name>
       <description/>
-      <supertypeName>edu.cmu.lti.util.type.ComponentAnnotation</supertypeName>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
       <features>
         <featureDescription>
           <name>name</name>
@@ -308,7 +308,7 @@
     <typeDescription>
       <name>edu.cmu.lti.qa4mre.type.SemaforLayer</name>
       <description/>
-      <supertypeName>edu.cmu.lti.util.type.ComponentAnnotation</supertypeName>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
       <features>
         <featureDescription>
           <name>name</name>
@@ -336,7 +336,7 @@
     <typeDescription>
       <name>edu.cmu.lti.qa4mre.type.SemaforAnnotationSet</name>
       <description/>
-      <supertypeName>edu.cmu.lti.util.type.ComponentAnnotation</supertypeName>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
       <features>
         <featureDescription>
           <name>layers</name>
@@ -377,7 +377,7 @@
     <typeDescription>
       <name>edu.cmu.lti.qa4mre.type.StanfordTreeAnnotation</name>
       <description/>
-      <supertypeName>edu.cmu.lti.util.type.ComponentAnnotation</supertypeName>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
       <features>
         <featureDescription>
           <name>pennTreeLabel</name>
@@ -410,7 +410,7 @@
     <typeDescription>
       <name>edu.cmu.lti.qa4mre.type.OpennlpChunk</name>
       <description/>
-      <supertypeName>edu.cmu.lti.util.type.ComponentAnnotation</supertypeName>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
       <features>
         <featureDescription>
           <name>tag</name>

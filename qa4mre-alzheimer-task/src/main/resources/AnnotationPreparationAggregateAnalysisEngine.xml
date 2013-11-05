@@ -19,6 +19,12 @@
     <delegateAnalysisEngine key="DbpediaAnnotator">
       <import name="annotators.DbpediaAnnotator"/>
     </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="NEAnnotator">
+      <import name="annotators.NEAnnotator"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="QuestionNEAnnotator">
+      <import name="annotators.QuestionNEAnnotator"/>
+    </delegateAnalysisEngine>
     <!--<delegateAnalysisEngine key="AnswerSelectionByKCandAggregation">
       <import location="annotators/AnswerSelectionByKCandAggregation.xml"/>
     </delegateAnalysisEngine>-->
@@ -37,6 +43,8 @@
         <node>StanfordSentenceAnnotator</node>
         <node>NoiseFilter</node>
         <node>DbpediaAnnotator</node>
+        <node>NEAnnotator</node>
+        <node>QuestionNEAnnotator</node>
         <!--<node>AnswerSelectionByKCandVoting</node>-->
       </fixedFlow>
     </flowConstraints>

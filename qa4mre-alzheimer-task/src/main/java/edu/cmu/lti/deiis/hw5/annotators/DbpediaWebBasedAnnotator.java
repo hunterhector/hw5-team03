@@ -2,7 +2,6 @@ package edu.cmu.lti.deiis.hw5.annotators;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -124,7 +123,7 @@ public class DbpediaWebBasedAnnotator extends JCasAnnotator_ImplBase {
 
 			NodeList resources = doc.getElementsByTagName("Resource");
 			int numOfResources = resources.getLength();
-			System.out.println("Number of resources in text:  " + numOfResources);
+			System.out.println(String.format("Creating %d resources in text.", numOfResources));
 			for (int i = 0; i < numOfResources; i++) {
 				Node resource = resources.item(i);
 				NamedNodeMap attributes = resource.getAttributes();
@@ -136,6 +135,7 @@ public class DbpediaWebBasedAnnotator extends JCasAnnotator_ImplBase {
 
 				createDbpediaResource(aJCas, uri, offset, surface, similarity, types);
 			}
+			System.out.println("Finish creating resources");
 
 			EntityUtils.consume(entity);
 		} catch (UnsupportedEncodingException e) {
