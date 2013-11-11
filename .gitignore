@@ -1,0 +1,5 @@
+/target
+/persistence
+/nohup.out
+/results
+.DS_Store
