@@ -108,7 +108,6 @@ public class QuestionCandSentSimilarityMatcher extends JCasAnnotator_ImplBase {
 
 	public String formSolrQuery(Question question) {
 		String solrQuery = "";
-
 		ArrayList<NounPhrase> nounPhrases = Utils.fromFSListToCollection(question.getNounList(), NounPhrase.class);
 
 		for (int i = 0; i < nounPhrases.size(); i++) {

@@ -10,7 +10,7 @@
     <delegateAnalysisEngine key="StanfordSentenceAnnotator">
       <import name="annotators.StanfordSentenceAnnotator"/>
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="NEAnnotator2">
+    <delegateAnalysisEngine key="NEAnnotator">
       <import name="annotators.NEAnnotator"/>
     </delegateAnalysisEngine>
     <delegateAnalysisEngine key="SolrIndexer">
@@ -67,12 +67,9 @@
         <node>StanfordQuestionNLPAnnotator</node>
         <node>PhraseAnnotator</node>
         <node>QuestionPhraseAnnotator</node>
-        <node>NEAnnotator2</node>
+        <node>NEAnnotator</node>
         <node>QuestionNEAnnotator</node>
         <node>SolrIndexer</node>
-        <node>QuestionCandSentSimilarityMatcher</node>
-        <node>AnswerChoiceCandAnsSimilarityScorer</node>
-        <node>AnswerSelectionByKCandAggregation</node>
         <!--<node>AnswerSelectionByKCandVoting</node>-->
       </fixedFlow>
     </flowConstraints>

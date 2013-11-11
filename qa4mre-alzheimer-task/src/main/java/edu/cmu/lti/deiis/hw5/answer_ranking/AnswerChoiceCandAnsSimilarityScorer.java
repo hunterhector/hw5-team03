@@ -24,62 +24,51 @@ public class AnswerChoiceCandAnsSimilarityScorer extends JCasAnnotator_ImplBase 
 	int K_CANDIDATES = 5;
 
 	@Override
-	public void initialize(UimaContext context)
-			throws ResourceInitializationException {
+	public void initialize(UimaContext context) throws ResourceInitializationException {
 		super.initialize(context);
-		K_CANDIDATES=(Integer)context.getConfigParameterValue("K_CANDIDATES");
+		K_CANDIDATES = (Integer) context.getConfigParameterValue("K_CANDIDATES");
 	}
 
 	@Override
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
+		System.out.println(String.format("Processing with %s", this.getClass().getSimpleName()));
+
 		TestDocument testDoc = Utils.getTestDocumentFromCAS(aJCas);
 		// String testDocId = testDoc.getId();
-		ArrayList<QuestionAnswerSet> qaSet = Utils
-				.getQuestionAnswerSetFromTestDocCAS(aJCas);
+		ArrayList<QuestionAnswerSet> qaSet = Utils.getQuestionAnswerSetFromTestDocCAS(aJCas);
 
 		for (int i = 0; i < qaSet.size(); i++) {
 
 			Question question = qaSet.get(i).getQuestion();
 			System.out.println("Question: " + question.getText());
-			ArrayList<Answer> choiceList = Utils.fromFSListToCollection(qaSet
-					.get(i).getAnswerList(), Answer.class);
+			ArrayList<Answer> choiceList = Utils.fromFSListToCollection(qaSet.get(i).getAnswerList(), Answer.class);
 			ArrayList<CandidateSentence> candSentList = Utils
-					.fromFSListToCollection(qaSet.get(i)
-							.getCandidateSentenceList(),
-							CandidateSentence.class);
+					.fromFSListToCollection(qaSet.get(i).getCandidateSentenceList(), CandidateSentence.class);
 
 			int topK = Math.min(K_CANDIDATES, candSentList.size());
 			for (int c = 0; c < topK; c++) {
 
 				CandidateSentence candSent = candSentList.get(c);
 
-				ArrayList<NounPhrase> candSentNouns = Utils
-						.fromFSListToCollection(candSent.getSentence()
-								.getPhraseList(), NounPhrase.class);
-				ArrayList<NER> candSentNers = Utils.fromFSListToCollection(
-						candSent.getSentence().getNerList(), NER.class);
+				ArrayList<NounPhrase> candSentNouns = Utils.fromFSListToCollection(candSent.getSentence().getPhraseList(), NounPhrase.class);
+				ArrayList<NER> candSentNers = Utils.fromFSListToCollection(candSent.getSentence().getNerList(), NER.class);
 
 				ArrayList<CandidateAnswer> candAnsList = new ArrayList<CandidateAnswer>();
 				for (int j = 0; j < choiceList.size(); j++) {
 
 					Answer answer = choiceList.get(j);
-					ArrayList<NounPhrase> choiceNouns = Utils
-							.fromFSListToCollection(answer.getNounPhraseList(),
-									NounPhrase.class);
-					ArrayList<NER> choiceNERs = Utils.fromFSListToCollection(
-							answer.getNerList(), NER.class);
+					ArrayList<NounPhrase> choiceNouns = Utils.fromFSListToCollection(answer.getNounPhraseList(), NounPhrase.class);
+					ArrayList<NER> choiceNERs = Utils.fromFSListToCollection(answer.getNerList(), NER.class);
 
 					int nnMatch = 0;
 					for (int k = 0; k < candSentNouns.size(); k++) {
 						for (int l = 0; l < choiceNERs.size(); l++) {
-							if (candSentNouns.get(k).getText()
-									.contains(choiceNERs.get(l).getText())) {
+							if (candSentNouns.get(k).getText().contains(choiceNERs.get(l).getText())) {
 								nnMatch++;
 							}
 						}
 						for (int l = 0; l < choiceNouns.size(); l++) {
-							if (candSentNouns.get(k).getText()
-									.contains(choiceNouns.get(l).getText())) {
+							if (candSentNouns.get(k).getText().contains(choiceNouns.get(l).getText())) {
 								nnMatch++;
 							}
 						}
@@ -87,30 +76,25 @@ public class AnswerChoiceCandAnsSimilarityScorer extends JCasAnnotator_ImplBase 
 
 					for (int k = 0; k < candSentNers.size(); k++) {
 						for (int l = 0; l < choiceNERs.size(); l++) {
-							if (candSentNouns.get(k).getText()
-									.contains(choiceNERs.get(l).getText())) {
+							if (candSentNouns.get(k).getText().contains(choiceNERs.get(l).getText())) {
 								nnMatch++;
 							}
 						}
 						for (int l = 0; l < choiceNouns.size(); l++) {
-							if (candSentNouns.get(k).getText()
-									.contains(choiceNouns.get(l).getText())) {
+							if (candSentNouns.get(k).getText().contains(choiceNouns.get(l).getText())) {
 								nnMatch++;
 							}
 						}
 
 					}
 
-					System.out.println(choiceList.get(j).getText() + "\t"
-							+ nnMatch);
+					System.out.println(choiceList.get(j).getText() + "\t" + nnMatch);
 					CandidateAnswer candAnswer = null;
 					if (candSent.getCandAnswerList() == null) {
 						candAnswer = new CandidateAnswer(aJCas);
 					} else {
-						candAnswer = Utils.fromFSListToCollection(
-								candSent.getCandAnswerList(),
-								CandidateAnswer.class).get(j);// new
-																// CandidateAnswer(aJCas);;
+						candAnswer = Utils.fromFSListToCollection(candSent.getCandAnswerList(), CandidateAnswer.class).get(j);// new
+																																// CandidateAnswer(aJCas);;
 
 					}
 					candAnswer.setText(answer.getText());
@@ -120,17 +104,13 @@ public class AnswerChoiceCandAnsSimilarityScorer extends JCasAnnotator_ImplBase 
 					candAnsList.add(candAnswer);
 				}
 
-				FSList fsCandAnsList = Utils.fromCollectionToFSList(aJCas,
-						candAnsList);
+				FSList fsCandAnsList = Utils.fromCollectionToFSList(aJCas, candAnsList);
 				candSent.setCandAnswerList(fsCandAnsList);
 				candSentList.set(c, candSent);
-
 			}
 
-			System.out
-					.println("================================================");
-			FSList fsCandSentList = Utils.fromCollectionToFSList(aJCas,
-					candSentList);
+			System.out.println("================================================");
+			FSList fsCandSentList = Utils.fromCollectionToFSList(aJCas, candSentList);
 			qaSet.get(i).setCandidateSentenceList(fsCandSentList);
 
 		}
