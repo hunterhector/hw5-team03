@@ -7,20 +7,44 @@
     <!-- <delegateAnalysisEngine key="SynonymAnnotator">
       <import location="annotators/SynonymAnnotator.xml"/>
     </delegateAnalysisEngine>-->
-    <delegateAnalysisEngine key="NoiseFilter">
-      <import location="annotators/NoiseFilter.xml"/>
-    </delegateAnalysisEngine>
     <delegateAnalysisEngine key="StanfordSentenceAnnotator">
-      <import location="annotators/StanfordSentenceAnnotator.xml"/>
+      <import name="annotators.StanfordSentenceAnnotator"/>
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="DbpediaAnnotator">
-      <import name="annotators.DbpediaAnnotator"/>
-    </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="NEAnnotator">
+    <delegateAnalysisEngine key="NEAnnotator2">
       <import name="annotators.NEAnnotator"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="SolrIndexer">
+      <import name="annotators.SolrIndexer"/>
     </delegateAnalysisEngine>
     <delegateAnalysisEngine key="QuestionNEAnnotator">
       <import name="annotators.QuestionNEAnnotator"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="QuestionCandSentSimilarityMatcher">
+      <import name="annotators.QuestionCandSentSimilarityMatcher"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="AnswerChoiceCandAnsSimilarityScorer">
+      <import name="annotators.AnswerChoiceCandAnsSimilarityScorer"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="AnswerSelectionByKCandAggregation">
+      <import name="annotators.AnswerSelectionByKCandAggregation"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="StanfordNLPAnnotator">
+      <import name="annotators.StanfordNLPAnnotator"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="NoiseFilter">
+      <import name="annotators.NoiseFilter"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="QuestionPhraseAnnotator">
+      <import name="annotators.QuestionPhraseAnnotator"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="PhraseAnnotator">
+      <import name="annotators.PhraseAnnotator"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="TextSegmenter">
+      <import name="annotators.TextSegmenter"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="StanfordQuestionNLPAnnotator">
+      <import name="annotators.StanfordQuestionNLPAnnotator"/>
     </delegateAnalysisEngine>
     <!--<delegateAnalysisEngine key="AnswerSelectionByKCandAggregation">
       <import location="annotators/AnswerSelectionByKCandAggregation.xml"/>
@@ -36,11 +60,19 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
+        <node>TextSegmenter</node>
         <node>StanfordSentenceAnnotator</node>
         <node>NoiseFilter</node>
-        <node>DbpediaAnnotator</node>
-        <node>NEAnnotator</node>
+        <node>StanfordNLPAnnotator</node>
+        <node>StanfordQuestionNLPAnnotator</node>
+        <node>PhraseAnnotator</node>
+        <node>QuestionPhraseAnnotator</node>
+        <node>NEAnnotator2</node>
         <node>QuestionNEAnnotator</node>
+        <node>SolrIndexer</node>
+        <node>QuestionCandSentSimilarityMatcher</node>
+        <node>AnswerChoiceCandAnsSimilarityScorer</node>
+        <node>AnswerSelectionByKCandAggregation</node>
         <!--<node>AnswerSelectionByKCandVoting</node>-->
       </fixedFlow>
     </flowConstraints>
