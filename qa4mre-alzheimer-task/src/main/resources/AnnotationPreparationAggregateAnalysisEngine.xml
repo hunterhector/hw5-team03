@@ -60,7 +60,6 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
-        <node>TextSegmenter</node>
         <node>StanfordSentenceAnnotator</node>
         <node>NoiseFilter</node>
         <node>StanfordNLPAnnotator</node>

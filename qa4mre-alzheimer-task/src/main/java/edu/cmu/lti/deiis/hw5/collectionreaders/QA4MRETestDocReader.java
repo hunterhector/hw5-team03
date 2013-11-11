@@ -32,6 +32,7 @@ import edu.cmu.lti.qalab.types.Answer;
 import edu.cmu.lti.qalab.types.Question;
 import edu.cmu.lti.qalab.types.QuestionAnswerSet;
 import edu.cmu.lti.qalab.types.TestDocument;
+import edu.cmu.lti.util.general.AdhocMethods;
 
 public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 
@@ -95,6 +96,10 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 		NodeList testDocNodeList = readingTestElement.getElementsByTagName("doc");
 
 		String docText = testDocNodeList.item(0).getTextContent().trim();
+
+		// do the segementer here
+		docText = AdhocMethods.AdhocTextSegementer(docText);
+
 		String testDocId = ((Element) testDocNodeList.item(0)).getAttribute("d_id");
 		String fileName = currentFile.getName();
 
