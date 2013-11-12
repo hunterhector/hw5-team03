@@ -10,13 +10,19 @@
     <delegateAnalysisEngine key="DbpediaAnnotator">
       <import name="annotators.DbpediaAnnotator"/>
     </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="OpenNLPAnnotator">
+      <import name="annotators.OpenNLPAnnotator"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="StanfordCoreNlpAnnotator">
+      <import name="annotators.StanfordCoreNlpAnnotator"/>
+    </delegateAnalysisEngine>
     <!--<delegateAnalysisEngine key="AnswerSelectionByKCandAggregation">
       <import location="annotators/AnswerSelectionByKCandAggregation.xml"/>
     </delegateAnalysisEngine>-->
     
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
-    <name>AnnotationPreparationAggregateAnalysisEngine</name>
+    <name>ExternalAggregateAnalysisEngine</name>
     <description/>
     <version>1.0</version>
     <vendor/>
@@ -24,7 +30,8 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
-        <node>DbpediaAnnotator</node>
+        <node>StanfordCoreNlpAnnotator</node>
+        <node>OpenNLPAnnotator</node>
         <!--<node>AnswerSelectionByKCandVoting</node>-->
       </fixedFlow>
     </flowConstraints>
