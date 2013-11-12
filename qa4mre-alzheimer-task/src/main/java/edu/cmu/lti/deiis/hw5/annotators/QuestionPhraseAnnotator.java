@@ -37,8 +37,9 @@ public class QuestionPhraseAnnotator extends JCasAnnotator_ImplBase {
 		// Utils.getAnswerListFromTestDocCAS(aJCas);
 
 		// for (int i = 0; i < questionList.size(); i++) {
+		System.out.println("Processing phrase on questions");
+
 		for (Question question : JCasUtil.select(aJCas, Question.class)) {
-			System.out.println(String.format("Processing phrase on question"));
 			// Question question = questionList.get(i);
 			ArrayList<Token> tokenList = Utils.getTokenListFromQuestion(question);
 			ArrayList<NounPhrase> phraseList = extractNounPhrases(tokenList, aJCas);
@@ -46,9 +47,10 @@ public class QuestionPhraseAnnotator extends JCasAnnotator_ImplBase {
 			question.setNounList(fsPhraseList);
 		}
 
+		System.out.println("Processing phrase on answers");
+
 		// for (int i = 0; i < answerList.size(); i++) {
 		for (Answer answer : JCasUtil.select(aJCas, Answer.class)) {
-			System.out.println("Processing phrase on answer number");
 			// ArrayList<Answer> choiceList = answerList.get(i);
 			// for (int j = 0; j < choiceList.size(); j++) {
 			// Answer ans = choiceList.get(j);
