@@ -88,6 +88,11 @@
 			<artifactId>guava</artifactId>
 			<version>15.0</version>
 		</dependency>
+		<dependency>
+  			<groupId>org.apache.opennlp</groupId>
+  			<artifactId>opennlp-uima</artifactId>
+  			<version>1.5.3</version>
+		</dependency>
 	</dependencies>
 	<scm>
 		<connection>scm:git:git@github.com:kar2905/qalabcmu.git</connection>
