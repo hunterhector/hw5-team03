@@ -38,8 +38,6 @@ public class NoiseFilter extends JCasAnnotator_ImplBase {
 	public void process(JCas jCas) throws AnalysisEngineProcessException {
 		System.out.println(String.format("Processing with %s", this.getClass().getSimpleName()));
 		TestDocument testDoc = Utils.getTestDocumentFromCAS(jCas);
-		// String id = srcDoc.getId();
-		String docText = testDoc.getText();
 		ArrayList<Sentence> sentenceList = new ArrayList<Sentence>();
 		try {
 			// String lines[] = docText.split("[\\n]");
@@ -80,8 +78,9 @@ public class NoiseFilter extends JCasAnnotator_ImplBase {
 			// System.out.println("Difference between size of (SourceDocument - FilteredDocument): "
 			// + (docText.length() - filteredText.length()));
 
-			FSList modifiedSentList = Utils.createSentenceList(jCas, sentenceList);
-			testDoc.setSentenceList(modifiedSentList);
+			// FSList modifiedSentList = Utils.createSentenceList(jCas,
+			// sentenceList);
+			// testDoc.setSentenceList(modifiedSentList);
 			testDoc.setFilteredText(filteredText);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -82,6 +82,11 @@ public class QuestionCandSentSimilarityMatcher extends JCasAnnotator_ImplBase {
 					int idx = Integer.parseInt(sentIdx);
 					Sentence annSentence = sentenceList.get(idx);
 
+					if (annSentence.getBFilter()) {
+						System.out.println("Low quality text discarded");
+						continue;
+					}
+
 					String sentence = doc.get("text").toString();
 					double relScore = Double.parseDouble(doc.get("score").toString());
 					CandidateSentence candSent = new CandidateSentence(aJCas);
