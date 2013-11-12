@@ -60,16 +60,16 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
-        <node>StanfordSentenceAnnotator</node>
+              <node>StanfordNLPAnnotator</node>
+                  <!--
+        <node>StanfordSentenceAnnotator</node>      -->        
         <node>NoiseFilter</node>
-        <node>StanfordNLPAnnotator</node>
         <node>StanfordQuestionNLPAnnotator</node>
         <node>PhraseAnnotator</node>
         <node>QuestionPhraseAnnotator</node>
         <node>NEAnnotator</node>
         <node>QuestionNEAnnotator</node>
-        <node>SolrIndexer</node>
-        <!--<node>AnswerSelectionByKCandVoting</node>-->
+        <node>SolrIndexer</node> 
       </fixedFlow>
     </flowConstraints>
     <typePriorities/>
