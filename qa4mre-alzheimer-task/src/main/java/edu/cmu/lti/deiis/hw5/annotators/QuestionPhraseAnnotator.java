@@ -31,35 +31,32 @@ public class QuestionPhraseAnnotator extends JCasAnnotator_ImplBase {
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
 		System.out.println(String.format("Processing with %s", this.getClass().getSimpleName()));
 
-		TestDocument testDoc = Utils.getTestDocumentFromCAS(aJCas);
+		// ArrayList<Question> questionList =
+		// Utils.getQuestionListFromTestDocCAS(aJCas);
+		// ArrayList<ArrayList<Answer>> answerList =
+		// Utils.getAnswerListFromTestDocCAS(aJCas);
 
-		ArrayList<Question> questionList = Utils.getQuestionListFromTestDocCAS(aJCas);
-		ArrayList<ArrayList<Answer>> answerList = Utils.getAnswerListFromTestDocCAS(aJCas);
-
-		for (int i = 0; i < questionList.size(); i++) {
-			System.out.println(String.format("Processing phrase on question number %d", i));
-			Question question = questionList.get(i);
+		// for (int i = 0; i < questionList.size(); i++) {
+		for (Question question : JCasUtil.select(aJCas, Question.class)) {
+			System.out.println(String.format("Processing phrase on question"));
+			// Question question = questionList.get(i);
 			ArrayList<Token> tokenList = Utils.getTokenListFromQuestion(question);
 			ArrayList<NounPhrase> phraseList = extractNounPhrases(tokenList, aJCas);
 			FSList fsPhraseList = Utils.createNounPhraseList(aJCas, phraseList);
 			question.setNounList(fsPhraseList);
-			questionList.set(i, question);
 		}
 
-		for (int i = 0; i < answerList.size(); i++) {
-			System.out.println(String.format("Processing phrase on answer number %d", i));
-			ArrayList<Answer> choiceList = answerList.get(i);
-			for (int j = 0; j < choiceList.size(); j++) {
-				Answer ans = choiceList.get(j);
-				Collection<Token> tokenList = JCasUtil.selectCovered(Token.class, ans);
-				ArrayList<NounPhrase> phraseList = extractNounPhrases(tokenList, aJCas);
-				FSList fsPhraseList = Utils.createNounPhraseList(aJCas, phraseList);
-				ans.setNounPhraseList(fsPhraseList);
-				choiceList.set(j, ans);
-			}
-
-			answerList.set(i, choiceList);
-
+		// for (int i = 0; i < answerList.size(); i++) {
+		for (Answer answer : JCasUtil.select(aJCas, Answer.class)) {
+			System.out.println("Processing phrase on answer number");
+			// ArrayList<Answer> choiceList = answerList.get(i);
+			// for (int j = 0; j < choiceList.size(); j++) {
+			// Answer ans = choiceList.get(j);
+			Collection<Token> tokenList = Utils.getTokenListFromAnswer(answer);
+			ArrayList<NounPhrase> phraseList = extractNounPhrases(tokenList, aJCas);
+			FSList fsPhraseList = Utils.createNounPhraseList(aJCas, phraseList);
+			answer.setNounPhraseList(fsPhraseList);
+			// }
 		}
 	}
 
@@ -82,6 +79,7 @@ public class QuestionPhraseAnnotator extends JCasAnnotator_ImplBase {
 					nounPhraseList.add(nn);
 					// System.out.println("Noun Phrase: "+nounPhrase);
 					nounPhrase = "";
+					nn.addToIndexes();
 				}
 			}
 
@@ -91,6 +89,7 @@ public class QuestionPhraseAnnotator extends JCasAnnotator_ImplBase {
 			NounPhrase nn = new NounPhrase(jCas);
 			nn.setText(nounPhrase);
 			nounPhraseList.add(nn);
+			nn.addToIndexes();
 		}
 
 		return nounPhraseList;

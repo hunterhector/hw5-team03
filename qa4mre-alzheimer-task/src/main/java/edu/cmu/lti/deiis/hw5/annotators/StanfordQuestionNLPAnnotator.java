@@ -120,12 +120,10 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 				return;
 			}
 
-			List<CoreMap> questions = document.get(SentencesAnnotation.class);
+			List<CoreMap> questionSentences = document.get(SentencesAnnotation.class);
 
-			for (CoreMap questionSent : questions) {
-				Question annQuestion = new Question(jCas);
+			for (CoreMap questionSent : questionSentences) {
 				ArrayList<Token> tokenList = new ArrayList<Token>();
-
 				// Dependency should have Token rather than String
 				for (CoreLabel token : questionSent.get(TokensAnnotation.class)) {
 					int begin = token.beginPosition();
@@ -153,13 +151,8 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 				List<SemanticGraphEdge> depList = dependencies.edgeListSorted();
 				FSList fsDependencyList = this.createDependencyList(jCas, depList);
 
-				annQuestion.setId(String.valueOf(sentNo));
-				annQuestion.setBegin(tokenList.get(0).getBegin());
-				annQuestion.setEnd(tokenList.get(tokenList.size() - 1).getEnd());
-				annQuestion.setText(questionText);
-				annQuestion.setTokenList(fsTokenList);
-				annQuestion.setDependencies(fsDependencyList);
-				questionList.set(i, annQuestion);
+				question.setTokenList(fsTokenList);
+				question.setDependencies(fsDependencyList);
 				sentNo++;
 				System.out.println("Question no. " + sentNo + " processed");
 			}
