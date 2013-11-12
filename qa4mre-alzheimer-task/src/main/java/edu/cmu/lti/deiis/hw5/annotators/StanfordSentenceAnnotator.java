@@ -39,17 +39,14 @@ public class StanfordSentenceAnnotator extends JCasAnnotator_ImplBase {
 
 		TestDocument testDoc = (TestDocument) Utils.getTestDocumentFromCAS(jCas);
 
-		String id = testDoc.getId();
 		String docText = testDoc.getText();
-		// System.out.println("===============================================");
-		// System.out.println("DocText: " + docText);
 		String segments[] = docText.split("[\\n]");
-		// FSList allFSSentList=new FSList(jCas);
+
+		int sentOffset = 0;
+
 		ArrayList<Sentence> sentList = new ArrayList<Sentence>();
 		for (int i = 0; i < segments.length; i++) {
 			String segmentText = segments[i];
-			// System.out.println(i+"\t"+segmentText);
-			// System.out.println("=========================================================");
 
 			Annotation document = new Annotation(segmentText);
 
@@ -62,10 +59,8 @@ public class StanfordSentenceAnnotator extends JCasAnnotator_ImplBase {
 				return;
 			}
 			List<CoreMap> sentences = document.get(SentencesAnnotation.class);
-			// SourceDocument sourcecDocument=(SourceDocument)
-			// jCas.getAnnotationIndex(SourceDocument.type);
+
 			int sentNo = 0;
-			// FSList sentenceList = srcDoc.getSentenceList();
 
 			ArrayList<Brackets> brackatedExpression = new ArrayList<Brackets>();
 			try {
@@ -75,10 +70,8 @@ public class StanfordSentenceAnnotator extends JCasAnnotator_ImplBase {
 			}
 
 			String candSent = "";
-			// int start=0;
-			// int end=0;
-			for (CoreMap sentence : sentences) {
 
+			for (CoreMap sentence : sentences) {
 				String sentText = sentence.toString();
 
 				candSent += sentText + " ";
@@ -91,26 +84,21 @@ public class StanfordSentenceAnnotator extends JCasAnnotator_ImplBase {
 				boolean isInside = Utils.isInsideBracket(brackatedExpression, sentEndPos);
 
 				if (isInside) {
-
 					continue;
 				}
 				sentText = candSent.trim();
 
 				annSentence.setId(String.valueOf(sentNo));
-				annSentence.setBegin(sentStartPos);
-				annSentence.setEnd(sentEndPos);
+				annSentence.setBegin(sentStartPos + sentOffset);
+				annSentence.setEnd(sentEndPos + sentOffset);
 				annSentence.setText(sentText);
 
 				annSentence.addToIndexes();
 				sentList.add(annSentence);
 				sentNo++;
 				candSent = "";
-				// System.out.println("Sentence no. " + sentNo + " processed");
 			}
-			// System.out.println("=========================================================");
-
-			// this.iterateFSList(fsSentList);
-
+			sentOffset += segmentText.length() + 1;
 		}
 		FSList fsSentList = Utils.createSentenceList(jCas, sentList);
 		fsSentList.addToIndexes();

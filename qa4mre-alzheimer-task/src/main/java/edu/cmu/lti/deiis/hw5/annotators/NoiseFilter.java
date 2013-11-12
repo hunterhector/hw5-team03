@@ -8,11 +8,9 @@ import java.util.regex.Pattern;
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
-import org.apache.uima.examples.SourceDocumentInformation;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.FSList;
 import org.apache.uima.resource.ResourceInitializationException;
-import org.uimafit.util.JCasUtil;
 
 import edu.cmu.lti.qalab.types.Sentence;
 import edu.cmu.lti.qalab.types.TestDocument;
@@ -67,26 +65,24 @@ public class NoiseFilter extends JCasAnnotator_ImplBase {
 				double qualityScore = this.getSentQuality(sentText);
 				// System.out.println("****Quality Score: "+qualityScore+"\t"+sentText);
 
+				sentence.setQualityScore(qualityScore);
+
 				if (qualityScore < QUALITY_THRESHOLD) {
 					// sentence.removeFromIndexes();
 					sentence.setBFilter(true);
 					continue;
 				}
 
-				sentence.setQualityScore(qualityScore);
-				// sentence.addToIndexes();
 				sentenceList.add(sentence);
 				filteredText += sentText + "\n";
-
 			}
 
-			// System.out.println("Difference between size of (SourceDocument - FilteredDocument): "+(docText.length()-filteredText.length()));
+			// System.out.println("Difference between size of (SourceDocument - FilteredDocument): "
+			// + (docText.length() - filteredText.length()));
 
 			FSList modifiedSentList = Utils.createSentenceList(jCas, sentenceList);
-			// annotation.setId(id);
 			testDoc.setSentenceList(modifiedSentList);
 			testDoc.setFilteredText(filteredText);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

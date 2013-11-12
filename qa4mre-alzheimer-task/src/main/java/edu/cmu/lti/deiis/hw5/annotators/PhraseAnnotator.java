@@ -26,24 +26,14 @@ public class PhraseAnnotator extends JCasAnnotator_ImplBase {
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
 		System.out.println(String.format("Processing with %s", this.getClass().getSimpleName()));
 
-		TestDocument testDoc = Utils.getTestDocumentFromCAS(aJCas);
-
 		ArrayList<Sentence> sentenceList = Utils.getSentenceListFromTestDocCAS(aJCas);
-
 		for (int i = 0; i < sentenceList.size(); i++) {
-
 			Sentence sent = sentenceList.get(i);
 			ArrayList<Token> tokenList = Utils.getTokenListFromSentenceList(sent);
 			ArrayList<NounPhrase> phraseList = extractNounPhrases(tokenList, aJCas);
 			FSList fsPhraseList = Utils.createNounPhraseList(aJCas, phraseList);
-			fsPhraseList.addToIndexes(aJCas);
 			sent.setPhraseList(fsPhraseList);
-			sentenceList.set(i, sent);
 		}
-
-		FSList fsSentList = Utils.createSentenceList(aJCas, sentenceList);
-		testDoc.setSentenceList(fsSentList);
-
 	}
 
 	public ArrayList<NounPhrase> extractNounPhrases(ArrayList<Token> tokenList, JCas jCas) {
@@ -63,6 +53,7 @@ public class PhraseAnnotator extends JCasAnnotator_ImplBase {
 					NounPhrase nn = new NounPhrase(jCas);
 					nn.setText(nounPhrase);
 					nounPhraseList.add(nn);
+					nn.addToIndexes();
 					// System.out.println("Noun Phrase: "+nounPhrase);
 					nounPhrase = "";
 				}
@@ -73,6 +64,7 @@ public class PhraseAnnotator extends JCasAnnotator_ImplBase {
 		if (!nounPhrase.equals("")) {
 			NounPhrase nn = new NounPhrase(jCas);
 			nn.setText(nounPhrase);
+			nn.addToIndexes();
 			nounPhraseList.add(nn);
 		}
 

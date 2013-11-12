@@ -40,8 +40,7 @@ public class StanfordNLPAnnotator extends JCasAnnotator_ImplBase {
 	public void initialize(UimaContext context) throws ResourceInitializationException {
 		super.initialize(context);
 		Properties props = new Properties();
-		props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse");// ,
-																			// ssplit
+		props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse");
 		stanfordAnnotator = new StanfordCoreNLP(props);
 	}
 
@@ -51,18 +50,16 @@ public class StanfordNLPAnnotator extends JCasAnnotator_ImplBase {
 
 		TestDocument testDoc = (TestDocument) Utils.getTestDocumentFromCAS(jCas);
 
-		String id = testDoc.getId();
-		String filteredText = testDoc.getFilteredText();
-		// System.out.println("===============================================");
-		// System.out.println("DocText: " + docText);
-		String filteredSents[] = filteredText.split("[\\n]");
-		System.out.println("Total sentences: " + filteredSents.length);
-		ArrayList<Sentence> sentList = new ArrayList<Sentence>();
+		String docText = testDoc.getText();
+		String segments[] = docText.split("[\\n]");
+
+		int sentOffset = 0;
 		int sentNo = 0;
-		for (int i = 0; i < filteredSents.length; i++) {
 
-			Annotation document = new Annotation(filteredSents[i]);
-
+		ArrayList<Sentence> sentList = new ArrayList<Sentence>();
+		for (int i = 0; i < segments.length; i++) {
+			String segmentText = segments[i];
+			Annotation document = new Annotation(segmentText);
 			try {
 				// System.out.println("Entering stanford annotation");
 				stanfordAnnotator.annotate(document);
@@ -72,35 +69,25 @@ public class StanfordNLPAnnotator extends JCasAnnotator_ImplBase {
 				return;
 			}
 			List<CoreMap> sentences = document.get(SentencesAnnotation.class);
-			// SourceDocument sourcecDocument=(SourceDocument)
-			// jCas.getAnnotationIndex(SourceDocument.type);
-
-			// FSList sentenceList = srcDoc.getSentenceList();
 
 			for (CoreMap sentence : sentences) {
-
 				String sentText = sentence.toString();
 				Sentence annSentence = new Sentence(jCas);
 				ArrayList<Token> tokenList = new ArrayList<Token>();
 
 				// Dependency should have Token rather than String
-				for (CoreLabel token : sentence.get(TokensAnnotation.class)) { // order
-																				// needs
-																				// to
-																				// be
-																				// considered
+				for (CoreLabel token : sentence.get(TokensAnnotation.class)) {
 					int begin = token.beginPosition();
 
 					int end = token.endPosition();
-					// System.out.println(begin + "\t" + end);
 					String orgText = token.originalText();
-					// this is the POS tag of the token
+
 					String pos = token.get(PartOfSpeechAnnotation.class);
-					// this is the NER label of the token
+
 					String ne = token.get(NamedEntityTagAnnotation.class);
 					Token annToken = new Token(jCas);
-					annToken.setBegin(begin);
-					annToken.setEnd(end);
+					annToken.setBegin(begin + sentOffset);
+					annToken.setEnd(end + sentOffset);
 					annToken.setText(orgText);
 					annToken.setPos(pos);
 					annToken.addToIndexes();
@@ -116,17 +103,10 @@ public class StanfordNLPAnnotator extends JCasAnnotator_ImplBase {
 				List<SemanticGraphEdge> depList = dependencies.edgeListSorted();
 				FSList fsDependencyList = this.createDependencyList(jCas, depList);
 				fsDependencyList.addToIndexes();
-				// Dependency dependency = new Dependency(jCas);
-				// System.out.println("Dependencies: "+dependencies);
 
 				annSentence.setId(String.valueOf(sentNo));
-				annSentence.setBegin(tokenList.get(0).getBegin());// begin of
-																	// first
-																	// token
-				annSentence.setEnd(tokenList.get(tokenList.size() - 1).getEnd());// end
-																					// of
-																					// last
-																					// token
+				annSentence.setBegin(tokenList.get(0).getBegin());
+				annSentence.setEnd(tokenList.get(tokenList.size() - 1).getEnd());
 				annSentence.setText(sentText);
 				annSentence.setTokenList(fsTokenList);
 				annSentence.setDependencyList(fsDependencyList);
@@ -135,13 +115,9 @@ public class StanfordNLPAnnotator extends JCasAnnotator_ImplBase {
 				sentNo++;
 				System.out.println("Sentence no. " + sentNo + " processed");
 			}
+			sentOffset += segmentText.length() + 1;
 		}
 		FSList fsSentList = this.createSentenceList(jCas, sentList);
-
-		// this.iterateFSList(fsSentList);
-		fsSentList.addToIndexes();
-
-		testDoc.setId(id);
 		testDoc.setSentenceList(fsSentList);
 	}
 

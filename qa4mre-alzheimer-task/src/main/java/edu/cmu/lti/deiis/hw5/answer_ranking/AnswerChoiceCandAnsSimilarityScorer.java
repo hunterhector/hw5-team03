@@ -38,7 +38,6 @@ public class AnswerChoiceCandAnsSimilarityScorer extends JCasAnnotator_ImplBase 
 		ArrayList<QuestionAnswerSet> qaSet = Utils.getQuestionAnswerSetFromTestDocCAS(aJCas);
 
 		for (int i = 0; i < qaSet.size(); i++) {
-
 			Question question = qaSet.get(i).getQuestion();
 			System.out.println("Question: " + question.getText());
 			ArrayList<Answer> choiceList = Utils.fromFSListToCollection(qaSet.get(i).getAnswerList(), Answer.class);

@@ -28,8 +28,6 @@ public class QuestionNEAnnotator extends JCasAnnotator_ImplBase {
 
 	@Override
 	public void process(JCas jCas) throws AnalysisEngineProcessException {
-		// TODO Auto-generated method stub
-		// TestDocument testDoc=Utils.getTestDocumentFromCAS(jCas);
 		System.out.println(String.format("Processing with %s", this.getClass().getSimpleName()));
 
 		ArrayList<Question> questionList = Utils.getQuestionListFromTestDocCAS(jCas);
