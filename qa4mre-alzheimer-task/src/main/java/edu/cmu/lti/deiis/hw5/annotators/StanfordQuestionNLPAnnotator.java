@@ -97,7 +97,6 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 						annToken.setEnd(end);
 						annToken.setText(orgText);
 						annToken.setPos(pos);
-						annToken.setNer(ne);
 						annToken.addToIndexes();
 
 						tokenList.add(annToken);
@@ -167,7 +166,6 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 					annToken.setEnd(end);
 					annToken.setText(orgText);
 					annToken.setPos(pos);
-					annToken.setNer(ne);
 					annToken.addToIndexes();
 
 					tokenList.add(annToken);
@@ -284,14 +282,12 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 			Token governorToken = new Token(aJCas);
 			governorToken.setText(edge.getGovernor().originalText());
 			governorToken.setPos(edge.getGovernor().tag());
-			governorToken.setNer(edge.getGovernor().ner());
 			governorToken.addToIndexes();
 			dep.setGovernor(governorToken);
 
 			Token dependentToken = new Token(aJCas);
 			dependentToken.setText(edge.getDependent().originalText());
 			dependentToken.setPos(edge.getDependent().tag());
-			dependentToken.setNer(edge.getDependent().ner());
 			dependentToken.addToIndexes();
 			dep.setDependent(dependentToken);
 

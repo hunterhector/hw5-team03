@@ -161,12 +161,7 @@
           <description/>
           <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
-        <featureDescription>
-          <name>ner</name>
-          <description/>
-          <rangeTypeName>uima.cas.String</rangeTypeName>
-        </featureDescription>
-      </features>
+        </features>
     </typeDescription>
     <typeDescription>
       <name>edu.cmu.lti.qalab.types.Dependency</name>

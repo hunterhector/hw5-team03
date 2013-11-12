@@ -259,14 +259,12 @@ public class Utils {
 			Token governorToken = new Token(aJCas);			
 			governorToken.setText(edge.getGovernor().originalText());
 			governorToken.setPos(edge.getGovernor().tag());
-			governorToken.setNer(edge.getGovernor().ner());
 			governorToken.addToIndexes();
 			dep.setGovernor(governorToken);
 
 			Token dependentToken = new Token(aJCas);
 			dependentToken.setText(edge.getDependent().originalText());
 			dependentToken.setPos(edge.getDependent().tag());
-			dependentToken.setNer(edge.getDependent().ner());
 			dependentToken.addToIndexes();
 			dep.setDependent(dependentToken);
 
