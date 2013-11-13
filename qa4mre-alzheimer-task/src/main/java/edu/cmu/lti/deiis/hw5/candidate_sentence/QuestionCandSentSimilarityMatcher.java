@@ -12,6 +12,7 @@ import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.FSList;
 import org.apache.uima.resource.ResourceInitializationException;
+import org.uimafit.util.JCasUtil;
 
 import edu.cmu.lti.oaqa.core.provider.solr.SolrWrapper;
 import edu.cmu.lti.qalab.types.CandidateSentence;
@@ -51,7 +52,11 @@ public class QuestionCandSentSimilarityMatcher extends JCasAnnotator_ImplBase {
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
 		TestDocument testDoc = Utils.getTestDocumentFromCAS(aJCas);
 		String testDocId = testDoc.getId();
-		ArrayList<Sentence> sentenceList = Utils.getSentenceListFromTestDocCAS(aJCas);
+		// ArrayList<Sentence> sentenceList =
+		// Utils.getSentenceListFromTestDocCAS(aJCas);
+
+		ArrayList<Sentence> sentenceList = new ArrayList<Sentence>(JCasUtil.select(aJCas, Sentence.class));
+
 		ArrayList<QuestionAnswerSet> qaSet = Utils.getQuestionAnswerSetFromTestDocCAS(aJCas);
 
 		for (int i = 0; i < qaSet.size(); i++) {
@@ -81,19 +86,14 @@ public class QuestionCandSentSimilarityMatcher extends JCasAnnotator_ImplBase {
 					String sentIdx = sentId.replace(docId, "").replace("_", "").trim();
 					int idx = Integer.parseInt(sentIdx);
 					Sentence annSentence = sentenceList.get(idx);
-
-					if (annSentence.getBFilter()) {
-						System.out.println("Low quality text discarded");
-						continue;
-					}
-
+					
 					String sentence = doc.get("text").toString();
 					double relScore = Double.parseDouble(doc.get("score").toString());
 					CandidateSentence candSent = new CandidateSentence(aJCas);
 					candSent.setSentence(annSentence);
 					candSent.setRelevanceScore(relScore);
 					candidateSentList.add(candSent);
-					System.out.println(relScore + "\t" + sentence);
+					System.out.println(relScore + "\t" + sentence + "\t" + sentIdx);
 				}
 				FSList fsCandidateSentList = Utils.fromCollectionToFSList(aJCas, candidateSentList);
 				qaSet.get(i).setCandidateSentenceList(fsCandidateSentList);

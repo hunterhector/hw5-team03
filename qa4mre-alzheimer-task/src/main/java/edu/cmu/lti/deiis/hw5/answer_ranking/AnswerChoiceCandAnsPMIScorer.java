@@ -29,16 +29,14 @@ public class AnswerChoiceCandAnsPMIScorer extends JCasAnnotator_ImplBase {
 
 	private SolrWrapper solrWrapper;
 	HashSet<String> hshStopWords = new HashSet<String>();
-	int K_CANDIDATES=5;
-	
+	int K_CANDIDATES = 5;
+
 	@Override
-	public void initialize(UimaContext context)
-			throws ResourceInitializationException {
+	public void initialize(UimaContext context) throws ResourceInitializationException {
 		super.initialize(context);
-		String serverUrl = (String) context
-				.getConfigParameterValue("SOLR_SERVER_URL");
-		K_CANDIDATES=(Integer)context.getConfigParameterValue("K_CANDIDATES");
-		
+		String serverUrl = (String) context.getConfigParameterValue("SOLR_SERVER_URL");
+		K_CANDIDATES = (Integer) context.getConfigParameterValue("K_CANDIDATES");
+
 		try {
 			this.solrWrapper = new SolrWrapper(serverUrl);
 			// loadStopWords(stopFile);
@@ -52,41 +50,33 @@ public class AnswerChoiceCandAnsPMIScorer extends JCasAnnotator_ImplBase {
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
 
 		TestDocument testDoc = Utils.getTestDocumentFromCAS(aJCas);
-		//String testDocId = testDoc.getId();
-		ArrayList<QuestionAnswerSet> qaSet = Utils
-				.getQuestionAnswerSetFromTestDocCAS(aJCas);
+		// String testDocId = testDoc.getId();
+		ArrayList<QuestionAnswerSet> qaSet = Utils.getQuestionAnswerSetFromTestDocCAS(aJCas);
 
 		for (int i = 0; i < qaSet.size(); i++) {
 
 			Question question = qaSet.get(i).getQuestion();
 			System.out.println("Question: " + question.getText());
-			ArrayList<Answer> choiceList = Utils.fromFSListToCollection(qaSet
-					.get(i).getAnswerList(), Answer.class);
+			ArrayList<Answer> choiceList = Utils.fromFSListToCollection(qaSet.get(i).getAnswerList(), Answer.class);
 			ArrayList<CandidateSentence> candSentList = Utils
-					.fromFSListToCollection(qaSet.get(i)
-							.getCandidateSentenceList(),
-							CandidateSentence.class);
+					.fromFSListToCollection(qaSet.get(i).getCandidateSentenceList(), CandidateSentence.class);
 
 			int topK = Math.min(K_CANDIDATES, candSentList.size());
 			for (int c = 0; c < topK; c++) {
 
 				CandidateSentence candSent = candSentList.get(c);
 
-				ArrayList<NounPhrase> candSentNouns = Utils
-						.fromFSListToCollection(candSent.getSentence()
-								.getPhraseList(), NounPhrase.class);
-				ArrayList<NER> candSentNers = Utils.fromFSListToCollection(
-						candSent.getSentence().getNerList(), NER.class);
+				ArrayList<NounPhrase> candSentNouns = Utils.fromFSListToCollection(candSent.getSentence().getPhraseList(), NounPhrase.class);
+				ArrayList<NER> candSentNers = Utils.fromFSListToCollection(candSent.getSentence().getNerList(), NER.class);
 
-				ArrayList<CandidateAnswer>candAnsList=new ArrayList<CandidateAnswer>();
+				ArrayList<CandidateAnswer> candAnsList = new ArrayList<CandidateAnswer>();
 				for (int j = 0; j < choiceList.size(); j++) {
 					double score1 = 0.0;
 					Answer answer = choiceList.get(j);
 
 					for (int k = 0; k < candSentNouns.size(); k++) {
 						try {
-							score1 += scoreCoOccurInSameDoc(candSentNouns
-									.get(k).getText(), choiceList.get(j));
+							score1 += scoreCoOccurInSameDoc(candSentNouns.get(k).getText(), choiceList.get(j));
 
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -96,22 +86,21 @@ public class AnswerChoiceCandAnsPMIScorer extends JCasAnnotator_ImplBase {
 					for (int k = 0; k < candSentNers.size(); k++) {
 
 						try {
-							score1 += scoreCoOccurInSameDoc(candSentNers.get(k)
-									.getText(), choiceList.get(j));
+							score1 += scoreCoOccurInSameDoc(candSentNers.get(k).getText(), choiceList.get(j));
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
 
 					}
 
-					System.out.println(choiceList.get(j).getText() + "\t"
-							+ score1 + "\t" + ((score1)));
+					System.out.println(choiceList.get(j).getText() + "\t" + score1 + "\t" + ((score1)));
 
-					CandidateAnswer candAnswer=null;
-					if(candSent.getCandAnswerList()==null){
-						candAnswer=new CandidateAnswer(aJCas);
-					}else{
-						candAnswer=Utils.fromFSListToCollection(candSent.getCandAnswerList(),CandidateAnswer.class).get(j);//new CandidateAnswer(aJCas);;
+					CandidateAnswer candAnswer = null;
+					if (candSent.getCandAnswerList() == null) {
+						candAnswer = new CandidateAnswer(aJCas);
+					} else {
+						candAnswer = Utils.fromFSListToCollection(candSent.getCandAnswerList(), CandidateAnswer.class).get(j);// new
+																																// CandidateAnswer(aJCas);;
 					}
 					candAnswer.setText(answer.getText());
 					candAnswer.setQId(answer.getQuestionId());
@@ -119,27 +108,24 @@ public class AnswerChoiceCandAnsPMIScorer extends JCasAnnotator_ImplBase {
 					candAnswer.setPMIScore(score1);
 					candAnsList.add(candAnswer);
 				}
-				FSList fsCandAnsList=Utils.fromCollectionToFSList(aJCas, candAnsList);
+				FSList fsCandAnsList = Utils.fromCollectionToFSList(aJCas, candAnsList);
 				candSent.setCandAnswerList(fsCandAnsList);
 				candSentList.set(c, candSent);
 			}
 
-			System.out
-					.println("================================================");
-			FSList fsCandSentList=Utils.fromCollectionToFSList(aJCas, candSentList);
+			System.out.println("================================================");
+			FSList fsCandSentList = Utils.fromCollectionToFSList(aJCas, candSentList);
 			qaSet.get(i).setCandidateSentenceList(fsCandSentList);
 
 		}
-		FSList fsQASet=Utils.fromCollectionToFSList(aJCas, qaSet);
+		FSList fsQASet = Utils.fromCollectionToFSList(aJCas, qaSet);
 		testDoc.setQaList(fsQASet);
 
 	}
 
-	public double scoreCoOccurInSameDoc(String question, Answer choice)
-			throws Exception {
+	public double scoreCoOccurInSameDoc(String question, Answer choice) throws Exception {
 		// String choiceTokens[] = choice.split("[ ]");
-		ArrayList<NounPhrase> choiceNounPhrases = Utils.fromFSListToCollection(
-				choice.getNounPhraseList(), NounPhrase.class);
+		ArrayList<NounPhrase> choiceNounPhrases = Utils.fromFSListToCollection(choice.getNounPhraseList(), NounPhrase.class);
 		double score = 0.0;
 
 		for (int i = 0; i < choiceNounPhrases.size(); i++) {
@@ -209,8 +195,7 @@ public class AnswerChoiceCandAnsPMIScorer extends JCasAnnotator_ImplBase {
 		if (combined == 0 || nHits1 == 0 || nHits2 == 0) {
 			return 0;
 		}
-		double logValue = Math.log(combined) - Math.log(nHits1)
-				- Math.log(nHits2);
+		double logValue = Math.log(combined) - Math.log(nHits1) - Math.log(nHits2);
 		return logValue;
 	}
 
