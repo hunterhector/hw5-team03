@@ -3,4 +3,4 @@
 /nohup.out
 /results
 .DS_Store
-./data/**/*
+data/**/*
