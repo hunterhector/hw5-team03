@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>TrainingDataAnnotationTypes</name>
+    <description/>
+    <version>1.0</version>
+    <vendor/>
+  <imports>
+    <import name="AbstractTypeSystem"/>
+  </imports>
+  <types>
+    <typeDescription>
+      <name>edu.cmu.lti.qa4mre.type.trainingdata.RelevantInfo</name>
+      <description>In the training data, denote relevant information</description>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
+    </typeDescription>
+    <typeDescription>
+      <name>edu.cmu.lti.qa4mre.type.trainingdata.Citation</name>
+      <description>In training data, represents a citation</description>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
+    </typeDescription>
+    <typeDescription>
+      <name>edu.cmu.lti.qa4mre.type.trainingdata.Author</name>
+      <description>In trianing data, represents an author</description>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
+    </typeDescription>
+    <typeDescription>
+      <name>edu.cmu.lti.qa4mre.type.trainingdata.Year</name>
+      <description>In training data, annotation for any years we find</description>
+      <supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
+    </typeDescription>
+  </types>
+</typeSystemDescription>
