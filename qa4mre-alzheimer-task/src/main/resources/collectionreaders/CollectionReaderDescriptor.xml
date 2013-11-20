@@ -4,7 +4,7 @@
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <implementationName>edu.cmu.lti.deiis.hw5.collectionreaders.QA4MRETestDocReader</implementationName>
   <processingResourceMetaData>
-    <name>CollectionReaderDescriptor</name>
+    <name>TestDocCollectionReaderDescriptor</name>
     <description/>
     <version>1.0</version>
     <vendor/>

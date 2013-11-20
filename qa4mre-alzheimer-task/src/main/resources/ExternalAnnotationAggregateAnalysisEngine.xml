@@ -30,8 +30,8 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
-        <node>StanfordCoreNlpAnnotator</node>
         <node>OpenNLPAnnotator</node>
+        <node>DbpediaAnnotator</node>
         <!--<node>AnswerSelectionByKCandVoting</node>-->
       </fixedFlow>
     </flowConstraints>
