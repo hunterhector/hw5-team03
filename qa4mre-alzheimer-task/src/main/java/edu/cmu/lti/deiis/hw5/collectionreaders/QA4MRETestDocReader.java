@@ -123,11 +123,20 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 			NodeList questionNode = questionEle.getElementsByTagName("q_str");
 			String questionStr = questionNode.item(0).getTextContent();
 			NodeList answerNodeList = questionEle.getElementsByTagName("answer");
+			
+			String questionType = questionEle.getAttribute("q_type");
+			String multipleResponses = questionEle.getAttribute("q_multiple");
+			String hasNegation = questionEle.getAttribute("q_negate");
 
 			Question question = new Question(jcas);
 			question.setText(questionStr);
 			documentTextWithQuestions.append(questionMarker + questionStr);
 			annoOffset += questionMarker.length();
+			
+			question.setQtype(questionType != null && questionType.length() > 0 ? questionType : null);
+		  question.setRequestsMultipleAnswers(multipleResponses.toLowerCase().equals("yes"));
+			question.setHasNegation(hasNegation.toLowerCase().equals("yes"));
+			
 			question.setBegin(annoOffset);
 			question.setEnd(annoOffset + questionStr.length());
 			question.addToIndexes();
