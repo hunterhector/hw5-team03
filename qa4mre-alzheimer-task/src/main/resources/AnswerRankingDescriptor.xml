@@ -9,7 +9,8 @@
                 <nameValuePair>
                     <name>InputDirectory</name>
                     <value>
-                        <string>data/12-test-alzheimer/output_prepared</string>
+                    <string>/opt/Dropbox/11791_data/data/12-test-alzheimer/output_stanford_fanse_dbpedia_opennlp_relevantAnnotations/</string>
+                       <!-- <string>data/12-test-alzheimer/output_prepared</string>-->
                     </value>
                 </nameValuePair>
             </configurationParameterSettings>
