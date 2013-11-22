@@ -150,7 +150,8 @@ public class AnswerChoiceCandAnsPMIScorer extends JCasAnnotator_ImplBase {
 				rsp = solrWrapper.getServer().query(solrParams);
 				combinedHits = rsp.getResults().getNumFound();
 			} catch (Exception e) {
-				// System.out.println(e + "\t" + query);
+				e.printStackTrace();
+//				System.out.println(e + "\t" + query);
 			}
 
 			// System.out.println(query+"\t"+combinedHits);
@@ -167,9 +168,10 @@ public class AnswerChoiceCandAnsPMIScorer extends JCasAnnotator_ImplBase {
 				rsp = solrWrapper.getServer().query(solrParams);
 				nHits1 = rsp.getResults().getNumFound();
 			} catch (Exception e) {
-				// System.out.println(e+"\t"+query);
+				e.printStackTrace();
+//				System.out.println(e + "\t" + query);
 			}
-			 System.out.println(query+"\t"+nHits1);
+			// System.out.println("Query hits " + query + "\t" + nHits1);
 
 			/*
 			 * query = question; // System.out.println(query); params = new
