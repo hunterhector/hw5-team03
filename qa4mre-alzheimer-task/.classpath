@@ -27,5 +27,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/FANSE-0.2.2/fanseparser-0.2.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

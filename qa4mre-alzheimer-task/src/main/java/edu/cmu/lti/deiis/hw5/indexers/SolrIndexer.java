@@ -69,7 +69,8 @@ public class SolrIndexer extends JCasAnnotator_ImplBase {
 			for (int i = 0; i < sentenceList.size(); i++) {
 				Sentence sent = sentenceList.get(i);
 				String sentText = sent.getText();
-				String sentId = id + "_" + sent.getId();
+				// indexed by their appearance index in sentenceList
+				String sentId = id + "_" + i;
 
 				if (sent.getBFilter()) {
 					System.err.println("This should not be indexed: ");

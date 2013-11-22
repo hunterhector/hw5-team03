@@ -8,6 +8,7 @@ import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.FSList;
 import org.apache.uima.resource.ResourceInitializationException;
+import org.uimafit.util.JCasUtil;
 
 import edu.cmu.lti.qalab.types.NounPhrase;
 import edu.cmu.lti.qalab.types.Sentence;
@@ -26,9 +27,8 @@ public class PhraseAnnotator extends JCasAnnotator_ImplBase {
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
 		System.out.println(String.format("Processing with %s", this.getClass().getSimpleName()));
 
-		ArrayList<Sentence> sentenceList = Utils.getSentenceListFromTestDocCAS(aJCas);
-		for (int i = 0; i < sentenceList.size(); i++) {
-			Sentence sent = sentenceList.get(i);
+		for (Sentence sent : JCasUtil.select(aJCas, Sentence.class)) {
+			// Sentence sent = sentenceList.get(i);
 			ArrayList<Token> tokenList = Utils.getTokenListFromSentenceList(sent);
 			ArrayList<NounPhrase> phraseList = extractNounPhrases(tokenList, aJCas);
 			FSList fsPhraseList = Utils.createNounPhraseList(aJCas, phraseList);
