@@ -8,6 +8,7 @@ import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.FSList;
 import org.apache.uima.resource.ResourceInitializationException;
+import org.uimafit.util.JCasUtil;
 
 import abner.Tagger;
 import edu.cmu.lti.qalab.types.NER;
@@ -29,9 +30,11 @@ public class NEAnnotator extends JCasAnnotator_ImplBase {
 	public void process(JCas jCas) throws AnalysisEngineProcessException {
 		System.out.println(String.format("Processing with %s", this.getClass().getSimpleName()));
 
-		ArrayList<Sentence> sentList = Utils.getSentenceListFromTestDocCAS(jCas);
-		for (int i = 0; i < sentList.size(); i++) {
-			Sentence sentence = sentList.get(i);
+		// ArrayList<Sentence> sentList =
+		// Utils.getSentenceListFromTestDocCAS(jCas);
+
+		for (Sentence sentence : JCasUtil.select(jCas, Sentence.class)) {
+			// Sentence sentence = sentList.get(i);
 			String nerTagged = abnerTagger.tagABNER(sentence.getText());
 
 			// System.out.println(nerTagged);

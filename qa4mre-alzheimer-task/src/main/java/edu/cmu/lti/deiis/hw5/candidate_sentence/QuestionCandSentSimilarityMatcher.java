@@ -52,10 +52,9 @@ public class QuestionCandSentSimilarityMatcher extends JCasAnnotator_ImplBase {
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
 		TestDocument testDoc = Utils.getTestDocumentFromCAS(aJCas);
 		String testDocId = testDoc.getId();
-		// ArrayList<Sentence> sentenceList =
-		// Utils.getSentenceListFromTestDocCAS(aJCas);
+		ArrayList<Sentence> sentenceList = Utils.getSentenceListFromTestDocCAS(aJCas);
 
-		ArrayList<Sentence> sentenceList = new ArrayList<Sentence>(JCasUtil.select(aJCas, Sentence.class));
+//		ArrayList<Sentence> sentenceList = new ArrayList<Sentence>(JCasUtil.select(aJCas, Sentence.class));
 
 		ArrayList<QuestionAnswerSet> qaSet = Utils.getQuestionAnswerSetFromTestDocCAS(aJCas);
 

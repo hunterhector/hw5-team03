@@ -1,58 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
-  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.lti.deiis.hw5.annotators.DbpediaWebBasedAnnotator</annotatorImplementationName>
-  <analysisEngineMetaData>
-    <name>DbpediaAnnotator</name>
-    <description/>
-    <version>1.0</version>
-    <vendor/>
-    <configurationParameters>
-      <configurationParameter>
-        <name>support</name>
-        <description>The support paraemter of DBpedia</description>
-        <type>Integer</type>
-        <multiValued>false</multiValued>
-        <mandatory>false</mandatory>
-      </configurationParameter>
-      <configurationParameter>
-        <name>confidence</name>
-        <description>The confidence to retain a resource</description>
-        <type>Float</type>
-        <multiValued>false</multiValued>
-        <mandatory>false</mandatory>
-      </configurationParameter>
-    </configurationParameters>
-    <configurationParameterSettings>
-      <nameValuePair>
-        <name>support</name>
-        <value>
-          <integer>500</integer>
-        </value>
-      </nameValuePair>
-      <nameValuePair>
-        <name>confidence</name>
-        <value>
-          <float>0.2</float>
-        </value>
-      </nameValuePair>
-    </configurationParameterSettings>
-    <typeSystemDescription/>
-    <typePriorities/>
-    <fsIndexCollection/>
-    <capabilities>
-      <capability>
-        <inputs/>
-        <outputs/>
-        <languagesSupported/>
-      </capability>
-    </capabilities>
-  <operationalProperties>
-      <modifiesCas>true</modifiesCas>
-      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
-      <outputsNewCASes>false</outputsNewCASes>
-    </operationalProperties>
-  </analysisEngineMetaData>
-  <resourceManagerConfiguration/>
+	<frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+	<primitive>true</primitive>
+	<annotatorImplementationName>edu.cmu.lti.deiis.hw5.annotators.DbpediaWebBasedAnnotator
+	</annotatorImplementationName>
+	<analysisEngineMetaData>
+		<name>DbpediaAnnotator</name>
+		<description />
+		<version>1.0</version>
+		<vendor />
+		<configurationParameters>
+			<configurationParameter>
+				<name>support</name>
+				<description>The support paraemter of DBpedia</description>
+				<type>Integer</type>
+				<multiValued>false</multiValued>
+				<mandatory>false</mandatory>
+			</configurationParameter>
+			<configurationParameter>
+				<name>confidence</name>
+				<description>The confidence to retain a resource</description>
+				<type>Float</type>
+				<multiValued>false</multiValued>
+				<mandatory>false</mandatory>
+			</configurationParameter>
+		</configurationParameters>
+		<configurationParameterSettings>
+			<nameValuePair>
+				<name>support</name>
+				<value>
+					<integer>500</integer>
+				</value>
+			</nameValuePair>
+			<nameValuePair>
+				<name>confidence</name>
+				<value>
+					<float>0.2</float>
+				</value>
+			</nameValuePair>
+		</configurationParameterSettings>
+		<typeSystemDescription />
+		<typePriorities />
+		<fsIndexCollection />
+		<capabilities>
+			<capability>
+				<inputs />
+				<outputs />
+				<languagesSupported />
+			</capability>
+		</capabilities>
+		<operationalProperties>
+			<modifiesCas>true</modifiesCas>
+			<multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+			<outputsNewCASes>false</outputsNewCASes>
+		</operationalProperties>
+	</analysisEngineMetaData>
+	<resourceManagerConfiguration />
 </analysisEngineDescription>
