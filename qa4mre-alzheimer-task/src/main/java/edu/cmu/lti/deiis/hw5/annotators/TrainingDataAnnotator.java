@@ -52,7 +52,7 @@ public class TrainingDataAnnotator extends JCasAnnotator_ImplBase {
       switch (patternType) {
         case AUTHOR:
           annotation = new Author(aJCas);
-          debug = true;
+//          debug = true;
           break;
         case CITATION:
           annotation = new Citation(aJCas);
@@ -74,12 +74,12 @@ public class TrainingDataAnnotator extends JCasAnnotator_ImplBase {
 
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
-    System.out.println("processing with " + getClass().getSimpleName());
+//    System.out.println("processing with " + getClass().getSimpleName());
     Collection<SourceDocument> docs = JCasUtil.select(aJCas, SourceDocument.class);
     for (SourceDocument doc : docs) {
-      System.out.println("file: " + doc.getId());
-      System.out.println(doc.getText().substring(0, 200));
-      System.out.println("(begin, end): (" + doc.getBegin() + ", " + doc.getEnd() + ")");
+//      System.out.println("file: " + doc.getId());
+//      System.out.println(doc.getText().substring(0, 200));
+//      System.out.println("(begin, end): (" + doc.getBegin() + ", " + doc.getEnd() + ")");
       
       String docText = doc.getText();
       addToIndexesUsingMatcher(getPattern(yearPatternStr).matcher(docText), PatternType.YEAR, aJCas);
