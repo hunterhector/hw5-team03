@@ -81,9 +81,6 @@ public class FanseAnnotator extends JCasAnnotator_ImplBase {
 			Parse par = tokenListToParse(tokenList);
 			Sentence fSent = par.getSentence();
 			List<Token> tokens = fSent.getTokens();
-			/*for (int i = 0; i < tokens.size(); i++) {
-				System.out.println(tokens.get(i));
-			}*/
 			
 			FullSystemResult result = fullSystemWrapper.process(fSent, tokens.size() > 0
 		              && tokens.get(0).getPos() == null, true, true, true, true, true);
