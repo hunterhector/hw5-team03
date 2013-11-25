@@ -82,6 +82,7 @@ public class AnswerChoiceCandAnsPMIScorer extends JCasAnnotator_ImplBase {
 
           for (int k = 0; k < candSentNouns.size(); k++) {
             try {
+//              System.out.println("GUOQING"+candSentNouns.get(k).getText());
               score1 += scoreCoOccurInSameDoc(candSentNouns.get(k).getText(), choiceList.get(j));
             } catch (Exception e) {
               e.printStackTrace();
@@ -91,12 +92,14 @@ public class AnswerChoiceCandAnsPMIScorer extends JCasAnnotator_ImplBase {
           for (int k = 0; k < candSentNers.size(); k++) {
 
             try {
+//              System.out.println("GUOQING NE"+candSentNers.get(k).getText());
               score1 += scoreCoOccurInSameDoc(candSentNers.get(k).getText(), choiceList.get(j));
             } catch (Exception e) {
               e.printStackTrace();
             }
 
           }
+          
           
           
 

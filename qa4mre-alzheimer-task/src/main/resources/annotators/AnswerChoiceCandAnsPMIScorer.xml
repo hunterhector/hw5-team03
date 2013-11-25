@@ -31,7 +31,7 @@
 				<name>SOLR_SERVER_URL</name>
 				<value>
 					<string>http://apsyx.lti.cs.cmu.edu:8983/solr</string>
-					<!-- <string>http://peace.isri.cs.cmu.edu:9080/solr/genomics-simple/</string> -->
+					<!--  <string>http://peace.isri.cs.cmu.edu:9080/solr/genomics-simple/</string> -->
 				</value>
 			</nameValuePair>
 			<nameValuePair>

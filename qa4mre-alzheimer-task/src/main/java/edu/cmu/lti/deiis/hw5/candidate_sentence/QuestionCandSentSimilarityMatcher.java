@@ -17,6 +17,8 @@ import org.uimafit.util.JCasUtil;
 
 import edu.cmu.lti.oaqa.core.provider.solr.SolrWrapper;
 import edu.cmu.lti.qa4mre.type.DbpediaAnnotation;
+import edu.cmu.lti.qa4mre.type.OpennlpChunk;
+import edu.cmu.lti.qa4mre.type.StanfordCorenlpToken;
 import edu.cmu.lti.qalab.types.CandidateSentence;
 import edu.cmu.lti.qalab.types.NER;
 import edu.cmu.lti.qalab.types.NounPhrase;
@@ -141,11 +143,11 @@ public class QuestionCandSentSimilarityMatcher extends JCasAnnotator_ImplBase {
       solrQuery += "namedentities:\"" + neList.get(i).getText() + "\" ";
     }
 
-//    List<DbpediaAnnotation> DBPAList = JCasUtil.selectCovered(DbpediaAnnotation.class, question);
-//    for (DbpediaAnnotation dbp_annotation : DBPAList) {
-//      String dbp_text = dbp_annotation.getCoveredText();
-//      solrQuery += "dbp_annotation:\"" + dbp_text + "\" ";
-//    }
+    // List<DbpediaAnnotation> DBPAList = JCasUtil.selectCovered(DbpediaAnnotation.class, question);
+    // for (DbpediaAnnotation dbp_annotation : DBPAList) {
+    // String dbp_text = dbp_annotation.getCoveredText();
+    // solrQuery += "dbp_annotation:\"" + dbp_text + "\" ";
+    // }
 
     return solrQuery.trim();
   }
@@ -163,14 +165,38 @@ public class QuestionCandSentSimilarityMatcher extends JCasAnnotator_ImplBase {
     for (int i = 0; i < neList.size(); i++) {
       solrQueryBackoffPart += "text:\"" + neList.get(i).getText() + "\" ";
     }
+    
+    List<OpennlpChunk> chunkings = JCasUtil.selectCovered(OpennlpChunk.class, question);
+    List<OpennlpChunk> nounChunkings = new ArrayList<OpennlpChunk>();
+    for(OpennlpChunk chunk : chunkings){
+      if(chunk.getTag().equals(("NP"))){
+        nounChunkings.add(chunk);
+      }
+    }
+    
+    for (int i = 0; i < nounChunkings.size(); i++) {
+      for (StanfordCorenlpToken token : JCasUtil.selectCovered(StanfordCorenlpToken.class,
+              nounChunkings.get(i))) {
+        String shortened_token = token.getShorten();
+        solrQueryBackoffPart += "shortened:\"" + shortened_token + "\" ";
+      }
+    }
 
-//    List<DbpediaAnnotation> DBPAList = JCasUtil.selectCovered(DbpediaAnnotation.class, question);
-//    for (DbpediaAnnotation dbp_annotation : DBPAList) {
-//      String dbp_text = dbp_annotation.getCoveredText();
-//      solrQueryBackoffPart += "text:\"" + dbp_text + "\" ";
+//    
+//    for (int i = 0; i < neList.size(); i++) {
+//      for (StanfordCorenlpToken token : JCasUtil.selectCovered(StanfordCorenlpToken.class,
+//              neList.get(i))) {
+//        String shortened_token = token.getShorten();
+//        solrQueryBackoffPart += "shortened:\"" + shortened_token + "\" ";
+//      }
 //    }
+
+    // List<DbpediaAnnotation> DBPAList = JCasUtil.selectCovered(DbpediaAnnotation.class, question);
+    // for (DbpediaAnnotation dbp_annotation : DBPAList) {
+    // String dbp_text = dbp_annotation.getCoveredText();
+    // solrQueryBackoffPart += "text:\"" + dbp_text + "\" ";
+    // }
 
     return this.formSolrQuery(question) + " " + solrQueryBackoffPart.trim();
   }
-
 }
