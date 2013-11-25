@@ -115,6 +115,7 @@ public class FanseAnnotator extends JCasAnnotator_ImplBase {
 			ArrayListMultimap<FanseToken, FanseDependencyRelation> dependencyChildRelationMap = 
 					ArrayListMultimap.create();
 			
+			
 			for (Arc arc: dependencyParse.getArcs()) {
 				FanseToken childToken = Fanse2UimaMap.get(arc.getChild());
 				FanseToken headToken = Fanse2UimaMap.get(arc.getHead());
