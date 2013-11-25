@@ -12,7 +12,6 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.FSList;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.uimafit.component.JCasAnnotator_ImplBase;
-import org.uimafit.descriptor.ConfigurationParameter;
 import org.uimafit.util.FSCollectionFactory;
 import org.uimafit.util.JCasUtil;
 

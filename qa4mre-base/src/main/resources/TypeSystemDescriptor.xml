@@ -13,6 +13,20 @@
   </imports>
   <types>
     <typeDescription>
+      <name>edu.cmu.lti.qa4mre.type.NumberAnnotation</name>
+      <description>Annotate numbers and their normalized form</description>
+            <supertypeName>edu.cmu.lti.qa4mre.type.ComponentAnnotation</supertypeName>
+      
+      <features>
+        <featureDescription>
+          <name>normalizedString</name>
+          <description>The normalized result</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  
+    <typeDescription>
       <name>edu.cmu.lti.qalab.types.Sentence</name>
       <description/>
       <supertypeName>uima.tcas.Annotation</supertypeName>
