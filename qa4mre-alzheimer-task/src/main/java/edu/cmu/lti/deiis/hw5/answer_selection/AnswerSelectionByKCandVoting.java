@@ -50,6 +50,7 @@ public class AnswerSelectionByKCandVoting extends JCasAnnotator_ImplBase {
 					.fromFSListToCollection(qaSet.get(i).getCandidateSentenceList(), CandidateSentence.class);
 
 			int topK = Math.min(K_CANDIDATES, candSentList.size());
+			
 			String correct = "";
 
 			for (int j = 0; j < choiceList.size(); j++) {
@@ -69,6 +70,7 @@ public class AnswerSelectionByKCandVoting extends JCasAnnotator_ImplBase {
 				ArrayList<CandidateAnswer> candAnswerList = Utils.fromFSListToCollection(candSent.getCandAnswerList(), CandidateAnswer.class);
 				String selectedAnswer = "";
 				double maxScore = Double.NEGATIVE_INFINITY;
+				
 				for (int j = 0; j < candAnswerList.size(); j++) {
 
 					CandidateAnswer candAns = candAnswerList.get(j);
@@ -80,7 +82,9 @@ public class AnswerSelectionByKCandVoting extends JCasAnnotator_ImplBase {
 						maxScore = totalScore;
 						selectedAnswer = answer;
 					}
+					
 				}
+				
 				Double existingVal = hshAnswer.get(selectedAnswer);
 				if (existingVal == null) {
 					existingVal = new Double(0.0);

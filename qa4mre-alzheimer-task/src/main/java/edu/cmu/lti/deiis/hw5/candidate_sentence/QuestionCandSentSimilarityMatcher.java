@@ -12,7 +12,7 @@ import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.FSList;
 import org.apache.uima.resource.ResourceInitializationException;
-import org.uimafit.util.JCasUtil;
+//import org.uimafit.util.JCasUtil;
 
 import edu.cmu.lti.oaqa.core.provider.solr.SolrWrapper;
 import edu.cmu.lti.qalab.types.CandidateSentence;

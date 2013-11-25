@@ -23,6 +23,7 @@ import edu.cmu.lti.qalab.types.NounPhrase;
 import edu.cmu.lti.qalab.types.Question;
 import edu.cmu.lti.qalab.types.QuestionAnswerSet;
 import edu.cmu.lti.qalab.types.TestDocument;
+import edu.cmu.lti.qalab.types.Token;
 import edu.cmu.lti.qalab.utils.Utils;
 
 public class AnswerChoiceCandAnsPMIScorer extends JCasAnnotator_ImplBase {
@@ -69,7 +70,7 @@ public class AnswerChoiceCandAnsPMIScorer extends JCasAnnotator_ImplBase {
 
 				ArrayList<NounPhrase> candSentNouns = Utils.fromFSListToCollection(candSent.getSentence().getPhraseList(), NounPhrase.class);
 				ArrayList<NER> candSentNers = Utils.fromFSListToCollection(candSent.getSentence().getNerList(), NER.class);
-
+				
 				ArrayList<CandidateAnswer> candAnsList = new ArrayList<CandidateAnswer>();
 				for (int j = 0; j < choiceList.size(); j++) {
 					double score1 = 0.0;
