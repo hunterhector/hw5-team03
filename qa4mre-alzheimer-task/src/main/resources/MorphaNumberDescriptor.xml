@@ -9,16 +9,16 @@
                 <nameValuePair>
                     <name>InputDirectory</name>
                     <value>
-                        <string>/opt/Dropbox/11791_data/data/12-test-alzheimer/output_stanford_fanse_dbpedia_opennlp_relevantAnnotations_shorten</string>
+                        <string>/Users/hector/Dropbox/11791_data/data/12-test-alzheimer/output_stanford_fanse_dbpedia_opennlp_relevantAnnotations_shorten</string>
                     </value>
                 </nameValuePair>
             </configurationParameterSettings>
         </collectionIterator>
     </collectionReader>
     <casProcessors casPoolSize="3" processingUnitThreadCount="1">
-        <casProcessor deployment="integrated" name="AnswerRankingDescriptor">
+        <casProcessor deployment="integrated" name="MorphaAnnotator">
             <descriptor>
-                <import location="AnswerRankingAggregateAnalysisEngine.xml"/>
+                <import location="annotators/MorphaAnnotator.xml"/>
             </descriptor>
             <deploymentParameters/>
             <errorHandling>
@@ -27,7 +27,18 @@
                 <timeout max="100000" default="-1"/>
             </errorHandling>
             <checkpoint batch="10000" time="1000ms"/>
-            <configurationParameterSettings/>
+        </casProcessor>
+        <casProcessor deployment="integrated" name="NumberDescriptor">
+            <descriptor>
+                <import location="annotators/NumberDescriptor.xml"/>
+            </descriptor>
+            <deploymentParameters/>
+            <errorHandling>
+                <errorRateThreshold action="terminate" value="0/1000"/>
+                <maxConsecutiveRestarts action="terminate" value="30"/>
+                <timeout max="100000" default="-1"/>
+            </errorHandling>
+            <checkpoint batch="10000" time="1000ms"/>
         </casProcessor>
         <casProcessor deployment="integrated" name="XmiWriterConsumerDescriptor">
             <descriptor>
@@ -44,7 +55,7 @@
                 <nameValuePair>
                     <name>OutputDirectory</name>
                     <value>
-                        <string>data/12-test-alzheimer/output_ranked</string>
+                        <string>data/12-test-alzheimer/output_small_details</string>
                     </value>
                 </nameValuePair>
             </configurationParameterSettings>
