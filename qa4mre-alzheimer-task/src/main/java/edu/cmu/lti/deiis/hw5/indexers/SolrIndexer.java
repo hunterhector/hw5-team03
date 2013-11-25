@@ -12,8 +12,11 @@ import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.FSList;
 import org.apache.uima.resource.ResourceInitializationException;
+import org.uimafit.util.JCasUtil;
 
 import edu.cmu.lti.oaqa.core.provider.solr.SolrWrapper;
+import edu.cmu.lti.qa4mre.type.DbpediaAnnotation;
+import edu.cmu.lti.qa4mre.type.StanfordDependencyRootNode;
 import edu.cmu.lti.qalab.solrutils.SolrUtils;
 import edu.cmu.lti.qalab.types.Dependency;
 import edu.cmu.lti.qalab.types.NER;
@@ -25,124 +28,147 @@ import edu.cmu.lti.qalab.utils.Utils;
 
 public class SolrIndexer extends JCasAnnotator_ImplBase {
 
-	int mDocNum;
-	File mOutputFile = null;
-	SolrWrapper wrapper;
-	String serverUrl;
-	IndexSchema indexSchema;
-	String coreName;
-	String schemaName;
+  int mDocNum;
 
-	double THRESHOLD = 4.0;
+  File mOutputFile = null;
 
-	@Override
-	public void initialize(UimaContext context) throws ResourceInitializationException {
-		serverUrl = (String) context.getConfigParameterValue("SOLR_SERVER_URL");
-		coreName = (String) context.getConfigParameterValue("SOLR_CORE");
-		schemaName = (String) context.getConfigParameterValue("SCHEMA_NAME");
+  SolrWrapper wrapper;
 
-		try {
-			this.wrapper = new SolrWrapper(serverUrl + coreName);
-			// clean up index every time to ensure fresh indexing
-			wrapper.deleteDocumentByQuery("*:*");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+  String serverUrl;
 
-	}
+  IndexSchema indexSchema;
 
-	@Override
-	public void process(JCas jCas) throws AnalysisEngineProcessException {
+  String coreName;
 
-		TestDocument testDoc = Utils.getTestDocumentFromCAS(jCas);// (TestDocument)
-																	// jCas.getAnnotationIndex(TestDocument.type);
+  String schemaName;
 
-		try {
-			// try to get indexschema so that you can know the fields available
-			indexSchema = SolrUtils.getIndexSchema(serverUrl, coreName, schemaName);
+  double THRESHOLD = 4.0;
 
-			String id = testDoc.getId();
+  @Override
+  public void initialize(UimaContext context) throws ResourceInitializationException {
+    serverUrl = (String) context.getConfigParameterValue("SOLR_SERVER_URL");
+    coreName = (String) context.getConfigParameterValue("SOLR_CORE");
+    schemaName = (String) context.getConfigParameterValue("SCHEMA_NAME");
 
-			ArrayList<Sentence> sentenceList = Utils.fromFSListToCollection(testDoc.getSentenceList(), Sentence.class);
+    try {
+      this.wrapper = new SolrWrapper(serverUrl + coreName);
+      // clean up index every time to ensure fresh indexing
+      wrapper.deleteDocumentByQuery("*:*");
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
 
-			// ArrayList<String>synonymList=new ArrayList<String>();
-			for (int i = 0; i < sentenceList.size(); i++) {
-				Sentence sent = sentenceList.get(i);
-				String sentText = sent.getText();
-				// indexed by their appearance index in sentenceList
-				String sentId = id + "_" + i;
+  }
 
-				if (sent.getBFilter()) {
-					System.err.println("This should not be indexed: ");
-					System.err.println(sent);
-				}
-				HashMap<String, Object> indexMap = new HashMap<String, Object>();
-				indexMap.put("docid", id);
-				indexMap.put("id", sentId);
-				indexMap.put("text", sentText);
+  @Override
+  public void process(JCas jCas) throws AnalysisEngineProcessException {
 
-				FSList fsNounList = sent.getPhraseList();
-				ArrayList<NounPhrase> nounPhrases = Utils.fromFSListToCollection(fsNounList, NounPhrase.class);
-				ArrayList<String> nnList = new ArrayList<String>();
-				for (int j = 0; j < nounPhrases.size(); j++) {
-					// NounPhrase nnPhr=nounPhrases.get(j);
-					nnList.add(nounPhrases.get(j).getText());
-					/*
-					 * ArrayList<Synonym>synList=Utils.fromFSListToCollection(nnPhr
-					 * .getSynonyms(),Synonym.class); for(int
-					 * k=0;k<synList.size();k++){
-					 * synonymList.add(synList.get(k).getText()); }
-					 */
-				}
+    TestDocument testDoc = Utils.getTestDocumentFromCAS(jCas);// (TestDocument)
+    // jCas.getAnnotationIndex(TestDocument.type);
 
-				indexMap.put("nounphrases", nnList);
+    try {
+      // try to get indexschema so that you can know the fields available
+      indexSchema = SolrUtils.getIndexSchema(serverUrl, coreName, schemaName);
 
-				FSList fsNEList = sent.getNerList();
-				ArrayList<NER> namedEntities = Utils.fromFSListToCollection(fsNEList, NER.class);
-				ArrayList<String> neList = new ArrayList<String>();
-				for (int j = 0; j < namedEntities.size(); j++) {
-					// NER ner=namedEntities.get(j);
-					neList.add(namedEntities.get(j).getText());
-					/*
-					 * ArrayList<Synonym>synList=Utils.fromFSListToCollection(ner
-					 * .getSynonyms(),Synonym.class); for(int
-					 * k=0;k<synList.size();k++){
-					 * synonymList.add(synList.get(k).getText()); }
-					 */
-				}
-				indexMap.put("namedentities", neList);
-				// indexMap.put("synonyms",synonymList);
+      String id = testDoc.getId();
 
-				FSList fsDependencies = sent.getDependencyList();
-				if (fsDependencies != null) {
-					ArrayList<Dependency> dependencies = Utils.fromFSListToCollection(fsDependencies, Dependency.class);
-					ArrayList<String> depList = new ArrayList<String>();
-					for (int j = 0; j < dependencies.size(); j++) {
-						String rel = dependencies.get(j).getRelation();
-						String gov = dependencies.get(j).getGovernor().getText();
-						String dep = dependencies.get(j).getDependent().getText();
-						String depText = rel + "(" + gov + "," + dep + ")";
-						depList.add(depText);
-					}
+      ArrayList<Sentence> sentenceList = Utils.fromFSListToCollection(testDoc.getSentenceList(),
+              Sentence.class);
 
-					indexMap.put("dependencies", depList);
-				}
+      // ArrayList<String>synonymList=new ArrayList<String>();
+      for (int i = 0; i < sentenceList.size(); i++) {
+        Sentence sent = sentenceList.get(i);
+        String sentText = sent.getText();
+        // indexed by their appearance index in sentenceList
+        String sentId = id + "_" + i;
 
-				SolrInputDocument solrInpDoc = this.wrapper.buildSolrDocument(indexMap);
-				String docXML = this.wrapper.convertSolrDocInXML(solrInpDoc);
+        if (sent.getBFilter()) {
+          System.err.println("This should not be indexed: ");
+          System.err.println(sent);
+        }
+        HashMap<String, Object> indexMap = new HashMap<String, Object>();
+        indexMap.put("docid", id);
+        indexMap.put("id", sentId);
+        indexMap.put("text", sentText);
 
-				// System.out.println(docXML);
+        FSList fsNounList = sent.getPhraseList();
+        ArrayList<NounPhrase> nounPhrases = Utils.fromFSListToCollection(fsNounList,
+                NounPhrase.class);
+        ArrayList<String> nnList = new ArrayList<String>();
+        for (int j = 0; j < nounPhrases.size(); j++) {
+          // NounPhrase nnPhr=nounPhrases.get(j);
+          nnList.add(nounPhrases.get(j).getText());
+          /*
+           * ArrayList<Synonym>synList=Utils.fromFSListToCollection(nnPhr
+           * .getSynonyms(),Synonym.class); for(int k=0;k<synList.size();k++){
+           * synonymList.add(synList.get(k).getText()); }
+           */
+        }
 
-				this.wrapper.indexDocument(docXML);
-				// this.wrapper.indexCommit();
-				this.wrapper.getServer().commit();
+        indexMap.put("nounphrases", nnList);
 
-			}
+        FSList fsNEList = sent.getNerList();
+        ArrayList<NER> namedEntities = Utils.fromFSListToCollection(fsNEList, NER.class);
+        ArrayList<String> neList = new ArrayList<String>();
+        for (int j = 0; j < namedEntities.size(); j++) {
+          // NER ner=namedEntities.get(j);
+          neList.add(namedEntities.get(j).getText());
+          /*
+           * ArrayList<Synonym>synList=Utils.fromFSListToCollection(ner
+           * .getSynonyms(),Synonym.class); for(int k=0;k<synList.size();k++){
+           * synonymList.add(synList.get(k).getText()); }
+           */
+        }
+        indexMap.put("namedentities", neList);
+        // indexMap.put("synonyms",synonymList);
 
-		} catch (Exception e) {
-			// System.out.println(testDoc);
-			e.printStackTrace();
-		}
+        FSList fsDependencies = sent.getDependencyList();
+        if (fsDependencies != null) {
+          ArrayList<Dependency> dependencies = Utils.fromFSListToCollection(fsDependencies,
+                  Dependency.class);
+          ArrayList<String> depList = new ArrayList<String>();
+          for (int j = 0; j < dependencies.size(); j++) {
+            String rel = dependencies.get(j).getRelation();
+            String gov = dependencies.get(j).getGovernor().getText();
+            String dep = dependencies.get(j).getDependent().getText();
+            String depText = rel + "(" + gov + "," + dep + ")";
+            depList.add(depText);
+          }
 
-	}
+          indexMap.put("dependencies", depList);
+        }
+
+        // Add stanford NLP parser root node
+        for (StanfordDependencyRootNode root_node : JCasUtil.selectCovered(
+                StanfordDependencyRootNode.class, sent)) {
+          indexMap.put("root_node", root_node.getCoveredText());
+          System.out.println("GUOQING: new index field ROOT_NODE:"+root_node.getCoveredText());
+        }
+
+        // Add DBPedia 
+        ArrayList<String> dep_annotation_list = new ArrayList<String>();
+        for (DbpediaAnnotation dbp_annotation : JCasUtil.selectCovered(DbpediaAnnotation.class,
+                sent)) {
+          dep_annotation_list.add(dbp_annotation.getCoveredText());
+        }
+
+        indexMap.put("dbp_annotation", dep_annotation_list);
+
+        SolrInputDocument solrInpDoc = this.wrapper.buildSolrDocument(indexMap);
+        String docXML = this.wrapper.convertSolrDocInXML(solrInpDoc);
+
+        // System.out.println(docXML);
+
+        this.wrapper.indexDocument(docXML);
+        // this.wrapper.indexCommit();
+        this.wrapper.getServer().commit();
+
+      }
+
+    } catch (Exception e) {
+      // System.out.println(testDoc);
+      e.printStackTrace();
+    }
+
+  }
 }
