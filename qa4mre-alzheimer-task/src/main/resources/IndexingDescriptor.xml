@@ -9,7 +9,7 @@
 				<nameValuePair>
 					<name>InputDirectory</name>
 					<value>
-						<string>/opt/Dropbox/11791_data/data/12-test-alzheimer/output_stanford_fanse_dbpedia_opennlp_relevantAnnotations/</string>
+						<string>/opt/Dropbox/11791_data/data/12-test-alzheimer/output_stanford_fanse_dbpedia_opennlp_relevantAnnotations_shorten</string>
 					</value>
 				</nameValuePair>
 			</configurationParameterSettings>

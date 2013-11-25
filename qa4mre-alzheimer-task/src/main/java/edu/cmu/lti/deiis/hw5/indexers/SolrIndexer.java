@@ -16,6 +16,7 @@ import org.uimafit.util.JCasUtil;
 
 import edu.cmu.lti.oaqa.core.provider.solr.SolrWrapper;
 import edu.cmu.lti.qa4mre.type.DbpediaAnnotation;
+import edu.cmu.lti.qa4mre.type.StanfordCorenlpToken;
 import edu.cmu.lti.qa4mre.type.StanfordDependencyRootNode;
 import edu.cmu.lti.qalab.solrutils.SolrUtils;
 import edu.cmu.lti.qalab.types.Dependency;
@@ -91,6 +92,13 @@ public class SolrIndexer extends JCasAnnotator_ImplBase {
         indexMap.put("id", sentId);
         indexMap.put("text", sentText);
 
+        String shortened_text = "";
+        for (StanfordCorenlpToken token : JCasUtil.selectCovered(StanfordCorenlpToken.class, sent)) {
+          String shortened_token = token.getShorten();
+          shortened_text += shortened_token + " ";          
+        }
+        indexMap.put("shortened", shortened_text.trim());
+
         FSList fsNounList = sent.getPhraseList();
         ArrayList<NounPhrase> nounPhrases = Utils.fromFSListToCollection(fsNounList,
                 NounPhrase.class);
@@ -142,10 +150,9 @@ public class SolrIndexer extends JCasAnnotator_ImplBase {
         for (StanfordDependencyRootNode root_node : JCasUtil.selectCovered(
                 StanfordDependencyRootNode.class, sent)) {
           indexMap.put("root_node", root_node.getCoveredText());
-          System.out.println("GUOQING: new index field ROOT_NODE:"+root_node.getCoveredText());
         }
 
-        // Add DBPedia 
+        // Add DBPedia
         ArrayList<String> dep_annotation_list = new ArrayList<String>();
         for (DbpediaAnnotation dbp_annotation : JCasUtil.selectCovered(DbpediaAnnotation.class,
                 sent)) {
