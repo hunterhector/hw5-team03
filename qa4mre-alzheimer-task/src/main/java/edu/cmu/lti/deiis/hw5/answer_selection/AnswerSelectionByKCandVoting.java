@@ -66,42 +66,14 @@ public class AnswerSelectionByKCandVoting extends JCasAnnotator_ImplBase {
 
       HashMap<String, Double> hshAnswer = new HashMap<String, Double>();
 
-//      for (int c = 0; c < topK; c++) {
-//
-//        CandidateSentence candSent = candSentList.get(c);
-//
-//        ArrayList<CandidateAnswer> candAnswerList = Utils.fromFSListToCollection(
-//                candSent.getCandAnswerList(), CandidateAnswer.class);
-//        String selectedAnswer = "";
-//        double maxScore = Double.NEGATIVE_INFINITY;
-//        for (int j = 0; j < candAnswerList.size(); j++) {
-//
-//          CandidateAnswer candAns = candAnswerList.get(j);
-//          String answer = candAns.getText();
-//
-//          double totalScore = candAns.getSimilarityScore() + candAns.getSynonymScore()
-//                  + candAns.getPMIScore();
-//
-//          if (totalScore > maxScore) {
-//            maxScore = totalScore;
-//            selectedAnswer = answer;
-//          }
-//        }
-//        Double existingVal = hshAnswer.get(selectedAnswer);
-//        if (existingVal == null) {
-//          existingVal = new Double(0.0);
-//        }
-//        hshAnswer.put(selectedAnswer, existingVal + 1.0);
-//      }
-
-      // GUOQING
       for (int c = 0; c < topK; c++) {
 
         CandidateSentence candSent = candSentList.get(c);
 
         ArrayList<CandidateAnswer> candAnswerList = Utils.fromFSListToCollection(
                 candSent.getCandAnswerList(), CandidateAnswer.class);
-
+        String selectedAnswer = "";
+        double maxScore = Double.NEGATIVE_INFINITY;
         for (int j = 0; j < candAnswerList.size(); j++) {
 
           CandidateAnswer candAns = candAnswerList.get(j);
@@ -110,14 +82,42 @@ public class AnswerSelectionByKCandVoting extends JCasAnnotator_ImplBase {
           double totalScore = candAns.getSimilarityScore() + candAns.getSynonymScore()
                   + candAns.getPMIScore();
 
-          
-          Double existingVal = hshAnswer.get(answer);
-          if (existingVal == null) {
-            existingVal = new Double(0.0);
+          if (totalScore > maxScore) {
+            maxScore = totalScore;
+            selectedAnswer = answer;
           }
-          hshAnswer.put(answer, existingVal + totalScore);
         }
+        Double existingVal = hshAnswer.get(selectedAnswer);
+        if (existingVal == null) {
+          existingVal = new Double(0.0);
+        }
+        hshAnswer.put(selectedAnswer, existingVal + 1.0);
       }
+
+      // GUOQING
+//      for (int c = 0; c < topK; c++) {
+//
+//        CandidateSentence candSent = candSentList.get(c);
+//
+//        ArrayList<CandidateAnswer> candAnswerList = Utils.fromFSListToCollection(
+//                candSent.getCandAnswerList(), CandidateAnswer.class);
+//
+//        for (int j = 0; j < candAnswerList.size(); j++) {
+//
+//          CandidateAnswer candAns = candAnswerList.get(j);
+//          String answer = candAns.getText();
+//
+//          double totalScore = candAns.getSimilarityScore() + candAns.getSynonymScore()
+//                  + candAns.getPMIScore();
+//
+//          
+//          Double existingVal = hshAnswer.get(answer);
+//          if (existingVal == null) {
+//            existingVal = new Double(0.0);
+//          }
+//          hshAnswer.put(answer, existingVal + totalScore);
+//        }
+//      }
 
       String bestChoice = null;
       try {
