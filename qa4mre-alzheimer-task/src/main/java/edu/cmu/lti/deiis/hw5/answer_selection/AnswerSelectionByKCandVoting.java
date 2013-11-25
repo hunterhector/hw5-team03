@@ -35,6 +35,8 @@ public class AnswerSelectionByKCandVoting extends JCasAnnotator_ImplBase {
 
 	@Override
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
+		System.out.println("Logging outputs for answer selection");
+
 		TestDocument testDoc = Utils.getTestDocumentFromCAS(aJCas);
 		ArrayList<QuestionAnswerSet> qaSet = Utils.fromFSListToCollection(testDoc.getQaList(), QuestionAnswerSet.class);
 		int matched = 0;

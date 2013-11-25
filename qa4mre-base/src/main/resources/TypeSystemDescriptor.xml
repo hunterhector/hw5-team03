@@ -7,9 +7,9 @@
   <vendor/>
   <imports>
     <import name="AbstractTypeSystem"/>
-    <import name="ExternalTypeSystem"/>
-  <import name="org.apache.uima.examples.SourceDocumentInformation"/>
+    <import name="org.apache.uima.examples.SourceDocumentInformation"/>
   <import name="TrainingDataAnnotationTypes"/>
+  <import name="ExternalTypeSystem"/>
   </imports>
   <types>
     <typeDescription>
