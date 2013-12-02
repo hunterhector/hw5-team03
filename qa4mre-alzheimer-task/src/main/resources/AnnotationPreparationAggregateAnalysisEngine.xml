@@ -46,6 +46,24 @@
     <delegateAnalysisEngine key="StanfordQuestionNLPAnnotator">
       <import name="annotators.StanfordQuestionNLPAnnotator"/>
     </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="DbpediaAnnotator">
+      <import name="annotators.DbpediaAnnotator"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="StanfordCoreNlpAnnotator">
+      <import name="annotators.StanfordCoreNlpAnnotator"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="OpenNLPAnnotator">
+      <import name="annotators.OpenNLPAnnotator"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="MorphaAnnotator">
+      <import name="annotators.MorphaAnnotator"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="NumberDescriptor">
+      <import name="annotators.NumberDescriptor"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="TrainingDataAnnotator">
+      <import name="annotators.TrainingDataAnnotator"/>
+    </delegateAnalysisEngine>
     <!--<delegateAnalysisEngine key="AnswerSelectionByKCandAggregation">
       <import location="annotators/AnswerSelectionByKCandAggregation.xml"/>
     </delegateAnalysisEngine>-->
@@ -60,16 +78,22 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
-              <node>StanfordNLPAnnotator</node>
+              <node>DbpediaAnnotator</node>
                   <!--
         <node>StanfordSentenceAnnotator</node>      -->        
-        <node>NoiseFilter</node>
-        <node>StanfordQuestionNLPAnnotator</node>
+        <node>StanfordCoreNlpAnnotator</node>
+        <node>OpenNLPAnnotator</node>
+        <node>MorphaAnnotator</node>
+        <node>NumberDescriptor</node>
+        <node>TrainingDataAnnotator</node>
+        <node>StanfordNLPAnnotator</node>
+        <node>NoiseFilter</node> 
+      <node>StanfordQuestionNLPAnnotator</node>
         <node>PhraseAnnotator</node>
         <node>QuestionPhraseAnnotator</node>
         <node>NEAnnotator</node>
         <node>QuestionNEAnnotator</node>
-        <node>SolrIndexer</node> 
+        <node>SolrIndexer</node>
       </fixedFlow>
     </flowConstraints>
     <typePriorities/>
