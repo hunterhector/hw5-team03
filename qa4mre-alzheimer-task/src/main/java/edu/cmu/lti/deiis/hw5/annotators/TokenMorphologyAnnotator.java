@@ -65,8 +65,10 @@ public class TokenMorphologyAnnotator extends JCasAnnotator_ImplBase {
 				// snowball = SnowballStemmer.stem(wordText);
 				// System.out.println(porter + " " + snowball);
 			}
-			if (!wordText.equals(morpha))
-				System.out.println(String.format("From lemma %s to morpha %s, pos %s", wordText, morpha, posTag));
+			// if (!wordText.equals(morpha))
+			// System.out.println(String.format("From lemma %s to morpha %s, pos %s",
+			// wordText, morpha, posTag));
+
 			word.setMorpha(morpha);
 			word.setShorten(shorterned);
 		}
