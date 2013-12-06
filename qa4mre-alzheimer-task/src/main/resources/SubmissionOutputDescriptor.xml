@@ -9,7 +9,7 @@
                 <nameValuePair>
                     <name>InputDirectory</name>
                     <value>
-                        <string>/opt/Dropbox/11791_data/data/12-test-alzheimer/output_stanford_fanse_dbpedia_opennlp_relevantAnnotations_shorten</string>
+                        <string>/Users/hector/Documents/projects/course/hw5-team03/qa4mre-alzheimer-task/data/blind_data_result</string>
                     </value>
                 </nameValuePair>
             </configurationParameterSettings>
@@ -28,39 +28,6 @@
             </errorHandling>
             <checkpoint batch="10000" time="1000ms"/>
         </casProcessor>
-        <casProcessor deployment="integrated" name="AnswerRankingDescriptor">
-            <descriptor>
-                <import location="AnswerRankingAggregateAnalysisEngine.xml"/>
-            </descriptor>
-            <deploymentParameters/>
-            <errorHandling>
-                <errorRateThreshold action="terminate" value="0/1000"/>
-                <maxConsecutiveRestarts action="terminate" value="30"/>
-                <timeout max="100000" default="-1"/>
-            </errorHandling>
-            <checkpoint batch="10000" time="1000ms"/>
-            <configurationParameterSettings/>
-        </casProcessor>
-        <casProcessor deployment="integrated" name="XmiWriterConsumerDescriptor">
-            <descriptor>
-                <import location="consumers/XmiWriterConsumerDescriptor.xml"/>
-            </descriptor>
-            <deploymentParameters/>
-            <errorHandling>
-                <errorRateThreshold action="terminate" value="0/1000"/>
-                <maxConsecutiveRestarts action="terminate" value="30"/>
-                <timeout max="100000" default="-1"/>
-            </errorHandling>
-            <checkpoint batch="10000" time="1000ms"/>
-            <configurationParameterSettings>
-                <nameValuePair>
-                    <name>OutputDirectory</name>
-                    <value>
-                        <string>data/12-test-alzheimer/output_ranked</string>
-                    </value>
-                </nameValuePair>
-            </configurationParameterSettings>
-        </casProcessor>
         <casProcessor deployment="integrated" name="CasConsumerDescriptor">
             <descriptor>
                 <import location="consumers/OutputRunCasConsumerDescriptor.xml"/>
@@ -72,6 +39,14 @@
                 <timeout max="100000" default="-1"/>
             </errorHandling>
             <checkpoint batch="10000" time="1000ms"/>
+            <configurationParameterSettings>
+                <nameValuePair>
+                    <name>OUTPUT_DIR</name>
+                    <value>
+                        <string>/Users/hector/Documents/projects/course/hw5-team03/qa4mre-alzheimer-task/data/blind_runs</string>
+                    </value>
+                </nameValuePair>
+            </configurationParameterSettings>
         </casProcessor>
     </casProcessors>
     <cpeConfig>
