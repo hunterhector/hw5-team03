@@ -10,21 +10,33 @@
     <vendor/>
     <configurationParameters>
       <configurationParameter>
-        <name>OUTPUT_DIR</name>
+        <name>outputDir</name>
         <description>output to be written</description>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>
       
+    <configurationParameter>
+        <name>outputFileName</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
-        <name>OUTPUT_DIR</name>
+        <name>outputDir</name>
         <value>
           <string>data/blind_runs</string>
         </value>
       </nameValuePair>      
+    <nameValuePair>
+        <name>outputFileName</name>
+        <value>
+          <string>run1</string>
+        </value>
+      </nameValuePair>
     </configurationParameterSettings>
     <typeSystemDescription>
       <imports>

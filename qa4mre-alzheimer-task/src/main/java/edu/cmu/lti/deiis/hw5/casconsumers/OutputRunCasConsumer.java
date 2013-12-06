@@ -35,19 +35,20 @@ public class OutputRunCasConsumer extends CasConsumer_ImplBase {
 	double THRESHOLD = 4.0;
 	BufferedWriter out;
 
-
 	int correct = 0;
 	int unanswered = 0;
 	int total = 0;
 	double cAt1 = 0.0;
 
-	// if is_test == true, don't show the c@1 measure on the screen because we don't know the gold standard answer.
+	// if is_test == true, don't show the c@1 measure on the screen because we
+	// don't know the gold standard answer.
 	boolean IS_TEST = false;
 
 	/**
 	 * for writing to the output format.
 	 */
-	String team_id = "team-11"; // TBD: needs to be replaced by real team id in the
+	String team_id = "team-11"; // TBD: needs to be replaced by real team id in
+								// the
 								// task.
 	int current_year = 13;
 	String number_of_run = "01"; // TBD: needs to be passed in from the
@@ -68,15 +69,14 @@ public class OutputRunCasConsumer extends CasConsumer_ImplBase {
 		 * string buffer for the output file.
 		 */
 		StringBuffer sb = new StringBuffer();
-		
+
 		mDocNum = 0;
 		try {
-			mOutputFile = new File(
-					(String) getConfigParameterValue("OUTPUT_DIR")
-							+ "/output.xml");
+			String outputDir = (String) getConfigParameterValue("outputDir");
+			String outputFileName = (String) getConfigParameterValue("outputFileName");
 
-			
-			
+			mOutputFile = new File(outputDir + "/" + outputFileName + ".xml");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -98,14 +98,12 @@ public class OutputRunCasConsumer extends CasConsumer_ImplBase {
 			sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n");
 			sb.append(String.format("<output run_id=\"%s%d%s%s\">\n", team_id, current_year, number_of_run, language_pair));
 			sb.append(String.format("<topic t_id=\"%d\" >\n", t_id));
-			//DEBUG
-			//System.out.println(sb.toString());
+			// DEBUG
+			// System.out.println(sb.toString());
 			out.write(sb.toString());
-		}catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			;
 		}
 	}
@@ -121,7 +119,6 @@ public class OutputRunCasConsumer extends CasConsumer_ImplBase {
 			throw new ResourceProcessException(e);
 		}
 
-
 		// serialize XCAS and write to output file
 		try {
 			writeToFile(jcas, out);
@@ -135,8 +132,9 @@ public class OutputRunCasConsumer extends CasConsumer_ImplBase {
 	 * (1). determine whether the question is answered correctly, or unanswered,
 	 * or answered not correctly..
 	 * 
-	 * (2). Write a CAS to specific .dtd format mentioned in QA4MRE2013_Guidelines.pdf. 
-
+	 * (2). Write a CAS to specific .dtd format mentioned in
+	 * QA4MRE2013_Guidelines.pdf.
+	 * 
 	 * 
 	 * @param aCas
 	 *            CAS to serialize
@@ -159,34 +157,33 @@ public class OutputRunCasConsumer extends CasConsumer_ImplBase {
 			if (an instanceof TestDocument) {
 				TestDocument doc = (TestDocument) an;
 
-        //XXX unsafe processing: use d_id as r_id
-		    SourceDocument srcDoc = Utils.getSourceDocumentFromCAS(jcas);
-		    String[] docIdParts = srcDoc.getId().split("_");
-		    String r_id = docIdParts[2];
-		    
+				// XXX unsafe processing: use d_id as r_id
+				SourceDocument srcDoc = Utils.getSourceDocumentFromCAS(jcas);
+				String[] docIdParts = srcDoc.getId().split("_");
+				String r_id = docIdParts[2];
+
 				out.write(String.format("\t<reading-test r_id=\"%d\">\n", Integer.parseInt(r_id)));
-				
+
 				FSList list = doc.getQaList();
 				boolean answered = false;
 				int selectedAnswerId = -1;
 				while (list instanceof NonEmptyFSList) { // every question
-					answered = false; //reset "answered" variable.
+					answered = false; // reset "answered" variable.
 					selectedAnswerId = -1;
-					
+
 					FeatureStructure head = ((NonEmptyFSList) list).getHead();
 					QuestionAnswerSet qas = (QuestionAnswerSet) head;
 					Question q = qas.getQuestion();
-					
-					//DEBUG
-					//System.out.println(q.getId());
-					
+
+					// DEBUG
+					// System.out.println(q.getId());
+
 					q_id = Integer.parseInt(q.getId());
 					// DEBUG System.out.println("Question: " + q.getText());
 					FSList aList = qas.getAnswerList();
 					while (aList instanceof NonEmptyFSList) { // every answer
 																// item
-						FeatureStructure qaHead = ((NonEmptyFSList) aList)
-								.getHead();
+						FeatureStructure qaHead = ((NonEmptyFSList) aList).getHead();
 						Answer ans = (Answer) qaHead;
 						a_id = Integer.parseInt(ans.getId());
 						// DEBUG System.out.println("Answer: " + ans.getId() +
@@ -207,11 +204,11 @@ public class OutputRunCasConsumer extends CasConsumer_ImplBase {
 						unanswered++;
 					}
 					total++;
-					
+
 					// write the result of this question to output file.
 					String questionOutput = writeQuestionToOutput(answered, selectedAnswerId, q_id);
 					out.write(questionOutput);
-					
+
 					// do something with the next element
 					list = ((NonEmptyFSList) list).getTail();
 				}
@@ -223,27 +220,25 @@ public class OutputRunCasConsumer extends CasConsumer_ImplBase {
 
 	/**
 	 * 
-	 * @param answered boolean variable of whether a question is answered..
-	 * @param selectedAnswerId the answer id selected by the question. 
+	 * @param answered
+	 *            boolean variable of whether a question is answered..
+	 * @param selectedAnswerId
+	 *            the answer id selected by the question.
 	 */
 	private String writeQuestionToOutput(boolean answered, int selectedAnswerId, int q_id) {
 		StringBuffer sb = new StringBuffer();
-		if(!answered)
-		{
-			sb.append(String.format("\t\t<question q_id =\"%d\" answered=\"NO\" />\n", (q_id+1)));
-		}
-		else
-		{
-			sb.append(String.format("\t\t<question q_id=\"%d\" answered=\"YES\">\n", (q_id+1)));
-			sb.append(String.format("\t\t\t<answer a_id=\"%d\"/>\n", (selectedAnswerId+1)));
+		if (!answered) {
+			sb.append(String.format("\t\t<question q_id =\"%d\" answered=\"NO\" />\n", (q_id + 1)));
+		} else {
+			sb.append(String.format("\t\t<question q_id=\"%d\" answered=\"YES\">\n", (q_id + 1)));
+			sb.append(String.format("\t\t\t<answer a_id=\"%d\"/>\n", (selectedAnswerId + 1)));
 			sb.append("\t\t</question>\n");
 		}
 		return sb.toString();
 
 	}
 
-	private void writeXmi(CAS aCas, File outFile) throws IOException,
-			SAXException {
+	private void writeXmi(CAS aCas, File outFile) throws IOException, SAXException {
 		FileOutputStream out = null;
 		try {
 			// write XMI
@@ -264,27 +259,26 @@ public class OutputRunCasConsumer extends CasConsumer_ImplBase {
 	 */
 	@Override
 	public void destroy() {
-	
-			if (correct == 0) {
-				System.err
-						.format("There is no questions that were answered correctly. Maybe because it is a test document? If so, please set cas consumer confirugration parameter \"IS_TEST\"=true.\n");
-			}
-			if (total > 0) {
-				cAt1 = (((double) correct) / ((double) total) * unanswered + (double) correct)
-						* (1.0 / total);
-			}
 
-			System.out
-					.format("Total number of questions: %d\nTotal number of correct answers: %d\nTotal number of unanswered questions: %d\nThe c@1 score is: %.2f.\n",
-							total, correct, unanswered, cAt1);
-		
+		if (correct == 0) {
+			System.err
+					.format("There is no questions that were answered correctly. Maybe because it is a test document? If so, please set cas consumer confirugration parameter \"IS_TEST\"=true.\n");
+		}
+		if (total > 0) {
+			cAt1 = (((double) correct) / ((double) total) * unanswered + (double) correct) * (1.0 / total);
+		}
+
+		System.out
+				.format("Total number of questions: %d\nTotal number of correct answers: %d\nTotal number of unanswered questions: %d\nThe c@1 score is: %.2f.\n",
+						total, correct, unanswered, cAt1);
+
 		/**
 		 * finish up output.
 		 */
 		try {
 			out.write("</topic>\n");
 			out.write("</output>");
-			out.close(); 
+			out.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

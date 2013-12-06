@@ -56,7 +56,7 @@
                 <nameValuePair>
                     <name>OutputDirectory</name>
                     <value>
-                        <string>data/12-test-alzheimer/output_ranked</string>
+                        <string>data/blind_runs</string>
                     </value>
                 </nameValuePair>
             </configurationParameterSettings>

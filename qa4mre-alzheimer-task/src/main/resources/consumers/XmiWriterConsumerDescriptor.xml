@@ -21,7 +21,7 @@
       <nameValuePair>
         <name>OutputDirectory</name>
         <value>
-          <string>data/12-test-alzheimer/output</string>
+          <string>data/blind_data_result</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>
