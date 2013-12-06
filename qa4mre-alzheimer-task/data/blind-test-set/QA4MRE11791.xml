@@ -78,7 +78,7 @@ Of mice and men: an Alzheimer’s cure for our murine brethren. Alzheimer's Dise
 </answer>
 					<answer a_id='5' >None of the above</answer>
 				</q>
-				<q  q_id="10" q_type="cause" >
+				<q  q_id="10" q_type="binary" >
 					<q_str>Can proteins and amyloids explain the sense of smell functioning?</q_str>
 					<answer a_id='1' >often</answer>
 					<answer a_id='2' >every day</answer>
@@ -670,7 +670,7 @@ Financial challenges faced by person with dementia. The idea: A person with deme
 					<answer a_id='4' >never</answer>
 					<answer a_id='5' >None of the above</answer>
 				</q>
-				<q  q_id="5" q_type="binary" >
+				<q  q_id="5" q_type="factoid" >
 					<q_str>What will happen if the care needed by an Alzheimer's patient costs more than the family is able to pay?</q_str>
 					<answer a_id='1' >The family’s private funds are normally the first source for payment of any cost of care not immediately covered by the insurance of the family.</answer>
 					<answer a_id='2' >Health Care coverage and Medicare pay immediate hospital and medically-related expenses relating to treatment. </answer>
@@ -727,7 +727,7 @@ Financial challenges faced by person with dementia. The idea: A person with deme
 					<answer a_id='4' >reducing costs</answer>
 					<answer a_id='5' >None of the above</answer>
 				</q>
-				<q  q_id="12" q_type="time" >
+				<q  q_id="12" q_type="quantity" >
 					<q_str>How old was Mike Donohue when he was diagnosed with the most common form of dementia?</q_str>
 					<answer a_id='1' >70</answer>
 					<answer a_id='2' >75</answer>

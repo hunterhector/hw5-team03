@@ -78,7 +78,7 @@ Of mice and men: an Alzheimer’s cure for our murine brethren. Alzheimer's Dise
 </answer>
 					<answer a_id='5'>None of the above</answer>
 				</q>
-				<q  q_id="10" q_type="factoid" >
+				<q  q_id="10" q_type="binary" >
 					<q_str>Can proteins and amyloids explain the sense of smell functioning?</q_str>
 					<answer a_id='1'>often</answer>
 					<answer a_id='2'>every day</answer>

@@ -1,0 +1,1444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-set>
+    <topic t_id="1" t_name="Alzheimer">
+        <reading-test r_id="1">
+            <doc d_id="1">
+            </doc>
+            <q q_id="1" q_type="factoid" >
+                <q_str>Which enzyme is responsible for the transformation of testosterone into estrogen?</q_str>
+            </q>
+            <q q_id="2" q_type="factoid" >
+                <q_str>What experimental approach is useful to create an in vivo system where conversion of testosterone into estrogen is blocked?</q_str>
+            </q>
+            <q q_id="3" q_type="factoid" >
+                <q_str>What experimental approach was successful to inhibit in vivo the production of amyloid beta?</q_str>
+            </q>
+            <q q_id="4" q_type="factoid" >
+                <q_str>Which assay was used to determine cognitive performance?</q_str>
+            </q>
+            <q q_id="5" q_type="factoid" >
+                <q_str>What is the product of the transformation of testosterone carried out by aromatase?</q_str>
+            </q>
+            <q q_id="6" q_type="factoid" >
+                <q_str>Where is BACE1 particularly enriched in the case of AD? </q_str>
+            </q>
+            <q q_id="7" q_type="factoid" >
+                <q_str>Which hormone is able to inhibit the transcription of BACE1?</q_str>
+            </q>
+            <q q_id="8" q_type="time" >
+                <q_str>At which age was the expression of BACE1 mRNA significantly lower?</q_str>
+            </q>
+            <q q_id="9" q_type="cause" >
+                <q_str>How does NEP promote the decrease of amyloid plaques in the brain?</q_str>
+            </q>
+            <q q_id="10" q_type="factoid" >
+                <q_str>What substance described in the papers could be used potentially used to treat elderly male patients suffering from AD?</q_str>
+            </q>
+        </reading-test>
+    </topic>
+    <topic t_id="1" t_name="Alzheimer">
+        <reading-test r_id="1">
+            <doc d_id="1">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>Which technique was used to determine the cellular locations of the CLU1 and CLU2 gene products?</q_str>
+            </q>
+            <q  q_id="2" q_type="factoid" q_multiple="yes" >
+                <q_str>What compartments inside the cell contain clusterin proteins?</q_str>
+            </q>
+            <q  q_id="3"  q_type="factoid" >
+                <q_str>Which of the two CLU isoforms is the main one expressed in the choroid plexus?</q_str>
+            </q>
+            <q  q_id="4" q_type="factoid" >
+                <q_str>Which clusterin single nucleotide polymorphism has been linked to a reduction in the risk for developing Alzheimer's disease?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>Which CLU protein isoforms in the brain have been characterized?</q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" >
+                <q_str>Which CLU isoform has a consistently higher gene expression?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" >
+                <q_str>Which hormone can control the expression of CLU isoforms?</q_str>
+            </q>
+            <q  q_id="8"  q_type="factoid" >
+                <q_str>What effect do androgens have on CLU2 gene expression?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" >
+                <q_str>Which particular histone deacetylase inhibitor has been shown to enhance the expression of CLU? </q_str>
+            </q>
+            <q  q_id="10"  q_type="quantity" >
+                <q_str>How many residues does the CLU2 protein sequence have?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="2">
+            <doc d_id="2">
+            </doc>
+            <q  q_id="1"  q_type="factoid" >
+                <q_str>Which entity does allosterically regulate insulin degrading enzyme activity?</q_str>
+            </q>
+            <q  q_id="2"  q_type="factoid" >
+                <q_str>Which peptide hormone is the positive transcriptional regulator of IDE?</q_str>
+            </q>
+            <q  q_id="3"  q_type="factoid" >
+                <q_str>In which cell line was the gene expression regulation of IDE characterized?</q_str>
+            </q>
+            <q  q_id="4"  q_type="factoid" >
+                <q_str>Which method was applied to measure the quantity of IDE mRNA in the gene regulation experiments described in the paper?</q_str>
+            </q>
+            <q  q_id="5"  q_type="factoid" >
+                <q_str>What regulates the production of neprilysin?</q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" >
+                <q_str>What kind of glial cell is able to phagocyte b-amyloid?</q_str>
+            </q>
+            <q  q_id="7"  q_type="factoid" >
+                <q_str>What is the major protease produced by microglia responsible for degrading A?</q_str>
+            </q>
+            <q  q_id="8" q_type="relation" >
+                <q_str>What substance exhibited a similar effect on  IDE secretion as achieved by somatostatin?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" q_multiple="yes" >
+                <q_str>What are the sst receptors that are expressed on rat astrocytes?</q_str>
+            </q>
+            <q  q_id="10" q_type="factoid" >
+                <q_str>What method was used to inhibit the expression of IDE?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="3">
+            <doc d_id="3">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>What cell type in AD brains shows mitochondrial defects?</q_str>
+            </q>
+            <q  q_id="2" q_type="factoid" >
+                <q_str>In which anatomical structure in the brain does amyloid-beta aggregate?</q_str>
+            </q>
+            <q  q_id="3" q_type="quantity" >
+                <q_str>How many persons worldwide are estimated to have a medical condition related to neurodegeneration?</q_str>
+            </q>
+            <q  q_id="4" q_type="factoid" >
+                <q_str>Which protein is able to block nitric oxide creation?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>Which is the best-characterized factor that increases chances of getting AD?</q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" >
+                <q_str>With which particular protein does amyloid-beta interact?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" >
+                <q_str>The aggregation of which peptide has been widely observed in brains of Alzheimer patients?</q_str>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>What specific animal model can be used to study the role of amyloid-beta in apoptosis of choroid Plexus cells?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" >
+                <q_str>Where does amyloid-beta assemble into oligomeric structures?</q_str>
+            </q>
+            <q  q_id="10" q_type="cause" >
+                <q_str>When does oxidative stress happen in AD patients?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="4">
+            <doc d_id="4">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>What effect can be observed when when γ-secretase is blocked? </q_str>
+            </q>
+            <q  q_id="2" q_type="cause" >
+                <q_str>When APH1 genes are overexpressed in MEF KO what happens with the Aβ?</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>In which gene are mutations associated to many cases of early-onset familial forms of Alzheimer's disease?G</q_str>
+            </q>
+            <q  q_id="4" q_type="factoid" >
+                <q_str>What experimental technique was used specifically to purify the γ-secretase complex?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>What peptide is able to control the expression of the ApoE gene?</q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" >
+                <q_str>Which amino acid is critical for the activity of the PS1 protein?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" >
+                <q_str>What experimental technique was used to determine the structure of γ-secretase?</q_str>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>What candidate drug that blocks the γ-secretase is now tested in clinical trials?</q_str>
+            </q>
+            <q  q_id="9" q_type="cause" >
+                <q_str>What mutation of the PS1 protein causes γ-secretase activity almost to disappear?</q_str>
+            </q>
+            <q  q_id="10" q_type="quantity" >
+                <q_str>How many mutations relevant for familial forms of Alzheimer's disease have been detected for the PSEN1 gene?</q_str>
+            </q>
+        </reading-test>
+    </topic>
+    <topic t_id="1" t_name="Alzheimer">
+        <reading-test r_id="1">
+            <doc d_id="1">
+            </doc>
+            <q  q_id="1" q_type="cause" >
+                <q_str>For what purpose were some mice injected with human genes that cause Alzheimer's?</q_str>
+            </q>
+            <q  q_id="2" q_type="quantity" >
+                <q_str>How many people affected by Alzheimer's are there expected to be in the year 2050?</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>How can Alzheimer's patients regain the sense of smell?</q_str>
+            </q>
+            <q  q_id="4" q_type="cause" >
+                <q_str>What causes Alzheimer's disease?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" q_multiple="yes" >
+                <q_str>Name two neurodegenerative diseases.</q_str>
+            </q>
+            <q  q_id="6" q_type="time" >
+                <q_str>How long after taking bexarotene is it possible to halve the aggregated protein?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" >
+                <q_str>How can apolipoprotein E help people with Alzheimer's?</q_str>
+            </q>
+            <q  q_id="8" q_type="cause" q_negate="yes" >
+                <q_str>Why cannot bexarotene be used as a cure for Alzheimer's disease?</q_str>
+            </q>
+            <q  q_id="9" q_type="cause" >
+                <q_str>What is the purpose of giving bexarotene to mice?</q_str>
+                <answer a_id='4'>neurodegeneration </answer>
+            </q>
+            <q  q_id="10" q_type="binary" >
+                <q_str>Can proteins and amyloids explain the sense of smell functioning?</q_str>
+            </q>
+            <q  q_id="11" q_type="factoid" >
+                <q_str>What is the aim of giving Targretin to people suffering from Alzheimer's?</q_str>
+            </q>
+            <q  q_id="12" q_type="binary" >
+                <q_str>Is Alzheimer's disease specific to old people?</q_str>
+            </q>
+            <q  q_id="13" q_type="cause" >
+                <q_str>Why can vitamin D cause the break-down of the amyloid proteins?</q_str>
+            </q>
+            <q  q_id="14" q_type="factoid" >
+                <q_str>What is a common characteristic for the neurodegenerative diseases?</q_str>
+            </q>
+            <q  q_id="15" q_type="factoid" >
+                <q_str>How do vitamin D and bexarotene correlate?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="2">
+            <doc d_id="2">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>How does beta amyloid affect Alzhemeir's patients?</q_str>
+            </q>
+            <q  q_id="2" q_type="binary" >
+                <q_str>Is it possible for scientists to produce incentives memory?</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>How can we start developing new treatments for Alzheimer's?</q_str>
+            </q>
+            <q  q_id="4" q_type="binary" >
+                <q_str>Is it possible to protect neurons against destruction by Alzheimer's disease?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" q_multiple="yes" >
+                <q_str>Give two symptoms of dementia.</q_str>
+            </q>
+            <q  q_id="6" q_type="cause" q_negate="yes" >
+                <q_str>Why cannot Alzheimer's patients perform everyday tasks?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" >
+                <q_str>What is the aim of James Fuller in his PhD thesis?</q_str>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>Who is working on the development of antibodies to remove plaques in the brain?</q_str>
+            </q>
+            <q  q_id="9" q_type="cause" >
+                <q_str>Why is there no progress in the quality of life in old age?</q_str>
+            </q>
+            <q  q_id="10" q_type="quantity" >
+                <q_str>What is the approximate number of TB patients?</q_str>
+            </q>
+            <q  q_id="11" q_type="factoid" >
+                <q_str>What is the aim of protecting protein deposits in the brain?</q_str>
+            </q>
+            <q  q_id="12" q_type="factoid" >
+                <q_str>Which is the part of the human body where the plaques are formed?</q_str>
+            </q>
+            <q  q_id="13" q_type="cause" >
+                <q_str>Why are there setbacks in developing Alzheimer's therapies?</q_str>
+            </q>
+            <q  q_id="14" q_type="factoid" >
+                <q_str>How can the memories of Alzheimer's patients be preserved?</q_str>
+            </q>
+            <q  q_id="15" q_type="relation" >
+                <q_str>Name a similarity between AD and TB.</q_str>
+                <answer a_id='3'>drugs and therapy </answer>
+            </q>
+        </reading-test>
+        <reading-test r_id="3">
+            <doc d_id="3">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>What would an Alzheimer relative envisage when practising an internal Chinese martial art?</q_str>
+            </q>
+            <q  q_id="2" q_type="quantity" >
+                <q_str>In how many ways can people react to the growing number of people with dementia?</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>How can one prevent Alzheimer?</q_str>
+            </q>
+            <q  q_id="4" q_type="cause" >
+                <q_str>Why would Alanna be given charts to color?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>What is Alanna's aim when building her physical strength?</q_str>
+                <answer a_id='1'>to become a better person </answer>
+            </q>
+            <q  q_id="6" q_type="factoid" q_multiple="yes" >
+                <q_str>Name three hobbies that can prevent Alzheimer disease.</q_str>
+            </q>
+            <q  q_id="7" q_type="binary" >
+                <q_str>Can a person suffering from Alzheimer read the daily newspaper?</q_str>
+            </q>
+            <q  q_id="8" q_type="binary" >
+                <q_str>Is it possible for Alanna to make an origami chess?</q_str>
+            </q>
+            <q  q_id="9" q_type="cause" >
+                <q_str>How is Alzheimer's disease observable at Alanna's father?</q_str>
+            </q>
+            <q  q_id="10" q_type="factoid" >
+                <q_str>Name a reason why Alanna's father didn't lose his love for his family.</q_str>
+            </q>
+            <q  q_id="11" q_type="binary" >
+                <q_str>Is it possible to totally prevent Alzheimer through extra-professional activities?</q_str>
+            </q>
+            <q  q_id="12" q_type="factoid" >
+                <q_str>What hobbies does Alanna's father have?</q_str>
+            </q>
+            <q  q_id="13" q_type="factoid" >
+                <q_str>What does the help in getting dressed represent for an Alzheimer patient?</q_str>
+            </q>
+            <q  q_id="14" q_type="quantity" >
+                <q_str>How many people with dementia are predicted to exist in the year when the global population will reach eight billion?</q_str>
+            </q>
+            <q  q_id="15" q_type="cause" >
+                <q_str>Why does Alanna want to become a better person?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="4">
+            <doc d_id="4">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>What does a U.S. health insurance program cover for a person with Alzheimer's?</q_str>
+            </q>
+            <q  q_id="2" q_type="factoid" >
+                <q_str>What do Alzheimer's family members want to get when they each exceed $100,000 in their own incomes?</q_str>
+            </q>
+            <q  q_id="3" q_type="binary" >
+                <q_str>Does health insurance cover the cost of books read by an Alzheimer's patient?</q_str>
+            </q>
+            <q  q_id="4" q_type="binary" >
+                <q_str>Can the income of an Alzheimer's family exceed the "poverty threshold"?</q_str>
+            </q>
+            <q  q_id="5" q_type="cause" >
+                <q_str>What will happen if the care needed by an Alzheimer's patient costs more than the family is able to pay?</q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" q_multiple="yes" >
+                <q_str>Give three examples of kinds of medical care.</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" q_negate="yes" >
+                <q_str>All but one of the following are reasons why a total of $100,000 for the common funds of a family seeking assistance is not enough. Which one is that?</q_str>
+                <answer a_id='2'>The cost of living constantly increases. </answer>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>How can a farmer avoid paying for institutional care?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" >
+                <q_str>What is the aim of biking for an Alzheimer's patient?</q_str>
+            </q>
+            <q  q_id="10" q_type="cause" >
+                <q_str>Why is the middle class falling into poverty? </q_str>
+            </q>
+            <q  q_id="11" q_type="factoid" >
+                <q_str>Which is one of the common goals of the many financial changes for families with Alzheimer's?What is a common goal among families with Alzheimer's who face financial difficulties as a result?</q_str>
+            </q>
+            <q  q_id="12" q_type="quantity" >
+                <q_str>How old was Mike Donohue when he was diagnosed with the most common form of dementia?</q_str>
+            </q>
+            <q  q_id="13" q_type="factoid" >
+                <q_str>How is it possible to efficiently change the existing infrastructure for taking care of Alzheimer's patients?</q_str>
+            </q>
+            <q  q_id="14" q_type="factoid" >
+                <q_str>How can an atypical Alzheimer's patient not evolve into the typical stage of the disease?</q_str>
+            </q>
+            <q  q_id="15" q_type="time" >
+                <q_str>When is it legally possible for an Alzheimer's patient to ask for help?</q_str>
+            </q>
+        </reading-test>
+    </topic>
+    <topic t_id="2" t_name="Music and Society">
+        <reading-test r_id="5">
+            <doc d_id="5">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>How well-known are Cramer's late sonatas today?</q_str>
+            </q>
+            <q  q_id="2" q_type="time" >
+                <q_str>On what date did Cramer make his debut as a conductor?</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>In what way do the sonatas show the influence of Beethoven?</q_str>
+            </q>
+            <q  q_id="4" q_type="factoid" >
+                <q_str>What was Cramer's attitude towards the music of Bach?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>Which organisation appointed Cramer to its board in 1822?</q_str>
+            </q>
+            <q  q_id="6" q_type="cause" >
+                <q_str>Why is the "Studio per il pianoforte" well known even today?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" >
+                <q_str>How does the "Studio per il pianoforte" aim to teach piano technique?</q_str>
+            </q>
+            <q  q_id="8" q_type="cause" >
+                <q_str>Why did Cramer insult Beethoven?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" q_negate="yes" >
+                <q_str>Which country did Cramer not visit?</q_str>
+            </q>
+            <q  q_id="10" q_type="factoid" >
+                <q_str>How did Cramer become familiar with the great keyboard composers</q_str>
+            </q>
+            <q  q_id="11" q_type="factoid" >
+                <q_str>Why did Cramer write a book on Berlioz?</q_str>
+            </q>
+            <q  q_id="12" q_type="quantity" >
+                <q_str>How many times did Cramer marry?</q_str>
+            </q>
+            <q  q_id="13" q_type="factoid" >
+                <q_str>Why did Cramer's father settle in England?</q_str>
+            </q>
+            <q  q_id="14" q_type="factoid" >
+                <q_str>How did Cramer launch himself as a concert organiser?</q_str>
+            </q>
+            <q  q_id="15" q_type="cause" >
+                <q_str>Why did Cramer engage the help of Schumann?</q_str>
+            </q>
+            <q  q_id="16" q_type="factoid" >
+                <q_str>How well-known are Cramer's late sonatas today?</q_str>
+            </q>
+            <q  q_id="17" q_type="factoid" >
+                <q_str>What was Cramer's attitude towards the music of Bach?</q_str>
+            </q>
+            <q  q_id="18" q_type="factoid" >
+                <q_str>Which organisation appointed Cramer to its board in 1822?</q_str>
+            </q>
+            <q  q_id="19" q_type="cause" >
+                <q_str>Why is the "Studio per il pianoforte" well known even today?</q_str>
+            </q>
+            <q  q_id="20" q_type="factoid" >
+                <q_str>How does the "Studio per il pianoforte" aim to teach piano technique?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="6">
+            <doc d_id="6">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>Name a reason why EDM is not suited to the American music industry.</q_str>
+            </q>
+            <q  q_id="2" q_type="factoid" >
+                <q_str>How did Kool Herc use two turntables?</q_str>
+            </q>
+            <q  q_id="3" q_type="cause" >
+                <q_str>Why is it not surprising that new forms of electronic dance music are appearing all over the world?</q_str>
+            </q>
+            <q  q_id="4" q_type="factoid" >
+                <q_str>Which singer made a hit record whose accompaniment was entirely synthesised?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>What is the purpose of electronic dance music?</q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" >
+                <q_str>Name a reason why EDM is not suited to the American music industry.</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" >
+                <q_str>How is musique concrète composed?</q_str>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>How did Kool Herc use two turntables?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" >
+                <q_str>Name one reason why electronic dance music owes a debt to Kraftwerk.</q_str>
+            </q>
+            <q  q_id="10" q_type="factoid" >
+                <q_str>Which song used parts of two Kraftwerk compositions?</q_str>
+            </q>
+            <q  q_id="11" q_type="cause" >
+                <q_str>Why is it not surprising that new forms of electronic dance music are appearing all over the world?</q_str>
+            </q>
+            <q  q_id="12" q_type="factoid" >
+                <q_str>Which singer originally called LaDonna Adrian Gaines made a hit record whose accompaniment was entirely synthesised?</q_str>
+            </q>
+            <q  q_id="13" q_type="factoid" >
+                <q_str>Russolo's "intonarumori" were</q_str>
+            </q>
+            <q  q_id="14" q_type="time" >
+                <q_str>On what date did Pierre Henry and Pierre Schaeffer announce the concept of musique concrète?</q_str>
+            </q>
+            <q  q_id="15" q_type="cause" >
+                <q_str>Why was the Roland TR-808 used widely in early electro tracks?</q_str>
+            </q>
+            <q  q_id="16" q_type="factoid" >
+                <q_str>What sort of music did Derrick May produce?</q_str>
+            </q>
+            <q  q_id="17" q_type="cause" >
+                <q_str>Why did Frankie Knuckles promote the Linn LM-1 Drum Computer?</q_str>
+            </q>
+            <q  q_id="18" q_type="cause" >
+                <q_str>Why did up to 50,000 people attend open-air raves in England?</q_str>
+            </q>
+            <q  q_id="19" q_type="factoid" >
+                <q_str>Which DJs have promoted young musicians?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="7">
+            <doc d_id="7">
+            </doc>
+            <q  q_id="1" q_type="time" >
+                <q_str>On what date was the practice of re-using music from previous productions stopped?</q_str>
+            </q>
+            <q  q_id="2" q_type="factoid" >
+                <q_str>Name a studio which promoted work for European composers.</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>What sort of music was written for Hollywood films in the Golden Age?</q_str>
+            </q>
+            <q  q_id="4" q_type="factoid" >
+                <q_str>What approach did Copland take to his scores?</q_str>
+            </q>
+            <q  q_id="5" q_type="cause" >
+                <q_str>What caused an improvement in sound quality in 1950?</q_str>
+            </q>
+            <q  q_id="6" q_type="time" >
+                <q_str>On what date was the practice of re-using music from an earlier film stopped?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" q_multiple="yes" >
+                <q_str>What facilities did Hollywood studios have in the Golden Age?</q_str>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>Name a studio which promoted work for European composers.</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" >
+                <q_str>What sort of music was written for Hollywood films in the Golden Age?</q_str>
+            </q>
+            <q  q_id="10" q_type="factoid" >
+                <q_str>What approach did Aaron Copland take to his scores?</q_str>
+            </q>
+            <q  q_id="11" q_type="factoid" >
+                <q_str>What was the aim of "mickey-mousing"?</q_str>
+            </q>
+            <q  q_id="12" q_type="factoid" >
+                <q_str>Name one aim of developments such as widescreen films and three-dimensional presentation</q_str>
+            </q>
+            <q  q_id="13" q_type="factoid" >
+                <q_str>What caused an improvement in sound quality in 1950?</q_str>
+            </q>
+            <q  q_id="14" q_type="factoid" >
+                <q_str>What event in 1958 threatened the future of the orchestral film score?</q_str>
+            </q>
+            <q  q_id="15" q_type="factoid" >
+                <q_str>Who wrote the music for the film "Fantasia"?</q_str>
+            </q>
+            <q  q_id="16" q_type="cause" >
+                <q_str>Why was the music for "The Big Country" widely imitated?</q_str>
+            </q>
+            <q  q_id="17" q_type="factoid" >
+                <q_str>How did Alfred Newman compose film scores?</q_str>
+            </q>
+            <q  q_id="18" q_type="cause" >
+                <q_str>Why was electronic music used in "Gone with the Wind"?</q_str>
+            </q>
+            <q  q_id="19" q_type="factoid" >
+                <q_str>Which of the following descriptions is correct?</q_str>
+            </q>
+            <q  q_id="20" q_type="cause" >
+                <q_str>Why did European composers go to Hollywood?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="8">
+            <doc d_id="8">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>What is the prime concern of analysis?</q_str>
+            </q>
+            <q  q_id="2" q_type="factoid" >
+                <q_str>How is analysis carried out?</q_str>
+            </q>
+            <q  q_id="3" q_type="time" >
+                <q_str>When did the author of "The Sandman" write a review of a Beethoven symphony?</q_str>
+            </q>
+            <q  q_id="4" q_type="factoid" >
+                <q_str>What was found to be unique about Beethoven's composition?</q_str>
+            </q>
+            <q  q_id="5" q_type="cause" >
+                <q_str>Why did Schenker's mature theory only emerge after many years of struggle?</q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" >
+                <q_str>What did Milton Babbitt say about analysis?</q_str>
+            </q>
+            <q  q_id="7" q_type="cause" >
+                <q_str>Why is the analysis work of Heinrich Schenker so important?</q_str>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>What did Eugene Narmour say about Schenker</q_str>
+            </q>
+            <q  q_id="9" q_type="cause" >
+                <q_str>Why did Susan McClary devote herself to the analysis of Beethoven?</q_str>
+            </q>
+            <q  q_id="10" q_type="factoid" >
+                <q_str>How did E.T.A. Hoffman come to write his review of Beethoven's Fifth Symphony?</q_str>
+            </q>
+            <q  q_id="11" q_type="factoid" >
+                <q_str>What was the main form of musical analysis in the eighteenth century?</q_str>
+            </q>
+            <q  q_id="12" q_type="factoid" >
+                <q_str>What is the approach to musical analysis in North America?</q_str>
+            </q>
+            <q  q_id="13" q_type="factoid" >
+                <q_str>What is the aim of the 19th-century pedagogical "Kompositionslehre"?</q_str>
+            </q>
+            <q  q_id="14" q_type="factoid" >
+                <q_str>Name a journal of music theory and analysis</q_str>
+            </q>
+            <q  q_id="15" q_type="factoid" >
+                <q_str>Name a criticism of music theory and analysis</q_str>
+            </q>
+            <q  q_id="16" q_type="factoid" >
+                <q_str>What was found to be unique about Beethoven's composition?</q_str>
+            </q>
+            <q  q_id="17" q_type="factoid" >
+                <q_str>What did Babbitt say about analysis?</q_str>
+            </q>
+            <q  q_id="18" q_type="factoid" >
+                <q_str>How is analysis carried out?</q_str>
+            </q>
+            <q  q_id="19" q_type="time" >
+                <q_str>When did E.T.A. Hoffmann write a review of a Beethoven symphony?</q_str>
+            </q>
+        </reading-test>
+    </topic>
+    <topic t_id="3" t_name="Climate Change">
+        <reading-test r_id="9">
+            <doc d_id="9">
+            </doc>
+            <q  q_id="1" q_type="cause" >
+                <q_str>What is the main cause of global warming?</q_str>
+            </q>
+            <q  q_id="2" q_type="cause" >
+                <q_str>What is the main source of greenhouse effect gases in the United States?</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>Who is in charge of estimating energy consumption  in United States?</q_str>
+            </q>
+            <q  q_id="4" q_type="cause" >
+                <q_str>What is the goal of planting trees?</q_str>
+            </q>
+            <q  q_id="5" q_type="quantity" >
+                <q_str>What percentage of the energy used in the USA is obtained from fossil fuels?</q_str>
+            </q>
+            <q  q_id="6" q_type="cause" >
+                <q_str>What action should be taken in order to reduce global warming?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" >
+                <q_str>What is the largest publicly traded energy company?</q_str>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>What is the main activity of the company where Rex W. Tillerson works?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" >
+                <q_str>What is the main activity of the company where Rex W. Tillerson is the CEO?</q_str>
+            </q>
+            <q  q_id="10" q_type="cause" >
+                <q_str>What consequence would a drop in black gold consumption have?</q_str>
+            </q>
+            <q  q_id="11" q_type="factoid" >
+                <q_str>Besides a reduction of fossil fuels, what other action related to these fuels should be taken in order to reduce their impact on climate change?</q_str>
+            </q>
+            <q  q_id="12" q_type="factoid" >
+                <q_str>What places are suggested for burying carbon captured from fossil fuel burning?</q_str>
+            </q>
+            <q  q_id="13" q_type="factoid" >
+                <q_str>What places are suggested for burying carbon captured from fossil fuel burning?</q_str>
+            </q>
+            <q  q_id="14" q_type="factoid" >
+                <q_str>Name a person who has contributed to a better knowledge of climate change</q_str>
+            </q>
+            <q  q_id="15" q_type="cause" >
+                <q_str>What consequence would a drop in black gold consumption have?</q_str>
+            </q>
+            <q  q_id="16" q_type="binary" >
+                <q_str>Are Americans reducing their consumption of fossil fuels?</q_str>
+            </q>
+            <q  q_id="17" q_type="cause" >
+                <q_str>What will essentially make a significant difference to protect the climate? </q_str>
+            </q>
+            <q  q_id="18" q_type="relation" >
+                <q_str>Which problem is similar in nature to global warming?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="10">
+            <doc d_id="10">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>Where did Todd Stern travel?</q_str>
+            </q>
+            <q  q_id="2" q_type="factoid" >
+                <q_str>Where was there a climate summit that was a failure?</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>What is one of the objectives of the Cancun convention?</q_str>
+            </q>
+            <q  q_id="4" q_type="factoid" >
+                <q_str>Who is in charge of trying to make the Cancun Convention a success?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>How do polluting countries manage not to reduce their emissions?</q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" >
+                <q_str>Where did Todd Stern travel?</q_str>
+            </q>
+            <q  q_id="7" q_type="cause" >
+                <q_str>Why do wealthy countries have a climate debt?</q_str>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>What country supported the climate accord achieved in Denmark?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" >
+                <q_str>What country supported the climate accord achieved in Copenhagen?</q_str>
+            </q>
+            <q  q_id="10" q_type="factoid" >
+                <q_str>What has been offered to the President of the United States if he signs the Kyoto Protocol?</q_str>
+            </q>
+            <q  q_id="11" q_type="factoid" >
+                <q_str>What has been offered to Obama if he signs the Kyoto Protocol?</q_str>
+            </q>
+            <q  q_id="12" q_type="factoid" >
+                <q_str>What is supposed to follow the Kyoto Protocol?</q_str>
+            </q>
+            <q  q_id="13" q_type="factoid" >
+                <q_str>What is the objective of Stern's travel?</q_str>
+            </q>
+            <q  q_id="14" q_type="factoid" >
+                <q_str>Which country is the leader of REDD in America?</q_str>
+            </q>
+            <q  q_id="15" q_type="factoid" >
+                <q_str>Who is often blamed for the failure of the climate change negotiations?</q_str>
+            </q>
+            <q  q_id="16" q_type="factoid" >
+                <q_str>Which countries have had less influence on the climate debate until now?</q_str>
+            </q>
+            <q  q_id="17"  q_type="binary" >
+                <q_str>Does the Copenhagen Accord reflect the contents of the People's Agreement?</q_str>
+            </q>
+            <q  q_id="18" q_type="factoid" >
+                <q_str>Which country  is certainly an  important source of cheap carbon credits?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="11">
+            <doc d_id="11">
+            </doc>
+            <q  q_id="1" q_type="cause" >
+                <q_str>What should help United States to realize of the necessity for cutting CFCs emissions?</q_str>
+            </q>
+            <q  q_id="2" q_type="factoid" q_multiple="yes" >
+                <q_str>Which two regions have ozone holes been detected in?</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" q_multiple="yes" >
+                <q_str>Which two regions have ozone holes been detected in?</q_str>
+            </q>
+            <q  q_id="4" q_type="cause" >
+                <q_str>How can ozone depletion damage climate change?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>Where was the agreement about climate change achieved?</q_str>
+            </q>
+            <q  q_id="6" q_type="cause" >
+                <q_str>Why is it argued that the use of HFCs should still be allowed?</q_str>
+            </q>
+            <q  q_id="7" q_type="cause" >
+                <q_str>How could US enviromental policy be improved?</q_str>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>What was one of the key issues in the elections won by Bill Clinton?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" >
+                <q_str>What was one of the key issues in the US president elections of 1992?</q_str>
+            </q>
+            <q  q_id="10" q_type="factoid" >
+                <q_str>What can be done to avoid the Montreal Protocol damaging the Kyoto one?</q_str>
+            </q>
+            <q  q_id="11" q_type="factoid" >
+                <q_str>What is the most important decision that must be taken in order to save the ozone layer?</q_str>
+            </q>
+            <q  q_id="12" q_type="cause" >
+                <q_str>What is one of the main reasons for cataracts?</q_str>
+            </q>
+            <q  q_id="13" q_type="factoid" >
+                <q_str>What types of gas did the agreement achieved in Canada try to remove?</q_str>
+            </q>
+            <q  q_id="14" q_type="factoid" >
+                <q_str>What types of gas did the agreement achieved in Canada try to remove?</q_str>
+            </q>
+            <q  q_id="15" q_type="factoid" >
+                <q_str>Which country in Oceania has received radiation which should have been blocked by the ozone layer?</q_str>
+            </q>
+            <q  q_id="16" q_type="binary" >
+                <q_str>Has the Montreal Protocol been efficient in stopping deterioration of the ozone layer?</q_str>
+            </q>
+            <q  q_id="17" q_type="factoid" >
+                <q_str>Which country has met its financial  commitments to the Multilaterial Fund?</q_str>
+            </q>
+            <q  q_id="18" q_type="factoid" >
+                <q_str>What are the positive aspects of the U.S. policy to protect the ozone layer?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="12">
+            <doc d_id="12">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>Who has announced petrol exploration in the Arctic?</q_str>
+            </q>
+            <q  q_id="2" q_type="factoid" q_multiple="yes" >
+                <q_str>What countries are part of Arctic 5?</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>Who has announced petrol exploration in the Arctic?</q_str>
+            </q>
+            <q  q_id="4" q_type="factoid" >
+                <q_str>Which is the highest petrol producer of Arctic 5?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>Where was there an oil spill in 2010?</q_str>
+            </q>
+            <q  q_id="6" q_type="cause" >
+                <q_str>Why is petrol extraction a risky activity in the Arctic?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" >
+                <q_str>What do indigenous Russian people from Siberia live on?</q_str>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>What do Nenets live on?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" >
+                <q_str>How was the world’s worst oil catastrophe produced?</q_str>
+            </q>
+            <q  q_id="10" q_type="cause" >
+                <q_str>What was the reason for the third world’s worst oil spill?</q_str>
+            </q>
+            <q  q_id="11" q_type="cause" >
+                <q_str>What was the reason for the third world’s worst oil spill?</q_str>
+            </q>
+            <q  q_id="12" q_type="factoid" >
+                <q_str>Who was in charge of the petrol platform that had an oil spill in 1994?</q_str>
+            </q>
+            <q  q_id="13" q_type="factoid" >
+                <q_str>What advice has been given to the country led by Obama with respect to drillings in the Arctic?</q_str>
+            </q>
+            <q  q_id="14" q_type="cause" >
+                <q_str>What has been the reason behind the extinction of several Arctic species?</q_str>
+            </q>
+            <q  q_id="15" q_type="factoid" >
+                <q_str>What advice has been given to the United States with respect to drillings in the Arctic?</q_str>
+            </q>
+            <q  q_id="16" q_type="cause" >
+                <q_str>How can the impact of Arctic drillings be reduced?</q_str>
+            </q>
+            <q  q_id="17" q_type="cause" >
+                <q_str>What has been the reason for the deaths of polar bears, narwhals and walrus?</q_str>
+            </q>
+            <q  q_id="18" q_type="factoid" >
+                <q_str>Which area has the basic infrastructure needed for spill response?</q_str>
+            </q>
+            <q  q_id="19" q_type="binary" >
+                <q_str>Is the U.S. able to conduct  oil and gas activities safely in the Arctic?</q_str>
+            </q>
+            <q  q_id="20" q_type="factoid" >
+                <q_str>Which company is prepared enough for Arctic oil extraction?</q_str>
+            </q>
+        </reading-test>
+    </topic>
+    <topic t_id="4" t_name="AIDS">
+        <reading-test r_id="13">
+            <doc d_id="13">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>What is the main objective of the Emergency Program?</q_str>
+            </q>
+            <q  q_id="2" q_type="cause" >
+                <q_str>Why were AIDS activists  not happy with Randall Tobias being appointed as global AIDS co-ordinator?</q_str>
+            </q>
+            <q  q_id="3" q_type="cause" >
+                <q_str>Why is Randall Tobias supposed to receive the rank of ambassador?</q_str>
+            </q>
+            <q  q_id="4" q_type="binary" >
+                <q_str>Has Randall Tobias been confirmed as President George W. Bush's global AIDS co-ordinator?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>What does the author of the book "The End of Poverty" think about the appointment of Randall Tobias?</q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" >
+                <q_str>Who will be in charge of carrying out effectively the "Emergency Plan"?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" >
+                <q_str>What does Jeffrey Sachs think about the appointment of Randall Tobias?</q_str>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>What types of drug are used by the U.S. Administration for the Emergency Program?</q_str>
+            </q>
+            <q  q_id="9" q_type="quantity" >
+                <q_str>How many countries are included in the Emergency Program?</q_str>
+            </q>
+            <q  q_id="10" q_type="factoid" >
+                <q_str>What is a strong characteristic of Randall Tobias?</q_str>
+            </q>
+            <q  q_id="11" q_type="factoid" >
+                <q_str>Who was the adviser of the Ghanaian diplomat?</q_str>
+            </q>
+            <q  q_id="12" q_type="factoid" >
+                <q_str>Who was the adviser of Kofi Annan?</q_str>
+            </q>
+            <q  q_id="13" q_type="factoid" >
+                <q_str>What is Randall Tobias reputation?</q_str>
+            </q>
+            <q  q_id="14" q_type="factoid" >
+                <q_str>What is Randall Tobias' reputation?</q_str>
+            </q>
+            <q  q_id="15" q_type="factoid" >
+                <q_str>Where were the agreements on international patent law signed?</q_str>
+            </q>
+            <q  q_id="16" q_type="factoid" >
+                <q_str>Why is Big Pharma considered the major organization responsible for contributing to the Global Fund?</q_str>
+            </q>
+            <q  q_id="17" q_type="quantity" >
+                <q_str>What is the annual US contribution to the Global Fund to fight AIDS?</q_str>
+            </q>
+            <q  q_id="18" q_type="factoid" >
+                <q_str>What are activists most concerned about?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="14">
+            <doc d_id="14">
+            </doc>
+            <q  q_id="1" q_type="relation" >
+                <q_str>What is the main difference between AIDS in Africa and black America?</q_str>
+            </q>
+            <q  q_id="2" q_type="cause" >
+                <q_str>Why is the "Dark Continent" able to suggest a way out of the epidemic?</q_str>
+            </q>
+            <q  q_id="3" q_type="quantity" >
+                <q_str>How many Americans live with HIV-AIDS?</q_str>
+            </q>
+            <q  q_id="4" q_type="time" >
+                <q_str>When did mortality begin to decrease in Africa?</q_str>
+            </q>
+            <q  q_id="5" q_type="cause" >
+                <q_str>How can AIDS in the United States be more successfully approached? </q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" >
+                <q_str>What is PEPFAR recommending?</q_str>
+            </q>
+            <q  q_id="7" q_type="time" >
+                <q_str>When did the U.S. implement a national HIV/AIDS strategy?</q_str>
+            </q>
+            <q  q_id="8" q_type="time" >
+                <q_str>When were the first cases of AIDS reported in the U.S. State of California</q_str>
+            </q>
+            <q  q_id="9" q_type="time" >
+                <q_str>When were the first cases of AIDS reported in Los Angeles?</q_str>
+            </q>
+            <q  q_id="10" q_type="factoid" >
+                <q_str>According to the text, which country ranks 16th in the world for HIV infection?</q_str>
+            </q>
+            <q  q_id="11" q_type="factoid" >
+                <q_str>What was the position of the American politician at the World Trade organisation Conference in 1999?</q_str>
+            </q>
+            <q  q_id="12" q_type="factoid" >
+                <q_str>What was Bill Clinton's position at the World Trade organisation Conference in 1999?</q_str>
+            </q>
+            <q  q_id="13" q_type="cause" >
+                <q_str>Why are gay white American men most affected by AIDS?</q_str>
+            </q>
+            <q  q_id="14" q_type="binary" >
+                <q_str>Were white leaders fast in implementing an AIDS education program in South Africa?</q_str>
+            </q>
+            <q  q_id="15" q_type="factoid" >
+                <q_str>What was PEPFAR's goal?</q_str>
+            </q>
+            <q  q_id="16" q_type="factoid" q_negate="yes" >
+                <q_str>Compared to which disease, was AIDS in Africa regarded as not worth considering?</q_str>
+            </q>
+            <q  q_id="17" q_type="relation" >
+                <q_str>In comparison to what, was AIDS in Africa regarded as unimportant?</q_str>
+            </q>
+            <q  q_id="18" q_type="cause" >
+                <q_str>Why were the prices of anti-retroviral drugs reduced in the 2000s?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="15">
+            <doc d_id="15">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>What is U.S. AIDS policy dominated by?</q_str>
+            </q>
+            <q  q_id="2" q_type="factoid" >
+                <q_str>Name one consequence of U.S. AIDS policy.</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>What is the policy of the first American President born of the baby boomer generation?</q_str>
+            </q>
+            <q  q_id="4" q_type="factoid" >
+                <q_str>What is driving U.S. AIDS policy?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>What is Bill Clinton's tendency?</q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" >
+                <q_str>What are countries of the Global South asking for?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" q_negate="yes" >
+                <q_str>Why is abstinence not enough to reduce the spread of HIV?</q_str>
+            </q>
+            <q  q_id="8" q_type="cause" >
+                <q_str>Why does AIDS policy go hand in hand with greed and dogma?</q_str>
+            </q>
+            <q  q_id="9" q_type="binary" >
+                <q_str>Has the "global gag rule" been repealed?</q_str>
+            </q>
+            <q  q_id="10" q_type="cause" q_negate="yes" >
+                <q_str>Why should medicines not be included in the World Trade Organisation patent rules?</q_str>
+            </q>
+            <q  q_id="11" q_type="factoid" >
+                <q_str>Where did the World Trade Organization meeting in 2011 take place?</q_str>
+            </q>
+            <q  q_id="12" q_type="factoid" >
+                <q_str>Where did the World Trade Organisation meeting in 2011 take palce?</q_str>
+            </q>
+            <q  q_id="13" q_type="factoid" >
+                <q_str>What is the main objective of the CAFTA?</q_str>
+            </q>
+            <q  q_id="14" q_type="factoid" >
+                <q_str>What reduces the spread of HIV?</q_str>
+            </q>
+            <q  q_id="15" q_type="factoid" >
+                <q_str>Name the international organisation that aims to prevent and treat HIV and AIDS.</q_str>
+            </q>
+            <q  q_id="16" q_type="factoid" >
+                <q_str>Name the international organization that aims to prevent and treat HIV and AIDS.</q_str>
+            </q>
+            <q  q_id="17" q_type="factoid" >
+                <q_str>What is the strategy of the Global AIDS Coordinator to combat the spread of HIV?</q_str>
+            </q>
+            <q  q_id="18" q_type="quantity" >
+                <q_str>How many people around the world died of AIDS in the last year? </q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="16">
+            <doc d_id="16">
+            </doc>
+            <q  q_id="1" q_type="binary" >
+                <q_str>Did president Obama commit to $50 billion dollars over the next 5 years to fight AIDS?</q_str>
+            </q>
+            <q  q_id="2" q_type="binary" >
+                <q_str>Are the U.S. providing treatment for one-third of the people who need it?</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>What plans have been developed to provide Universal Access to AIDS Treatment?</q_str>
+            </q>
+            <q  q_id="4" q_type="factoid" >
+                <q_str>How did activists attempt to make AIDS a well-known problem?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>What strategy was employed by activists to put AIDS on the map?</q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" >
+                <q_str>What is the only way to fight AIDS?</q_str>
+            </q>
+            <q  q_id="7" q_type="cause" >
+                <q_str>Why is it important to pay close attention to the '08 Stop AIDS Platform?</q_str>
+            </q>
+            <q  q_id="8" q_type="cause" >
+                <q_str>Why will there be 20 million children orphaned by AIDS by 2010?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" >
+                <q_str>Which is the final objective of the '08 Stop AIDS Platform?</q_str>
+            </q>
+            <q  q_id="10" q_type="factoid" >
+                <q_str>Who agreed to commit to $50 billion to fight AIDS?</q_str>
+            </q>
+            <q  q_id="11" q_type="factoid" >
+                <q_str>Who agreed to commit to $50 billion to fight AIDS?</q_str>
+            </q>
+            <q  q_id="12" q_type="quantity" >
+                <q_str>According to the United Nations Programme headquartered in Geneva, how many people will be in the need of treatment by 2010?</q_str>
+            </q>
+            <q  q_id="13" q_type="quantity" >
+                <q_str>According to the UNAIDS, how many people will be in need of treatment by 2010?</q_str>
+            </q>
+            <q  q_id="14" q_type="quantity" >
+                <q_str>How many people does the new President's Emergency Plan for AIDS Relief aim to treat?</q_str>
+            </q>
+            <q  q_id="15" q_type="cause" >
+                <q_str>Name a consequence of the G8 Summit.</q_str>
+            </q>
+            <q  q_id="16" q_type="factoid" >
+                <q_str>How will America's place in history be determined?</q_str>
+            </q>
+            <q  q_id="17" q_type="factoid" >
+                <q_str>Who is to blame for U.S. policies toward HIV/AIDS?</q_str>
+            </q>
+            <q  q_id="18" q_type="factoid" >
+                <q_str>According to the text, what is considered a "misunderstanding of the facts"?</q_str>
+            </q>
+        </reading-test>
+    </topic>
+    <topic t_id="1" t_name="Alzheimer">
+        <reading-test r_id="1">
+            <doc d_id="1">
+            </doc>
+            <q  q_id="1" q_type="cause" >
+                <q_str>For what purpose were some mice injected with human genes that cause Alzheimer's?</q_str>
+            </q>
+            <q  q_id="2" q_type="quantity" >
+                <q_str>How many people affected by Alzheimer's are there expected to be in the year 2050?</q_str>
+            </q>
+            <q  q_id="3" q_type="cause" >
+                <q_str>How can Alzheimer's patients regain the sense of smell?</q_str>
+            </q>
+            <q  q_id="4" q_type="cause" >
+                <q_str>What causes Alzheimer's disease?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" q_multiple="yes" >
+                <q_str>Name two neurodegenerative diseases.</q_str>
+            </q>
+            <q  q_id="6" q_type="time" >
+                <q_str>How long after taking bexarotene is it possible to halve the aggregated protein?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" >
+                <q_str>How can apolipoprotein E help people with Alzheimer's?</q_str>
+            </q>
+            <q  q_id="8" q_type="cause" q_negate="yes" >
+                <q_str>Why cannot bexarotene be used as a cure for Alzheimer's disease?</q_str>
+            </q>
+            <q  q_id="9" q_type="cause" >
+                <q_str>What is the purpose of giving bexarotene to mice?</q_str>
+                <answer a_id='4' >neurodegeneration </answer>
+            </q>
+            <q  q_id="10" q_type="binary" >
+                <q_str>Can proteins and amyloids explain the sense of smell functioning?</q_str>
+            </q>
+            <q  q_id="11" q_type="factoid" >
+                <q_str>What is the aim of giving Targretin to people suffering from Alzheimer's?</q_str>
+            </q>
+            <q  q_id="12" q_type="binary" >
+                <q_str>Is Alzheimer's disease specific to old people?</q_str>
+            </q>
+            <q  q_id="13" q_type="cause" >
+                <q_str>Why can vitamin D cause the break-down of the amyloid proteins?</q_str>
+            </q>
+            <q  q_id="14" q_type="factoid" >
+                <q_str>What is a common characteristic for the neurodegenerative diseases?</q_str>
+            </q>
+            <q  q_id="15" q_type="relation" >
+                <q_str>How do vitamin D and bexarotene correlate?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="2">
+            <doc d_id="2">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>What protein regulates the expression of brain-derived neurotrophic factor?</q_str>
+            </q>
+            <q  q_id="2" q_type="factoid" >
+                <q_str>What experimental technique was used to detect the interaction between the CREB protein and the promoter of GLUT3?</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>What protein is phosphorylated by PKA?</q_str>
+            </q>
+            <q  q_id="4" q_type="factoid" >
+                <q_str>What software tool was used to examine the GLUT3 promoter?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>How is calpain I also called?</q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" >
+                <q_str>What organism was used to characterize the regulation of GLUT3 gene expression by HIF1?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" >
+                <q_str>The expression of what protein was stimulated by forskolin?</q_str>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>What protein is the target for proteolytical cleavage by calpain I?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" >
+                <q_str>What protein stimulates the gene expression of GLUT3?</q_str>
+            </q>
+            <q  q_id="10" q_type="factoid" >
+                <q_str>What protein was able to generate truncated versions of Calcineurin?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="3">
+            <doc d_id="3">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>How does beta amyloid affect Alzhemeir's patients?</q_str>
+            </q>
+            <q  q_id="2" q_type="binary" >
+                <q_str>Is it possible for scientists to produce incentives memory?</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>How can we start developing new treatments for Alzheimer's?</q_str>
+            </q>
+            <q  q_id="4" q_type="binary" >
+                <q_str>Is it possible to protect neurons against destruction by Alzheimer's disease?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" q_multiple="yes" >
+                <q_str>Give two symptoms of dementia.</q_str>
+            </q>
+            <q  q_id="6" q_type="cause" >
+                <q_str>Why cannot Alzheimer's patients perform everyday tasks?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" >
+                <q_str>What is the aim of James Fuller in his PhD thesis?</q_str>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>Who is working on the development of antibodies to remove plaques in the brain?</q_str>
+            </q>
+            <q  q_id="9" q_type="cause" q_negate="yes" >
+                <q_str>Why is there no progress in the quality of life in old age?</q_str>
+            </q>
+            <q  q_id="10" q_type="quantity" >
+                <q_str>What is the approximate number of TB patients?</q_str>
+            </q>
+            <q  q_id="11" q_type="factoid" >
+                <q_str>What is the aim of protecting protein deposits in the brain?</q_str>
+            </q>
+            <q  q_id="12" q_type="factoid" >
+                <q_str>Which is the part of the human body where the plaques are formed?</q_str>
+            </q>
+            <q  q_id="13" q_type="cause" >
+                <q_str>Why are there setbacks in developing Alzheimer's therapies?</q_str>
+            </q>
+            <q  q_id="14" q_type="factoid" >
+                <q_str>How can the memories of Alzheimer's patients be preserved?</q_str>
+            </q>
+            <q  q_id="15" q_type="relation" >
+                <q_str>Name a similarity between AD and TB.</q_str>
+                <answer a_id='3' >drugs and therapy </answer>
+            </q>
+        </reading-test>
+        <reading-test r_id="4">
+            <doc d_id="4">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>What would an Alzheimer relative envisage when practising an internal Chinese martial art?</q_str>
+            </q>
+            <q  q_id="2" q_type="quantity" >
+                <q_str>In how many ways can people react to the growing number of people with dementia?</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>How can one prevent Alzheimer?</q_str>
+            </q>
+            <q  q_id="4" q_type="cause" >
+                <q_str>Why would Alanna be given charts to color?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>What is Alanna's aim when building her physical strength?</q_str>
+                <answer a_id='1' >to become a better person </answer>
+            </q>
+            <q  q_id="6" q_type="factoid" q_multiple="yes" >
+                <q_str>Name three hobbies that can prevent Alzheimer disease.</q_str>
+            </q>
+            <q  q_id="7" q_type="binary" >
+                <q_str>Can a person suffering from Alzheimer read the daily newspaper?</q_str>
+            </q>
+            <q  q_id="8" q_type="binary" >
+                <q_str>Is it possible for Alanna to make an origami chess?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" >
+                <q_str>How is Alzheimer's disease observable at Alanna's father?</q_str>
+            </q>
+            <q  q_id="10" q_type="factoid" >
+                <q_str>Name a reason why Alanna's father didn't lose his love for his family.</q_str>
+            </q>
+            <q  q_id="11" q_type="binary" >
+                <q_str>Is it possible to totally prevent Alzheimer through extra-professional activities?</q_str>
+            </q>
+            <q  q_id="12" q_type="factoid" >
+                <q_str>What hobbies does Alanna's father have?</q_str>
+            </q>
+            <q  q_id="13" q_type="factoid" >
+                <q_str>What does the help in getting dressed represent for an Alzheimer patient?</q_str>
+            </q>
+            <q  q_id="14" q_type="quantity" >
+                <q_str>How many people with dementia are predicted to exist in the year when the global population will reach eight billion?</q_str>
+            </q>
+            <q  q_id="15" q_type="cause" >
+                <q_str>Why does Alanna want to become a better person?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="5">
+            <doc d_id="5">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>What group of receptors can regulate the expression of the Seladin-1 gene?</q_str>
+            </q>
+            <q  q_id="2" q_type="factoid" >
+                <q_str>What target gene shows increased expression when TO901317 is administered?</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>What protein activates the Seladin-1 promoter by binding to ERE?</q_str>
+            </q>
+            <q  q_id="4" q_type="factoid" >
+                <q_str>What experimental method was used to characterize the activation of Seladin-1 promoter by LXR-α?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>What is the gene symbol for β-site APP-cleaving enzyme?</q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" >
+                <q_str>What mouse models were used for this study?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" >
+                <q_str>What is the long name of the Seladin-1 gene?</q_str>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>The administration of what hormone can induce the expression of Seladin-1?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" >
+                <q_str>What protein forms a dimer with TR-β?</q_str>
+            </q>
+            <q  q_id="10" q_type="factoid" >
+                <q_str>What method was used to detect the binding of TR-β to the promoter sequence of Seladin-1?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="6">
+            <doc d_id="6">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>What is the transcriptional activator that stimulates the gene expression of APP?</q_str>
+            </q>
+            <q  q_id="2" q_type="factoid" >
+                <q_str>What is the gene symbol for MAPT?</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>What is the target gene of the transcriptional regulator PuF?</q_str>
+            </q>
+            <q  q_id="4" q_type="factoid" >
+                <q_str>Depletion of which metal results in lower activity of the APP gene promoter?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>What experimental technique was used to characterize the protein-DNA interactions?</q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" >
+                <q_str>What is the gene symbol for apolipoprotein E?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" >
+                <q_str>What program was used to do the phylogenetic and sequence analysis?</q_str>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>What protein can interact with TGF beta?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" >
+                <q_str>What protein can bind to PuF?</q_str>
+            </q>
+            <q  q_id="10" q_type="factoid" >
+                <q_str>What protein inhibits the gene expression of APP?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="7">
+            <doc d_id="7">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>What does a U.S. health insurance program cover for a person with Alzheimer's?</q_str>
+            </q>
+            <q  q_id="2" q_type="factoid" >
+                <q_str>What do Alzheimer's family members want to get when they each exceed $100,000 in their own incomes?</q_str>
+            </q>
+            <q  q_id="3" q_type="binary" >
+                <q_str>Does health insurance cover the cost of books read by an Alzheimer's patient?</q_str>
+            </q>
+            <q  q_id="4" q_type="binary" >
+                <q_str>Can the income of an Alzheimer's family exceed the "poverty threshold"?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>What will happen if the care needed by an Alzheimer's patient costs more than the family is able to pay?</q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" q_multiple="yes" >
+                <q_str>Give three examples of kinds of medical care.</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" q_negate="yes" >
+                <q_str>All but one of the following are reasons why a total of $100,000 for the common funds of a family seeking assistance is not enough. Which one is that?</q_str>
+                <answer a_id='2' >The cost of living constantly increases.  </answer>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>How can a farmer avoid paying for institutional care?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" >
+                <q_str>What is the aim of biking for an Alzheimer's patient?</q_str>
+            </q>
+            <q  q_id="10" q_type="cause" >
+                <q_str>Why is the middle class falling into poverty? </q_str>
+            </q>
+            <q  q_id="11" q_type="factoid" >
+                <q_str>Which is one of the common goals of the many financial changes for families with Alzheimer's?What is a common goal among families with Alzheimer's who face financial difficulties as a result?</q_str>
+            </q>
+            <q  q_id="12" q_type="quantity" >
+                <q_str>How old was Mike Donohue when he was diagnosed with the most common form of dementia?</q_str>
+            </q>
+            <q  q_id="13" q_type="factoid" >
+                <q_str>How is it possible to efficiently change the existing infrastructure for taking care of Alzheimer's patients?</q_str>
+            </q>
+            <q  q_id="14" q_type="factoid" >
+                <q_str>How can an atypical Alzheimer's patient not evolve into the typical stage of the disease?</q_str>
+            </q>
+            <q  q_id="15" q_type="time" >
+                <q_str>When is it legally possible for an Alzheimer's patient to ask for help?</q_str>
+            </q>
+        </reading-test>
+        <reading-test r_id="8">
+            <doc d_id="8">
+            </doc>
+            <q  q_id="1" q_type="factoid" >
+                <q_str>What protein activity can be inhibited by LiCl?</q_str>
+            </q>
+            <q  q_id="2" q_type="factoid" >
+                <q_str>What specific protein forms part of a multimeric protein complex with beta catenin?</q_str>
+            </q>
+            <q  q_id="3" q_type="factoid" >
+                <q_str>What is the gene symbol of Glycogen synthase kinase 3?</q_str>
+            </q>
+            <q  q_id="4" q_type="factoid" >
+                <q_str>What experimental system was used to study the memory deficits?</q_str>
+            </q>
+            <q  q_id="5" q_type="factoid" >
+                <q_str>What protein is as well a known target of BACE1?</q_str>
+            </q>
+            <q  q_id="6" q_type="factoid" >
+                <q_str>What experimental technique was used to detect neuritic plaques?</q_str>
+            </q>
+            <q  q_id="7" q_type="factoid" >
+                <q_str>What protein activates the gene expression of NF-kappaB?</q_str>
+            </q>
+            <q  q_id="8" q_type="factoid" >
+                <q_str>What protein activated the transcription of BACE1?</q_str>
+            </q>
+            <q  q_id="9" q_type="factoid" >
+                <q_str>What protein is the target of addition of a phosphate group by GSK3-beta?</q_str>
+            </q>
+            <q  q_id="10" q_type="factoid" >
+                <q_str>What gene is blocked by ARA?</q_str>
+            </q>
+        </reading-test>
+    </topic>
+</test-set>
+

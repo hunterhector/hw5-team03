@@ -321,6 +321,11 @@
           <description>whether or not there's a NOT or a DON'T or CANNOT somewhere in the text so that we know to be looking for things that are NOT (for example, NOT TRUE)</description>
           <rangeTypeName>uima.cas.Boolean</rangeTypeName>
         </featureDescription>
+      <featureDescription>
+          <name>autoQType</name>
+          <description>whereas qtype contains the hand annotation, autoQType contains the automatically coded (NOT hand-annotated) version</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
       </features>
     </typeDescription>
     <typeDescription>
