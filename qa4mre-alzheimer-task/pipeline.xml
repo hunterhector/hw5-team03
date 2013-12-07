@@ -28,9 +28,9 @@
             </errorHandling>
             <checkpoint batch="10000" time="1000ms"/>
         </casProcessor>
-        <casProcessor deployment="integrated" name="XmiWriterConsumerDescriptor">
+        <casProcessor deployment="integrated" name="CasConsumerDescriptor">
             <descriptor>
-                <import location="src/main/resources/consumers/XmiWriterConsumerDescriptor.xml"/>
+                <import location="src/main/resources/consumers/OutputRunCasConsumerDescriptor.xml"/>
             </descriptor>
             <deploymentParameters/>
             <errorHandling>
