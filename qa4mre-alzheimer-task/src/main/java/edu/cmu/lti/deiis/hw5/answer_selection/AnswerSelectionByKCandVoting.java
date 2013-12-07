@@ -121,33 +121,6 @@ public class AnswerSelectionByKCandVoting extends JCasAnnotator_ImplBase {
 				hshAnswer.put(selectedAnswer, existingVal + 1.0/candAnswerList.size());
 			}
 
-			// GUOQING
-			// for (int c = 0; c < topK; c++) {
-			//
-			// CandidateSentence candSent = candSentList.get(c);
-			//
-			// ArrayList<CandidateAnswer> candAnswerList =
-			// Utils.fromFSListToCollection(
-			// candSent.getCandAnswerList(), CandidateAnswer.class);
-			//
-			// for (int j = 0; j < candAnswerList.size(); j++) {
-			//
-			// CandidateAnswer candAns = candAnswerList.get(j);
-			// String answer = candAns.getText();
-			//
-			// double totalScore = candAns.getSimilarityScore() +
-			// candAns.getSynonymScore()
-			// + candAns.getPMIScore();
-			//
-			//
-			// Double existingVal = hshAnswer.get(answer);
-			// if (existingVal == null) {
-			// existingVal = new Double(0.0);
-			// }
-			// hshAnswer.put(answer, existingVal + totalScore);
-			// }
-			// }
-
 			String bestChoice = null;
 			try {
 				//bestChoice = findBestChoice(hshAnswer);
