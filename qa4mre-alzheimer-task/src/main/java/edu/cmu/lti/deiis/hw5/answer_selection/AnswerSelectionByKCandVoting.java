@@ -46,6 +46,8 @@ public class AnswerSelectionByKCandVoting extends JCasAnnotator_ImplBase {
 		for (int i = 0; i < qaSet.size(); i++) {
 
 			Question question = qaSet.get(i).getQuestion();
+			String qtype = question.getQtype();
+			
 			System.out.println("Question: " + question.getText());
 			ArrayList<Answer> choiceList = Utils.fromFSListToCollection(qaSet.get(i).getAnswerList(), Answer.class);
 			ArrayList<CandidateSentence> candSentList = Utils
@@ -71,23 +73,52 @@ public class AnswerSelectionByKCandVoting extends JCasAnnotator_ImplBase {
 				ArrayList<CandidateAnswer> candAnswerList = Utils.fromFSListToCollection(candSent.getCandAnswerList(), CandidateAnswer.class);
 				String selectedAnswer = "";
 				double maxScore = Double.NEGATIVE_INFINITY;
+				double sumScore = 0.0;
+		        int count = 0;
+		        
 				for (int j = 0; j < candAnswerList.size(); j++) {
 
 					CandidateAnswer candAns = candAnswerList.get(j);
 					String answer = candAns.getText();
 
 					double totalScore = candAns.getSimilarityScore() + candAns.getSynonymScore() + candAns.getPMIScore();
-
+ 
+					if (totalScore != 0) {
+			        	  count += 1;
+			          }
+					sumScore += totalScore;
+					
 					if (totalScore > maxScore) {
 						maxScore = totalScore;
 						selectedAnswer = answer;
 					}
 				}
+				
+				// try normalization
+		        for (int j = 0; j < candAnswerList.size(); j++) {
+		        	CandidateAnswer candAns = candAnswerList.get(j);
+		            String answer = candAns.getText();
+
+		            double totalScore = candAns.getSimilarityScore() + candAns.getSynonymScore()
+		                    + candAns.getPMIScore();
+		            
+		            totalScore = totalScore/sumScore;
+		            Double existingVal = hshAnswer.get(answer);
+		            
+		            if (existingVal == null) {
+		                existingVal = new Double(0.0);
+		              }
+		            if (count > 0) {
+		                hshAnswer.put(answer, existingVal + totalScore*count/candAnswerList.size());
+		            }
+		            
+		        }
+		        
 				Double existingVal = hshAnswer.get(selectedAnswer);
 				if (existingVal == null) {
 					existingVal = new Double(0.0);
 				}
-				hshAnswer.put(selectedAnswer, existingVal + 1.0);
+				hshAnswer.put(selectedAnswer, existingVal + 1.0/candAnswerList.size());
 			}
 
 			// GUOQING
@@ -119,7 +150,8 @@ public class AnswerSelectionByKCandVoting extends JCasAnnotator_ImplBase {
 
 			String bestChoice = null;
 			try {
-				bestChoice = findBestChoice(hshAnswer);
+				//bestChoice = findBestChoice(hshAnswer);
+				bestChoice = findBestChoiceByType(hshAnswer, qtype);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -176,6 +208,61 @@ public class AnswerSelectionByKCandVoting extends JCasAnnotator_ImplBase {
 		}
 		return bestAns;
 	}
+	
+	
+	public String findBestChoiceByType(HashMap<String, Double> hshAnswer,String qtype) throws Exception {
+	    Iterator<String> it = hshAnswer.keySet().iterator();
+	    String bestAns = null;
+	    double maxScore = 0;
+	    System.out.println("Aggregated counts; ");
+	    while (it.hasNext()) {
+	      String key = it.next();
+	      Double val = hshAnswer.get(key);
+	      //System.out.println(key + "\t" + key + "\t" + val);
+	      
+	      //add different weights for answers
+	      if (qtype.contains("time")) {
+	    	  if (key.contains("when")) {
+	    		  val = val * 2;
+	    	  }
+	      }
+	      
+	      if (qtype.contains("binary")) {
+	    	  if (key.contains("None of the above")) {
+	    		  val = val * 4;
+	    	  }
+	      }
+	      
+	      if (qtype.contains("cause")) {
+	    	  if (key.contains("cause") | key.contains("by") | key.contains("None of the above")) {
+	    		  val = val* 1.5;
+	    	  }
+	    	  
+	    	  if (key.contains("None of the above")) {
+	    		  val = val * 2;
+	    	  }
+	      }
+	      
+	      if (qtype.contains("factoid")) {
+	    	  if (key.contains("None of the above")) {
+	    		  val = val * 4;
+	    	  }
+	      }
+	      
+	      if (val >= maxScore) {
+	        maxScore = val;
+	        bestAns = key;
+	      }
+	      
+	      System.out.println(key + "\t" + key + "\t" + val);
+	      /*else if (key.contains("None of the above")) {
+	    	  maxScore = val;
+	    	  bestAns = key;
+	    	  break;
+	      }*/
+	    }
+	    return bestAns;
+	  }
 
 	@Override
 	public void collectionProcessComplete() throws AnalysisEngineProcessException {
